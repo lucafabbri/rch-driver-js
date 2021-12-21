@@ -1,15 +1,11 @@
-﻿namespace Rch.Driver.Net.Models
-{
-    public class Group
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Group() { }
+﻿import { IGroup } from "../interfaces/group";
+export class Group implements IGroup {
+    id: number;
+    name: string;
 
-        public Group(string entry)
-        {
-            Id = int.Parse(entry.Substring(4, 2));
-            Name = entry.Substring(10, 20).Trim();
-        }
+    constructor(entry: string) {
+        this.id = parseInt(entry.substring(4, 2));
+        this.name = entry.substring(10, 20);
+        this.name.trim();
     }
 }

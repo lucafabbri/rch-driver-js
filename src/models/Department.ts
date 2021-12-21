@@ -1,38 +1,36 @@
-﻿namespace Rch.Driver.Net.Models
-{
-    public class Department extends AbstractParser implements IDepartment
-    {
-        private string firstRow;
-        private string secondRow;
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int DepartmentType { get; set; }
-        public int Price { get; set; }
-        public int Halo { get; set; }
-        public int Lalo { get; set; }
-        public bool Single { get; set; }
-        public int VatCode { get; set; }
-        public int GroupCode { get; set; }
+﻿import { AbstractParser } from "./AbstractParser"
+import { IDepartment } from "../interfaces/department"
 
-        public Department() { }
-        public Department(string firstRow, string secondRow)
-        {
-            this.firstRow = firstRow;
-            this.secondRow = secondRow;
-            parse();
-        }
+export class Department extends AbstractParser implements IDepartment {
+    firstRow: string;
+    secondRow: string;
+    id: number;
+    name: string;
+    departmentType: number;
+    price: number;
+    halo: number;
+    lalo: number;
+    single: boolean;
+    vatCode: number;
+    groupCode: number;
 
-        private void parse()
-        {
-            Id = int.Parse(firstRow.Substring(1, 3));
-            Name = firstRow.Substring(4, 20).Trim();
-            Price = parseIntWithDecimal(firstRow.Substring(24, 10));
-            Halo = parseIntWithDecimal(secondRow.Substring(4, 10));
-            Lalo = parseIntWithDecimal(secondRow.Substring(14, 10));
-            VatCode = indexChartToInt(secondRow[24]);
-            Single = secondRow[25] == '1';
-            GroupCode = int.Parse(secondRow.Substring(26, 2));
-            DepartmentType = indexChartToInt(secondRow[28]);
-        }
+    constructor(firstRow: string, secondRow: string) {
+        super();
+        this.firstRow = firstRow;
+        this.secondRow = secondRow;
+        this.parse();
+    }
+
+    private parse() {
+        this.id = parseInt(this.firstRow.substring(1, 3));
+        this.name = this.firstRow.substring(4, 20);
+        this.name.trim();
+        this.price = this.parseIntWithDecimal(this.firstRow.substring(24, 10));
+        this.halo = this.parseIntWithDecimal(this.secondRow.substring(4, 10));
+        this.lalo = this.parseIntWithDecimal(this.secondRow.substring(14, 10));
+        this.vatCode = this.indexChartToInt(this.secondRow.charCodeAt(28));
+        this.single = this.secondRow.charAt(25) == '1';
+        this.groupCode = parseInt(this.secondRow.substring(26, 2));
+        this.departmentType = this.indexChartToInt(this.secondRow.charCodeAt(28));
     }
 }

@@ -1,8 +1,5 @@
-﻿namespace Rch.Driver.Net.Models
-{
-    public class PeriodCheck
-    {
-        public bool Enabled { get; set; }
-        public int Value { get; set; }
-    }
+﻿import { IPeriodCheck } from "../interfaces/periodCheck"
+export class PeriodCheck implements IPeriodCheck{
+    enabled: boolean;
+    value: number;
 }

@@ -1,8 +1,5 @@
-﻿namespace Rch.Driver.Net.Models
-{
-    public class SlidingMsg
-    {
-        public string Name { get; set; }
-        public int Value { get; set; }
-    }
+﻿import { ISlidingMsg } from "../interfaces/slidingMsg"
+export class SlidingMsg implements ISlidingMsg {
+    name: string;
+    value: number;
 }

@@ -46,8 +46,8 @@
     "url": "https://lfabbri@bitbucket.org/rch-group/rch-driver-js/issues"
   },
   "dependencies": {
+    "@rollup/plugin-inject": "^4.0.3",
     "@types/node": "^16.0.0",
-    "path": "^0.12.7",
-    "@rollup/plugin-inject": "^4.0.3"
+    "path": "^0.12.7"
   }
 }
