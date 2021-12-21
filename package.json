@@ -1,0 +1,53 @@
+{
+  "name": "rch-driver-js",
+  "version": "1.0.0-alpha.1",
+  "description": "RCH Driver for Javascript",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "scripts": {
+    "verify:web": "npm run build",
+    "lint": "npm run eslint && npm run prettier -- --check",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "build": "npm run clean && tsc && rollup -c rollup.config.js",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "pub": "yarn publish --registry https://repo.rchrnd.com/repository/npm-hosted"
+  },
+  "author": "Luca Fabbri <l.fabbri@rch.it>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "prettier": "~2.2.0",
+    "prettier-plugin-java": "~1.0.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.32.0",
+    "swiftlint": "^1.0.1",
+    "typescript": "~4.0.3"
+  },
+  "files": [
+    "dist/"
+  ],
+  "keywords": [
+    "plugin"
+  ],
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://lfabbri@bitbucket.org/rch-group/rch-driver-js"
+  },
+  "bugs": {
+    "url": "https://lfabbri@bitbucket.org/rch-group/rch-driver-js/issues"
+  },
+  "dependencies": {
+    "@types/node": "^16.0.0",
+    "path": "^0.12.7",
+    "@rollup/plugin-inject": "^4.0.3"
+  }
+}
