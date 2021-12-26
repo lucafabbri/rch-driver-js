@@ -3,6 +3,6 @@
  * @exports ILogo
  */
 export interface ILogo {
-  id: number;
-  value: number;
+    id: number | undefined;
+    value: number | undefined;
 }

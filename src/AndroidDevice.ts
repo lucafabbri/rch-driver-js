@@ -1,8 +1,9 @@
 import { AbstractDevice } from "./AbstractDevice";
+import { IAndroidDevice } from "./IAndroidDevice";
 
-export interface AndroidDevice extends AbstractDevice {
-    androidId: string;
-    swVersionLabel: string;
-    swVersion: string;
-    licenses: string[];
+export class AndroidDevice extends AbstractDevice implements IAndroidDevice {
+    androidId: string = "";
+    swVersionLabel: string = "";
+    swVersion: string = "";
+    licenses: string[] = [];
 }

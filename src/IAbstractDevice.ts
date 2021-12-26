@@ -1,4 +1,4 @@
-export interface AbstractDevice {
+export interface IAbstractDevice {
     active: boolean;
     baudRate: number;
     comPort: string;

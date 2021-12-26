@@ -342,7 +342,7 @@ export class Core {
      */
     displayMessage(rowId: number, message: string): string {
         if (rowId < 1 || rowId > 3) {
-            return;
+            return "";
         } else {
             return this.cmd("=D" + rowId + "/(" + message + ")")
         }
@@ -453,6 +453,18 @@ export class Core {
      */
     printerStatus(): string {
         return this.cmd("<</?i/*4")
+    }
+    /**
+    *   Device Serial number <</?m
+    */
+    getSerialNumber(): string {
+        return this.cmd("<</?m");
+    }
+    /**
+     *  Device Firware Revision <</?f
+     */
+    getFirmwareRevision(): string {
+        return this.cmd("<</?f");
     }
     /**
      * Check RT status
@@ -577,10 +589,10 @@ export class Core {
      */
     C918(id: number, name: string): string {
         var trimmedName = name.substr(0, 48).trim();
-
+        var spacedName = "";
         if (trimmedName.length < 48) {
             var spaces = Math.floor((48 - trimmedName.length) / 2);
-            var spacedName = trimmedName.padStart(trimmedName.length + spaces, " ").padEnd(48, " ");
+            spacedName = trimmedName.padStart(trimmedName.length + spaces, " ").padEnd(48, " ");
         }
         return this.cmd(">C918/*1/$" + id + "/(" + spacedName + ")");
     }
@@ -675,7 +687,7 @@ export class Core {
     R(deptId: number, price: number, vat: number, name: string, halo: number, lalo: number, single: boolean, grp_code: number | null, dpt_type: string): string {
         return this.cmd(">R" + deptId +
             "/?A/$" + price +
-            "/*" + (vat === false || vat === true ? 0 : vat) +
+            "/*" + vat +
             "/(" + name +
             ")/&" + halo +
             "/[" + lalo +
@@ -750,7 +762,7 @@ export class Core {
      * Util to convert rate type string to integer
      * @param {String} value 
      */
-    rateStringToInt(value: string): number {
+    rateStringToInt(value: string): number | null {
         switch (value) {
             case "VAT":
                 return 0;
@@ -768,13 +780,15 @@ export class Core {
                 return 1;
             case "VI":
                 return 2;
+            default:
+                return null;
         }
     }
     /**
      * Util to convert nature type string to integer
      * @param {String} value 
      */
-    natureStringToInt(value: string): number {
+    natureStringToInt(value: string): number | null {
         switch (value) {
             case "EE":
                 return 1;
@@ -788,13 +802,15 @@ export class Core {
                 return 5;
             case "AL":
                 return 6;
+            default:
+                return null;
         }
     }
     /**
      * Util to convert credit type string to integer
      * @param {String} tender_credit_type 
      */
-    creditStringToInt(tender_credit_type: string): number {
+    creditStringToInt(tender_credit_type: string): number | null {
         try {
             switch (tender_credit_type) {
                 case "E_CREDIT_GOOD":
@@ -809,9 +825,11 @@ export class Core {
                     return 5;
                 case "E_NO_CREDIT":
                     return 0;
+                default:
+                    return null;
             }
         } catch {
-            return 0;
+            return null;
         }
     }
     /**
@@ -832,6 +850,8 @@ export class Core {
                 case 5:
                     return "E_PAY_DISCOUNT";
                 case 0:
+                    return "E_NO_CREDIT";
+                default:
                     return "E_NO_CREDIT";
             }
         } catch {

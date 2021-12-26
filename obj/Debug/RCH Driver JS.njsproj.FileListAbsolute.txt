@@ -1,0 +1,2 @@
+C:\Users\lfabbri\source\rch-driver-js\obj\Debug\RCH Driver JS.njsproj.CoreCompileInputs.cache
+C:\Users\lfabbri\source\rch-driver-js\bin\Microsoft.NodejsTools.WebRole.dll

@@ -8,10 +8,6 @@ export class HeadingRow implements IHeadingRow {
     constructor(firstRow: string, secondRow: string) {
         this.firstRow = firstRow;
         this.secondRow = secondRow;
-        this.parse();
-    }
-
-    private parse() {
         this.id = parseInt(this.firstRow.substring(1, 3));
         this.name = (this.firstRow.substring(4, 24) + this.secondRow.substring(4, 24));
         this.name.trim();

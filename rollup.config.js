@@ -1,5 +1,5 @@
 export default {
-  input: 'dist/esm/index.js',
+  input: 'src/index.js',
   output: [
     {
       file: 'dist/plugin.js',

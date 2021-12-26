@@ -10,6 +10,7 @@ export class Vat extends AbstractParser implements IVat{
         super();
         this.id = parseInt(entry.substring(1, 3));
         this.value = parseInt(entry.substring(4, 4));
+        this.type = "VAT";
         let t = parseInt(entry.substring(8, 1));
         switch (t) {
             case 1:

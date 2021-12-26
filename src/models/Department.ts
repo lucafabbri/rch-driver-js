@@ -18,10 +18,6 @@ export class Department extends AbstractParser implements IDepartment {
         super();
         this.firstRow = firstRow;
         this.secondRow = secondRow;
-        this.parse();
-    }
-
-    private parse() {
         this.id = parseInt(this.firstRow.substring(1, 3));
         this.name = this.firstRow.substring(4, 20);
         this.name.trim();
