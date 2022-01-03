@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "RCH Driver JS", "RCH Driver JS.njsproj", "{B90B6ADB-C2F7-4E4D-9A31-1BBC226A206E}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "RCH Driver JS", "RCH Driver JS\RCH Driver JS.njsproj", "{B90B6ADB-C2F7-4E4D-9A31-1BBC226A206E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

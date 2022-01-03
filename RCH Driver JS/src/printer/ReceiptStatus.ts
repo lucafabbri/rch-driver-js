@@ -1,0 +1,7 @@
+export enum ReceiptStatus {
+	IDLE = 0,
+	FISCAL_TRANSITION = 1,
+	FISCAL_PAYMENT = 2,
+	ALPHA_INPUT = 3,
+	WAITING_TERMINATION = 4
+}

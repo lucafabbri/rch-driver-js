@@ -1,0 +1,14 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+	},
+	"include": ["test/**/*"],
+	"exclude": [
+		"node_modules",
+		"build",
+		"dist",
+		"src",
+		"*.md",
+		"rollup.config.js"
+	]
+}
