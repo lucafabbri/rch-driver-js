@@ -10,6 +10,7 @@ export class Crawler{
         let results: Array<IEcrDevice> = []
         try {
             let pingResults = await find();
+            console.debug(this.logTag + "Devices found on Local Network: "+pingResults.length);
 
             pingResults.forEach((res) => {
                 let device = new EcrDevice();

@@ -1,48 +1,13 @@
 export class RegexUtils {
-    static matchRtDate(row: string): string | null {
-        var regex = /[0-9]{2}-[0-9]{2}-[0-9]{4}[ ][0-9]{2}:[0-9]{2}/;
-        return regex.exec(row)?.at(0) ?? null;
-    }
+	static fiscalReportPattern = /^(?<raw> *?DOCUMENTO (?<type>GESTIONALE) *?\n(.*\n)*?(VENDITE *?(?<sells>(\.?[\d]{1,3})*?,[\d]{2})\n){1}(GRAN TOTALE *?(?<grandTotal>(\.?[\d]{1,3})*?,[\d]{2})){1}(?<vats>(.*\n)*?)(?<payments>(PAGATO.*?\n)*?)(FATTURE *?(?<invoices>[\d]+)\n){1}(TOT\. FATTURE *?(?<invoicesTotal>(\.?[\d]{1,3})*?,[\d]{2})\n){1}(.*\n)*?(CHIUSURA GIORNALIERA N\. *?(?<closureN>[\d]{4})\n){1}(DOCUMENTI COMMERCIALI *?(?<fiscalDocuments>[\d]{4})\n){1}(DOCUMENTI GESTIONALI *?(?<managementDocuments>[\d]{4})\n){1}(LETTURE M\.P\.RIEPILOGO *?(?<summaryReadings>[\d]{4})\n){1}(.*\n)*?( +?(?<datetime>[\d]{2}-[\d]{2}-[\d]{4} [\d]{2}:[\d]{2}) +?\n){1}( +?(DOCUMENTO N\.|DOC\.GESTIONALE N\.) (?<closure>[\d]{4})-(?<number>[\d]{4}) +?\n){1}(RIPRISTINI *?(?<restores>[\d]{4})\n){1}(DGFE:(?<dgfeNumber>[\d]{2}) SIGILLO FISCALE:(?<fiscalSeal>[0-9A-F]+) *?\n)( *?(?<serialNumber>[7][2][a-zA-Z]{2}[\d]{7}).*?){1})$/gm;
 
-    static matchRtDocumentNumber(row: string): number[] | null {
-        var result: number[] | null = null;
-        var isGestionale = this.matchRtDocumentGestionale(row);
+	static fiscalReportVatDetailsPattern = /^IVA [\d]{1,2} ([\d]{1,2},[\d]{2}%|.{2}) : +?\n TOTALE VENDITE *?(?<sellsGrandTotal>(\.?[\d]{1,3})*?,[\d]{2})\n IMPONIBILE VENDITE *?(?<sellsNetTotal>(\.?[\d]{1,3})*?,[\d]{2})\n IVA VENDITE *?(?<sellsVatTotal>(\.?[\d]{1,3})*?,[\d]{2})\n.*?\nTOTALE IVA (?<id>[\d]{1,2}) (?<vat>[\d]{1,2},[\d]{2}%|.{2}) *?(?<total>(\.?[\d]{1,3})*?,[\d]{2})\n/gm;
 
-        if (isGestionale) {
-            var m = row.match(new RegExp("DOC.GESTIONALE N. [0-9]{4}-[0-9]{4}"));
-            var matches = m?.length
-            if (matches && matches > 0) {
-                var match = m?.at(0)?.replace("DOC.GESTIONALE N. ", "").split('-');
-                if (match) {
-                    result = [];
-                    result.push(parseInt(match[0]));
-                    result.push(parseInt(match[1]));
-                }
-            }
-        } else {
-            var m = row.match(new RegExp("DOCUMENTO N.  [0-9]{4}-[0-9]{4}"));
-            var matches = m?.length
-            if (matches && matches > 0) {
-                var match = m?.at(0)?.replace("DOCUMENTO N.  ", "").split('-');
-                if (match) {
-                    result = [];
-                    result.push(parseInt(match[0]));
-                    result.push(parseInt(match[1]));
-                }
-            }
-        }
-        return result;
-    }
+	static fiscalReportPaymentDetailsPattern = /^(?<description>([\w]+? *?){2,}) *? (?<value>(\.?[\d]{1,3})*?,[\d]{2})\n/gm;
 
-    static matchRtDocumentGestionale(row: string): boolean {
-        var m = new RegExp("DOC.GESTIONALE N. ");
-        var matches = row.match(m)?.length
-        return (matches != undefined && matches > 0);
-    }
+	static fiscalDocumentPattern = /^(?<raw> *?DOCUMENTO (?<type>COMMERCIALE) *?\n(.*\n)*?(?<items>DESCRIZIONE.*?\n(.*\n)*?)((TOTALE COMPLESSIVO *?(?<grandTotal>(\.?[\d]{1,3})*?,[\d]{2})\n)(di cui IVA *?(?<vatTotal>(\.?[\d]{1,3})*?,[\d]{2})\n)?(.*\n)*?(?<payments>\-+?\n(?<paymentsType>(.*?\n)*?)\-+?\n)(.*\n)*?(Importo pagato[ ]+?(?<paymentTotal>(\.?[\d]{1,3})*?,[\d]{2})\n).*?( +?(?<datetime>[\d]{2}-[\d]{2}-[\d]{4} [\d]{2}:[\d]{2}) +?\n){1})(( +?DOCUMENTO N\. (?<closure>[\d]{4})-(?<number>[\d]{4}) +?\n){1}.*?(.*?(?<serialNumber>[7][2][a-zA-Z]{2}[\d]{7}).*?){1}))$/gm;
 
-    static matchRtSerialNumber(row: string): boolean {
-        var m = new RegExp("[7][2][a-zA-Z][a-zA-Z][0-9]{7}");
-        var matches = row.match(m)?.length
-        return (matches != undefined && matches > 0);
-    }
+	static fiscalDocumentItemsPattern = /^((?<description>[\w]+?) *?((?<vat>[\d]{1,2})%) *?(?<value>(\.?[\d]{1,3})*?,[\d]{2})\n)( *?n\.(?<qty>[\d]{1,5}) \* (?<unitValue>(\.?[\d]{1,3})*?,[\d]{2}) *?\n)?((?<discountDescription>[\w]+?)( (?<discountPerc>[\d]{1,3})%)? *?((?<discountVat>[\d]{1,2})%) *?(?<discountValue>\-(\.?[\d]{1,3})*?,[\d]{2}))?/gm;
+
+	static fiscalDocumentPaymentsPattern = /^(?<description>[\w \-\+\*\.]+?) *?(?<value>(\.?[\d]{1,3})*?,[\d]{2})$/gm;
 }

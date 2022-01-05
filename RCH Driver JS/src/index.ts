@@ -2,10 +2,12 @@
 
 export * from './AbstractDevice';
 export * from './AndroidDevice';
+export * from './Closure';
 export * from './ComConst';
 export * from './ConnectionConst';
 export * from './Delegates';
 export * from './DeviceType';
+export * from './Dgfe';
 export * from './Document';
 export * from './Driver';
 export * from './EcrDevice';
@@ -13,8 +15,9 @@ export * from './IAbstractDevice';
 export * from './IAndroidDevice';
 export * from './IDriver';
 export * from './IEcrDevice';
-export * from './SerialDriver';
-export * from './TcpIpDriver';
+export * from './Receipt';
+export * from './ReceiptItem';
+export * from './ReceiptPayment';
 export * from './utils';
 export * from './protocol';
 export * from './printer';

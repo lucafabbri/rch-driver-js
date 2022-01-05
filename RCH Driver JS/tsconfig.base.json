@@ -10,8 +10,8 @@
 		"resolveJsonModule": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "ES6",
+		"target": "ES2017",
 		"types": ["mocha", "node", "serialport"],
-		"skipLibCheck": true,
+		"skipLibCheck": true
 	}
 }

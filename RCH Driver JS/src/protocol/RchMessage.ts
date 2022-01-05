@@ -1,4 +1,4 @@
-import { Utils } from "..";
+import { ComConst, Utils } from "..";
 import { ReceiptStatus } from "../printer/ReceiptStatus";
 
 export class RchMessage {
@@ -7,6 +7,7 @@ export class RchMessage {
     protocol: string | null | undefined;
     packetId: string | null | undefined;
     checksum: string | null | undefined;
+    checksumCalculated: string | null | undefined;
     checksumVerified: boolean = false;
     controlCode: string | null | undefined;
     errorType: string | null | undefined = "";
@@ -41,8 +42,9 @@ export class RchMessage {
                     this.data = groups["data"];
                     this.packetId = groups["packetId"];
                     this.checksum = groups["checksum"];
+                    this.checksumCalculated = Utils.calculateBccFromString(Buffer.from([ComConst.CHR_STX]).toString("ascii")+raw.slice(0, raw.length - 2));
                     if (this.checksum) {
-                        this.checksumVerified = Utils.calculateBccFromString(groups["data"]) == this.checksum;
+                        this.checksumVerified = this.checksumCalculated == this.checksum;
                     }
                     this.controlCode = groups["controlCode"];
                     this.errorCode = groups["errorCode"];

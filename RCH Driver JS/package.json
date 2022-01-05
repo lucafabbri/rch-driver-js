@@ -1,6 +1,6 @@
 {
   "name": "rch-driver-js",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-beta.1",
   "description": "RCH Driver for Javascript",
   "main": "dist/esm/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,7 +12,7 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "build": "npm run clean && npx ctix create ./tsconfig.json && tsc -p ./tsconfig.json --downlevelIteration && tsc -p ./tsconfig.test.json --downlevelIteration && rollup -c rollup.config.js",
-    "clean": "rimraf ./dist",
+    "clean": "rimraf ./dist && rm -rf ./test/*.js && rm -rf ./test/*.d.ts && rm -rf ./test/*.map",
     "watch": "tsc --watch",
     "test": "mocha test/**/*Test.js --reporter spec",
     "prepublishOnly": "npm run build",
@@ -46,9 +46,13 @@
   },
   "dependencies": {
     "@rollup/plugin-inject": "^4.0.3",
+    "@types/lodash": "^4.14.178",
+    "@types/luxon": "^2.0.8",
     "@types/node": "^16.0.0",
     "@types/serialport": "^8.0.2",
     "local-devices": "^3.2.0",
+    "lodash": "^4.17.21",
+    "luxon": "^2.3.0",
     "path": "^0.12.7",
     "serialport": "^9.2.8"
   }

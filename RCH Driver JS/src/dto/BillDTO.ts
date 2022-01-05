@@ -5,4 +5,6 @@ export interface BillDTO {
     lineItems: LineItemDTO[];
     paymentItems: PaymentItemDTO[];
     lotteryCode: string | null | undefined;
+    textBefore: string[] | null;
+    textAfter: string[] | null;
 }
