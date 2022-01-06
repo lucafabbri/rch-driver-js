@@ -260,6 +260,13 @@ export class Core {
 	}
 
 	/**
+	 * get the last document printed
+	 */
+	getLastReceipt(): string {
+		return this.cmd('=C453/$0');
+	}
+
+	/**
 	 * command to print the last receipt without the amounts of the articles, called “Receipt Gift "(in REG)
 	 */
 	giftReceipt(): string {

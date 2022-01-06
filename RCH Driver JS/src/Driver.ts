@@ -1,31 +1,31 @@
-import { ComConst } from "./ComConst";
-import { DeviceType } from "./DeviceType";
-import { EcrDevice } from "./EcrDevice";
-import { IDriver } from "./IDriver";
-import { IEcrDevice } from "./IEcrDevice";
-import { Prog } from "./models/Prog";
-import { Core } from "./protocol/Core";
-import { RchProtocol } from "./protocol/RchProtocol";
-import { RchDefault } from "./utils/RchDefault";
-import { Utils } from "./utils/Utils";
-import { Document } from "./Document";
-import { IProg } from "./interfaces/prog";
-import { BillDTO } from "./dto/BillDTO";
-import { PrintBillResponseDTO } from "./dto/PrintBillResponseDTO";
-import { Duplex } from "stream";
-import { RchMessage } from "./protocol/RchMessage";
-import { PrinterStatus } from "./printer/PrinterStatus";
-import { DeviceStatus } from "./printer/DeviceStatus";
-import { DgfeStatus, RTStatus, EthernetSettings, CashRegister } from "./printer";
-import { DayLightSavingTimeAndPeriodCheck } from "./printer/DayLightSavingTimeAndPeriodCheck";
-import { InactivityAndPendings } from "./printer/InactivityAndPendings";
+import {ComConst} from './ComConst';
+import {DeviceType} from './DeviceType';
+import {EcrDevice} from './EcrDevice';
+import {IDriver} from './IDriver';
+import {IEcrDevice} from './IEcrDevice';
+import {Prog} from './models/Prog';
+import {Core} from './protocol/Core';
+import {RchProtocol} from './protocol/RchProtocol';
+import {RchDefault} from './utils/RchDefault';
+import {Utils} from './utils/Utils';
+import {Document} from './Document';
+import {IProg} from './interfaces/prog';
+import {BillDTO} from './dto/BillDTO';
+import {PrintBillResponseDTO} from './dto/PrintBillResponseDTO';
+import {Duplex} from 'stream';
+import {RchMessage} from './protocol/RchMessage';
+import {PrinterStatus} from './printer/PrinterStatus';
+import {DeviceStatus} from './printer/DeviceStatus';
+import {DgfeStatus, RTStatus, EthernetSettings, CashRegister} from './printer';
+import {DayLightSavingTimeAndPeriodCheck} from './printer/DayLightSavingTimeAndPeriodCheck';
+import {InactivityAndPendings} from './printer/InactivityAndPendings';
 import {ConnectionConst} from './ConnectionConst';
 import {createConnection, Socket} from 'net';
 import {Crawler} from './network/Crawler';
 import SerialPort from 'serialport';
-import { DateTime } from "luxon";
-import _ from "lodash";
-import { Dgfe, Receipt, RegexUtils, Closure } from ".";
+import {DateTime} from 'luxon';
+import _ from 'lodash';
+import {Dgfe, Receipt, RegexUtils, Closure} from '.';
 
 export class Driver implements IDriver {
 	connection: string;
@@ -39,7 +39,7 @@ export class Driver implements IDriver {
 	commandEventListeners: Function[] = [];
 	isETX = false;
 	buffer: number[] = [];
-	sessionCommands: { [key: string]: RchProtocol[] } = {};
+	sessionCommands: {[key: string]: RchProtocol[]} = {};
 	logTag: string = '[Driver]: ';
 	client: Duplex | null = null;
 	core: Core = new Core();
@@ -67,7 +67,7 @@ export class Driver implements IDriver {
 				this.client?.end();
 				this.client = null;
 				reject(false);
-			}, 250);
+			}, 500);
 			switch (this.connection) {
 				case ConnectionConst.SERIAL:
 					if (this.comPort && this.baudRate) {
@@ -157,8 +157,8 @@ export class Driver implements IDriver {
 					} else {
 						console.debug(
 							this.logTag +
-							'#discovery Device Not Found on Serial Port: ' +
-							port.path
+								'#discovery Device Not Found on Serial Port: ' +
+								port.path
 						);
 					}
 				} catch (pe) {
@@ -185,8 +185,8 @@ export class Driver implements IDriver {
 					} else {
 						console.debug(
 							this.logTag +
-							'#discovery Device Not Found on TCP/IP: ' +
-							device.ip
+								'#discovery Device Not Found on TCP/IP: ' +
+								device.ip
 						);
 					}
 				} catch (pe) {
@@ -361,7 +361,6 @@ export class Driver implements IDriver {
 		dgfe.receipts = [];
 
 		try {
-			if (await this.open()) {
 				await this.sendCommand(this.core.prg());
 				var sendCommandResult = await this.sendCommand(
 					this.core.C451(
@@ -370,7 +369,6 @@ export class Driver implements IDriver {
 					)
 				);
 				if (sendCommandResult.isSuccess) {
-
 					var rows = sendCommandResult.responseBody.join('\n');
 
 					let m;
@@ -384,27 +382,8 @@ export class Driver implements IDriver {
 						var receipt = new Receipt();
 						var groups = m.groups;
 						if (groups) {
-							receipt.raw = groups['raw'];
-							receipt.date = groups['datetime'];
-							receipt.closure = parseInt(groups['closure']);
-							receipt.number = parseInt(groups['number']);
-							if (groups['grandTotal']) {
-								receipt.grandTotal = parseFloat(
-									groups['grandTotal'].replace(/[,\.]/, '')
-								);
-							}
-							if (groups['vatTotal']) {
-								receipt.vatTotal = parseFloat(
-									groups['vatTotal'].replace(/[,\.]/, '')
-								);
-							}
-							if (groups['paymentTotal']) {
-								receipt.paymentTotal = parseFloat(
-									groups['paymentTotal'].replace(/[,\.]/, '')
-								);
-							}
+							dgfe.receipts.push(this.fillReceipt(groups, receipt));
 						}
-						dgfe.receipts.push(receipt);
 					}
 
 					while ((m = RegexUtils.fiscalReportPattern.exec(rows)) !== null) {
@@ -420,37 +399,92 @@ export class Driver implements IDriver {
 							closure.date = groups['datetime'];
 							closure.closure = parseInt(groups['closure']);
 							closure.number = parseInt(groups['number']);
-							closure.sells = parseInt(groups["sells"]);
+							closure.sells = parseInt(groups['sells']);
 							if (groups['grandTotal']) {
 								closure.grandTotal = parseFloat(
 									groups['grandTotal'].replace(/[,\.]/, '')
 								);
 							}
-							closure.invoices = parseInt(groups["invoices"]);
+							closure.invoices = parseInt(groups['invoices']);
 							if (groups['invoicesTotal']) {
 								closure.invoicesTotal = parseFloat(
 									groups['invoicesTotal'].replace(/[,\.]/, '')
 								);
 							}
 							closure.fiscalDocuments = parseInt(groups['fiscalDocuments']);
-							closure.managementDocuments = parseInt(groups["managementDocuments"]);
+							closure.managementDocuments = parseInt(
+								groups['managementDocuments']
+							);
 							closure.summaryReadings = parseInt(groups['summaryReadings']);
 							closure.restores = parseInt(groups['restores']);
 							closure.dgfeNumber = parseInt(groups['dgfeNumber']);
 							closure.fiscalSeal = groups['fiscalSeal'];
+							dgfe.closures.push(closure);
 						}
-						dgfe.closures.push(closure);
 					}
 				}
 				await this.sendCommand(this.core.reg());
 				await this.sendCommand(this.core.clear());
-				await this.close();
-			}
 		} catch (e) {
 			console.error(e);
-			await this.close();
 		}
 		return dgfe;
+	}
+	async getLastReceipt(): Promise<Receipt> {
+		let result = {} as Receipt;
+
+		try {
+			await this.sendCommand(this.core.prg());
+			var sendCommandResult = await this.sendCommand(
+				this.core.getLastReceipt()
+			);
+			if (sendCommandResult.isSuccess) {
+				var rows = sendCommandResult.responseBody.join('\n');
+
+				let m;
+
+				while ((m = RegexUtils.fiscalDocumentPattern.exec(rows)) !== null) {
+					// This is necessary to avoid infinite loops with zero-width matches
+					if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
+						RegexUtils.fiscalDocumentPattern.lastIndex++;
+					}
+
+					var receipt = new Receipt();
+					var groups = m.groups;
+					if (groups) {
+						result = this.fillReceipt(groups, receipt);
+					}
+				}
+			}
+			await this.sendCommand(this.core.reg());
+		} catch (e) {
+			console.error(e);
+		}
+		return result;
+	}
+
+	private fillReceipt(
+		groups: {[key: string]: string},
+		receipt: Receipt
+	): Receipt {
+		receipt.raw = groups['raw'];
+		receipt.date = groups['datetime'];
+		receipt.closure = parseInt(groups['closure']);
+		receipt.number = parseInt(groups['number']);
+		if (groups['grandTotal']) {
+			receipt.grandTotal = parseFloat(
+				groups['grandTotal'].replace(/[,\.]/, '')
+			);
+		}
+		if (groups['vatTotal']) {
+			receipt.vatTotal = parseFloat(groups['vatTotal'].replace(/[,\.]/, ''));
+		}
+		if (groups['paymentTotal']) {
+			receipt.paymentTotal = parseFloat(
+				groups['paymentTotal'].replace(/[,\.]/, '')
+			);
+		}
+		return receipt;
 	}
 
 	async allProgramming(): Promise<IProg | null> {
@@ -471,15 +505,18 @@ export class Driver implements IDriver {
 		}
 	}
 
-	async printReceipt(bill: BillDTO, printDepartmentSubtotal: boolean = false): Promise<PrintBillResponseDTO> {
-		var result = new PrintBillResponseDTO();
+	async printReceipt(
+		bill: BillDTO,
+		printDepartmentSubtotal: boolean = false
+	): Promise<PrintBillResponseDTO> {
+		var result = {} as PrintBillResponseDTO;
 		try {
 			var commands: string[] = [];
 			commands.push(this.core.clear());
 			if (bill.textBefore) {
-				bill.textBefore.forEach(item => {
+				bill.textBefore.forEach((item) => {
 					commands.push(this.core.printRowBeforeFiscalContent(item));
-				})
+				});
 			}
 			if (printDepartmentSubtotal) {
 				var billItemsGrouped = _.groupBy(bill.lineItems, (l) => l.departmentId);
@@ -505,29 +542,29 @@ export class Driver implements IDriver {
 							}
 						}
 					});
-				commands.push(this.core.subtotal());
+					commands.push(this.core.subtotal());
 				});
 			} else {
-					bill.lineItems.forEach((item) => {
-						commands.push(this.core.departmentSellFromLineItem(item));
-						if (item.discount) {
-							if (item.discount.percent) {
-								commands.push(
-									this.core.discountPercentage(
-										item.discount.percent,
-										item.discount.description
-									)
-								);
-							} else if (item.discount.value) {
-								commands.push(
-									this.core.discountValue(
-										item.discount.value,
-										item.discount.description
-									)
-								);
-							}
+				bill.lineItems.forEach((item) => {
+					commands.push(this.core.departmentSellFromLineItem(item));
+					if (item.discount) {
+						if (item.discount.percent) {
+							commands.push(
+								this.core.discountPercentage(
+									item.discount.percent,
+									item.discount.description
+								)
+							);
+						} else if (item.discount.value) {
+							commands.push(
+								this.core.discountValue(
+									item.discount.value,
+									item.discount.description
+								)
+							);
 						}
-					});
+					}
+				});
 			}
 			if (bill.lotteryCode) {
 				commands.push(this.core.lottery(bill.lotteryCode));
@@ -544,7 +581,15 @@ export class Driver implements IDriver {
 			commands.push(this.core.terminateOperation());
 			commands.push(this.core.clear());
 			var sendCommandsResult = await this.sendCommands(commands);
-			//var result = sendCommandsResult.reduce((previous, current) => previous && current.isSuccess, true);
+
+			if (
+				sendCommandsResult.reduce(
+					(previous, current) => previous && current.isSuccess,
+					true
+				)
+			) {
+				result.receipt = await this.getLastReceipt();
+			}
 		} catch (e) {
 			console.error(e);
 		}

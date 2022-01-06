@@ -3,7 +3,7 @@ import { RchProtocol } from "./protocol/RchProtocol"
 import { IProg } from "./interfaces/prog";
 import { PrinterStatus } from "./printer/PrinterStatus";
 import { DeviceStatus } from "./printer/DeviceStatus";
-import { BillDTO, CashRegister, Dgfe, DgfeStatus, EthernetSettings, PrintBillResponseDTO, RTStatus } from ".";
+import { BillDTO, CashRegister, Dgfe, DgfeStatus, EthernetSettings, PrintBillResponseDTO, Receipt, RTStatus } from ".";
 import { DayLightSavingTimeAndPeriodCheck } from "./printer/DayLightSavingTimeAndPeriodCheck";
 import { InactivityAndPendings } from "./printer/InactivityAndPendings";
 
@@ -19,6 +19,7 @@ export interface IDriver {
 
 	//composed actions
 	dumpDGFE(from: Date, to: Date): Promise<Dgfe>;
+	getLastReceipt(): Promise<Receipt>;
 	allProgramming(): Promise<IProg | null>;
 	zReport(): Promise<boolean>;
 	xReport(): Promise<boolean>;
