@@ -93,8 +93,12 @@ describe('#sendCommands()', function () {
         var core = new Core_1.Core();
         try {
             assert_1.default.ok(await driver.open());
-            var result = await driver.sendCommands([core.prg(), core.reg()]);
-            assert_1.default.equal(result.length, 2);
+            var result = await driver.sendCommands([
+                core.prg(),
+                core.V(0, 'EE', 0, "620201"),
+                core.reg(),
+            ]);
+            assert_1.default.equal(result.length, 3);
             assert_1.default.ok(result[0].isSuccess);
             assert_1.default.ok(result[1].isSuccess);
         }
@@ -108,10 +112,11 @@ describe('#allProgramming()', function () {
     this.timeout(10000);
     it('it should get the printer programming', async function () {
         var driver = new Driver_1.Driver(ConnectionConst_1.ConnectionConst.TCPIP, '192.168.1.10', 23, null, null);
-        driver.addCommandEventListener((command) => console.log(command));
+        //driver.addCommandEventListener((command: string) => console.log(command));
         try {
             await driver.open();
             var result = await driver.allProgramming();
+            console.log(result === null || result === void 0 ? void 0 : result.departments.filter(d => d.vatCode != 0));
             assert_1.default.ok(true);
         }
         catch (e) {
@@ -121,26 +126,24 @@ describe('#allProgramming()', function () {
     });
 });
 describe('#dumpDGFE()', function () {
-    this.timeout(60000);
+    this.timeout(300000);
     it('it should get the printer DGFE dump', async function () {
         var driver = new Driver_1.Driver(ConnectionConst_1.ConnectionConst.TCPIP, '192.168.1.10', 23, null, null);
         //driver.addCommandEventListener((command: string) => console.log(command));
         try {
             if (await driver.open()) {
                 var result = await driver.dumpDGFE(new Date(2021, 11, 1, 0, 0, 0, 0), new Date(2021, 11, 31, 0, 0, 0, 0));
-                console.log('Total COMMERCIALI: ' + result.receipts.length);
-                console.log('Total CHIUSURE: ' + result.closures.length);
-                console.log(result);
-                assert_1.default.ok(true);
-                await driver.close();
+                assert_1.default.ok(result);
             }
             else {
                 assert_1.default.fail('Driver not opened');
             }
         }
         catch (e) {
+            console.error(e);
             assert_1.default.fail(e);
         }
+        await driver.close();
     });
 });
 describe('#printReceipt()', function () {
@@ -198,14 +201,14 @@ describe('#printReceipt()', function () {
                     },
                 ],
                 paymentItems: [
-                    { value: 2500, description: 'CONTANTI', paymentId: 1 },
-                    { value: 2500, description: 'BANCOMAT', paymentId: 2 },
+                    { value: 2500, paymentId: 1 },
+                    { value: 2500, paymentId: 2 },
                 ],
                 textBefore: ['before', 'test'],
                 textAfter: ['test', 'after'],
-            }, true);
-            console.log(result);
-            assert_1.default.ok(result != null);
+            }, false, true);
+            console.debug(result);
+            assert_1.default.ok(result);
         }
         catch (e) {
             assert_1.default.fail(e);

@@ -233,7 +233,7 @@ export class Core {
 		return this.payment(
 			paymentItem.paymentId,
 			paymentItem.value,
-			paymentItem.description
+			null
 		);
 	}
 	/**

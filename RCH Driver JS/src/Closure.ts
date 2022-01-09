@@ -11,4 +11,5 @@ export class Closure extends Document {
 	restores: number | undefined;
 	dgfeNumber: number | undefined;
   fiscalSeal: string | undefined;
+	cancelledDocumentsTotal: number | undefined;
 }

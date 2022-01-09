@@ -28,7 +28,8 @@ export interface IDriver {
 	print(rows: string[], cutPaper: boolean, header: boolean): Promise<boolean>;
 	printReceipt(
 		bill: BillDTO,
-		printDepartmentSubtotal: boolean
+		printDepartmentSubtotal: boolean,
+		dumpResultFromDgfe: boolean
 	): Promise<PrintBillResponseDTO>;
 
 	//statuses

@@ -1,6 +1,6 @@
 {
   "name": "rch-driver-js",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "RCH Driver for Javascript",
   "main": "dist/esm/plugin.cjs.js",
   "module": "dist/esm/index.js",

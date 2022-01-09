@@ -17,6 +17,7 @@ export * from './IDriver';
 export * from './IEcrDevice';
 export * from './Receipt';
 export * from './ReceiptItem';
+export * from './ReceiptItemDiscount';
 export * from './ReceiptPayment';
 export * from './utils';
 export * from './protocol';

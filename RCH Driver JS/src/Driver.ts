@@ -25,7 +25,15 @@ import {Crawler} from './network/Crawler';
 import SerialPort from 'serialport';
 import {DateTime} from 'luxon';
 import _ from 'lodash';
-import {Dgfe, Receipt, RegexUtils, Closure} from '.';
+import {
+	Dgfe,
+	Receipt,
+	RegexUtils,
+	Closure,
+	ReceiptItem,
+	ReceiptPayment,
+} from '.';
+import {ReceiptItemDiscount} from './ReceiptItemDiscount';
 
 export class Driver implements IDriver {
 	connection: string;
@@ -361,70 +369,101 @@ export class Driver implements IDriver {
 		dgfe.receipts = [];
 
 		try {
-				await this.sendCommand(this.core.prg());
-				var sendCommandResult = await this.sendCommand(
-					this.core.C451(
-						DateTime.fromJSDate(from).toFormat('ddLLyy'),
-						DateTime.fromJSDate(to).toFormat('ddLLyy')
-					)
-				);
-				if (sendCommandResult.isSuccess) {
-					var rows = sendCommandResult.responseBody.join('\n');
+			await this.sendCommand(this.core.prg());
+			var sendCommandResult = await this.sendCommand(
+				this.core.C451(
+					DateTime.fromJSDate(from).toFormat('ddLLyy'),
+					DateTime.fromJSDate(to).toFormat('ddLLyy')
+				)
+			);
+			if (sendCommandResult.isSuccess) {
+				var rows = sendCommandResult.responseBody.join('\n');
+				console.debug(rows);
+				let m;
 
-					let m;
-
-					while ((m = RegexUtils.fiscalDocumentPattern.exec(rows)) !== null) {
-						// This is necessary to avoid infinite loops with zero-width matches
-						if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
-							RegexUtils.fiscalDocumentPattern.lastIndex++;
-						}
-
-						var receipt = new Receipt();
-						var groups = m.groups;
-						if (groups) {
-							dgfe.receipts.push(this.fillReceipt(groups, receipt));
-						}
+				while ((m = RegexUtils.fiscalDocumentPattern.exec(rows)) !== null) {
+					// This is necessary to avoid infinite loops with zero-width matches
+					if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
+						RegexUtils.fiscalDocumentPattern.lastIndex++;
 					}
 
-					while ((m = RegexUtils.fiscalReportPattern.exec(rows)) !== null) {
-						// This is necessary to avoid infinite loops with zero-width matches
-						if (m.index === RegexUtils.fiscalReportPattern.lastIndex) {
-							RegexUtils.fiscalReportPattern.lastIndex++;
-						}
+					var receipt = new Receipt();
+					var groups = m.groups;
+					if (groups) {
+						dgfe.receipts.push(this.fillReceipt(groups, receipt));
+					}
+				}
 
-						var closure = new Closure();
-						var groups = m.groups;
-						if (groups) {
-							closure.raw = groups['raw'];
-							closure.date = groups['datetime'];
-							closure.closure = parseInt(groups['closure']);
-							closure.number = parseInt(groups['number']);
+				while ((m = RegexUtils.fiscalReportPattern.exec(rows)) !== null) {
+					// This is necessary to avoid infinite loops with zero-width matches
+					if (m.index === RegexUtils.fiscalReportPattern.lastIndex) {
+						RegexUtils.fiscalReportPattern.lastIndex++;
+					}
+
+					var closure = new Closure();
+					var groups = m.groups;
+					if (groups) {
+						closure.raw = groups['raw'];
+						closure.date = groups['datetime'];
+						closure.closure = parseInt(groups['closure']);
+						closure.number = parseInt(groups['number']);
+						if (groups['sells']) {
 							closure.sells = parseInt(groups['sells']);
-							if (groups['grandTotal']) {
-								closure.grandTotal = parseFloat(
-									groups['grandTotal'].replace(/[,\.]/, '')
-								);
-							}
+						}
+						if (groups['grandTotal']) {
+							closure.grandTotal = parseFloat(
+								groups['grandTotal'].replace(/[,\.]/, '')
+							);
+						}
+						if (groups['invoices']) {
 							closure.invoices = parseInt(groups['invoices']);
-							if (groups['invoicesTotal']) {
-								closure.invoicesTotal = parseFloat(
-									groups['invoicesTotal'].replace(/[,\.]/, '')
-								);
-							}
+						}
+						if (groups['invoicesTotal']) {
+							closure.invoicesTotal = parseFloat(
+								groups['invoicesTotal'].replace(/[,\.]/, '')
+							);
+						}
+						if (groups['cancelledDocumentsTotal']) {
+							closure.cancelledDocumentsTotal = parseFloat(
+								groups['cancelledDocumentsTotal'].replace(/[,\.]/, '')
+							);
+						}
+						if (groups['fiscalDocuments']) {
 							closure.fiscalDocuments = parseInt(groups['fiscalDocuments']);
+						}
+						if (groups['managementDocuments']) {
 							closure.managementDocuments = parseInt(
 								groups['managementDocuments']
 							);
-							closure.summaryReadings = parseInt(groups['summaryReadings']);
-							closure.restores = parseInt(groups['restores']);
-							closure.dgfeNumber = parseInt(groups['dgfeNumber']);
-							closure.fiscalSeal = groups['fiscalSeal'];
-							dgfe.closures.push(closure);
 						}
+						if (groups['summaryReadings']) {
+							closure.summaryReadings = parseInt(groups['summaryReadings']);
+						}
+						if (groups['restores']) {
+							closure.restores = parseInt(groups['restores']);
+						}
+						if (groups['dgfeNumber']) {
+							closure.dgfeNumber = parseInt(groups['dgfeNumber']);
+						}
+						if (groups['fiscalSeal']) {
+							closure.fiscalSeal = groups['fiscalSeal'];
+						}
+						if (groups['vats']) {
+							//todo
+						}
+						if (groups['payments']) {
+							//todo
+						}
+						if (groups['discounts']) {
+							//todo
+						}
+
+						dgfe.closures.push(closure);
 					}
 				}
-				await this.sendCommand(this.core.reg());
-				await this.sendCommand(this.core.clear());
+			}
+			await this.sendCommand(this.core.reg());
+			await this.sendCommand(this.core.clear());
 		} catch (e) {
 			console.error(e);
 		}
@@ -484,6 +523,87 @@ export class Driver implements IDriver {
 				groups['paymentTotal'].replace(/[,\.]/, '')
 			);
 		}
+		if (groups['items']) {
+			let items = groups['items'];
+			let m;
+			while ((m = RegexUtils.fiscalDocumentItemsPattern.exec(items)) !== null) {
+				// This is necessary to avoid infinite loops with zero-width matches
+				if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
+					RegexUtils.fiscalDocumentPattern.lastIndex++;
+				}
+				var itemGroups = m.groups;
+				if (itemGroups) {
+					var item = {} as ReceiptItem;
+					item.description = itemGroups['description'];
+					if (itemGroups['vat']) {
+						item.vat = parseInt(itemGroups['vat']);
+					}
+					if (itemGroups['nature']) {
+						item.nature = itemGroups['nature'];
+					}
+					item.value = parseFloat(itemGroups['value'].replace(/[,\.]/, ''));
+					if (itemGroups['qty']) {
+						item.qty = parseInt(itemGroups['qty']);
+					}
+					if (itemGroups['unitValue']) {
+						item.unitValue = parseFloat(
+							itemGroups['unitValue'].replace(/[,\.]/, '')
+						);
+					}
+					if (itemGroups['discountDescription'] && itemGroups['discountPerc']) {
+						item.discount = {
+							description: itemGroups['discountDescription'],
+							percentage: parseInt(itemGroups['discountPerc']),
+						} as ReceiptItemDiscount;
+						if (itemGroups['discountVat']) {
+							item.discount.vat = parseInt(itemGroups['discountVat']);
+						}
+						if (itemGroups['discountNature']) {
+							item.discount.nature = itemGroups['discountNature'];
+						}
+					}
+					if (
+						itemGroups['discountDescription'] &&
+						itemGroups['discountValue']
+					) {
+						item.discount = {
+							description: itemGroups['discountDescription'],
+							value: parseFloat(
+								itemGroups['discountValue'].replace(/[,\.]/, '')
+							),
+						} as ReceiptItemDiscount;
+						if (itemGroups['discountVat']) {
+							item.discount.vat = parseInt(itemGroups['discountVat']);
+						}
+						if (itemGroups['discountNature']) {
+							item.discount.nature = itemGroups['discountNature'];
+						}
+					}
+					receipt.items.push(item);
+				}
+			}
+		}
+		if (groups['payments']) {
+			let payments = groups['payments'];
+			let m;
+			while (
+				(m = RegexUtils.fiscalDocumentPaymentsPattern.exec(payments)) !== null
+			) {
+				// This is necessary to avoid infinite loops with zero-width matches
+				if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
+					RegexUtils.fiscalDocumentPattern.lastIndex++;
+				}
+				var paymentsGroups = m.groups;
+				if (paymentsGroups) {
+					var payment = {} as ReceiptPayment;
+					payment.description = paymentsGroups['description'];
+					payment.value = parseFloat(
+						paymentsGroups['value'].replace(/[,\.]/, '')
+					);
+					receipt.payments.push(payment);
+				}
+			}
+		}
 		return receipt;
 	}
 
@@ -507,7 +627,8 @@ export class Driver implements IDriver {
 
 	async printReceipt(
 		bill: BillDTO,
-		printDepartmentSubtotal: boolean = false
+		printDepartmentSubtotal: boolean = false,
+		dumpResultFromDgfe: boolean = false
 	): Promise<PrintBillResponseDTO> {
 		var result = {} as PrintBillResponseDTO;
 		try {
@@ -583,6 +704,7 @@ export class Driver implements IDriver {
 			var sendCommandsResult = await this.sendCommands(commands);
 
 			if (
+				dumpResultFromDgfe &&
 				sendCommandsResult.reduce(
 					(previous, current) => previous && current.isSuccess,
 					true
