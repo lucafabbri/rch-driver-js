@@ -11,7 +11,7 @@
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-    "docs": "jsdoc2md -t README.hbs --files src/*.ts src/**/*.ts --configure jsdoc2md.json > README.md",
+    "docs": "jsdoc2md -t README.hbs --files src/*.ts src/**/*.ts --configure jsdoc2md.json > ../README.md",
     "build": "npm run clean && npx ctix create ./tsconfig.json && tsc -p ./tsconfig.json --downlevelIteration && tsc -p ./tsconfig.test.json --downlevelIteration && rollup -c rollup.config.js",
     "clean": "rimraf ./dist && rm -rf ./test/*.js && rm -rf ./test/*.d.ts && rm -rf ./test/*.map",
     "watch": "tsc --watch",
