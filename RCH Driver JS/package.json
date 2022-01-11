@@ -1,6 +1,6 @@
 {
   "name": "rch-driver-js",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.4",
   "description": "RCH Driver for Javascript",
   "main": "dist/esm/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,11 +12,10 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "docs": "jsdoc2md --plugin dmd-bitbucket -t README.hbs --files src/*.ts src/**/*.ts --configure jsdoc2md.json > ../README.md",
-    "build": "npm run clean && npx ctix create ./tsconfig.json && tsc -p ./tsconfig.json --downlevelIteration && tsc -p ./tsconfig.test.json --downlevelIteration && rollup -c rollup.config.js",
-    "clean": "rimraf ./dist && rm -rf ./test/*.js && rm -rf ./test/*.d.ts && rm -rf ./test/*.map",
+    "build": "tsc && tsc -p ./tsconfig.test.json && rollup -c rollup.config.js && npm run docs",
+    "clean": "rimraf ./dist && rm -rf ./test/*.js && rm -rf ./test/*.d.ts && rm -rf ./test/*.map && npx ctix create ./tsconfig.json",
     "watch": "tsc --watch",
     "test": "mocha -R spec test/**/*Test.js 2>&1 | tee report",
-    "prepublishOnly": "npm run build",
     "pub": "yarn publish --registry https://repo.rchrnd.com/repository/npm-hosted"
   },
   "author": "Luca Fabbri <l.fabbri@rch.it>",
@@ -35,7 +34,7 @@
     "mocha": "^9.1.3",
     "prettier": "~2.2.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.32.0",
+    "rollup": "^2.63.0",
     "ts-mocha": "^8.0.0",
     "typescript": "~4.0.3"
   },
