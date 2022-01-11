@@ -11,6 +11,7 @@ export * from './Operator';
 export * from './Payment';
 export * from './PeriodCheck';
 export * from './Prog';
+export * from './ProgCommand';
 export * from './SlidingMsg';
 export * from './Vat';
 export * from './XMLSendSchedule';

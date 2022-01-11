@@ -1,5 +1,21 @@
-﻿import { IPeriodCheck } from "../interfaces/periodCheck"
-export class PeriodCheck implements IPeriodCheck{
-    enabled: boolean = false;
-    value: number = 0;
+﻿import { IPeriodCheck } from "../interfaces/IPeriodCheck"
+
+/**
+ * @inheritdoc
+ *
+ * @export
+ * @class PeriodCheck
+ * @typedef {PeriodCheck}
+ * @implements {IPeriodCheck}
+ */
+export class PeriodCheck implements IPeriodCheck {
+	/**
+	 * @inheritdoc
+	 */
+	enabled: boolean = false;
+
+	/**
+	 * @inheritdoc
+	 */
+	value: number = 0;
 }

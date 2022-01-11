@@ -1,6 +1,19 @@
+import { DateTime } from "luxon";
 import { LineItemDTO } from "../dto/LineItemDTO";
 import { PaymentItemDTO } from "../dto/PaymentItemDTO";
+import { ReturnInfoDTO } from "../dto/ReturnInfoDTO";
+import { RowDTO } from "../dto/RowDTO";
+import { SellType } from "../dto/SellType";
 
+
+/**
+ * Core builder of commands
+ * @date 1/11/2022 - 1:59:01 AM
+ *
+ * @export
+ * @class Core
+ * @typedef {Core}
+ */
 export class Core {
 	isSerial: boolean;
 	/**
@@ -34,12 +47,15 @@ export class Core {
 			return '<cmd>' + protocolCommand + '</cmd>';
 		}
 	}
+
 	/**
-	 * Confert boolean value to 0 and 1
+	 * Convert boolean value to 0 and 1
 	 * false = 0
 	 * true = 1
+	 * @date 1/11/2022 - 2:18:03 AM
 	 *
-	 * @param {Boolean} value
+	 * @param {boolean} value
+	 * @returns {number}
 	 */
 	parseBool(value: boolean): number {
 		return value ? 1 : 0;
@@ -74,21 +90,26 @@ export class Core {
 	paperPeekOut(): string {
 		return this.cmd('=f');
 	}
+
 	/**
 	 * Creates  a Department Sell command e.g. =R1/$1000
+	 * @date 1/11/2022 - 1:51:45 AM
 	 *
-	 * @param {Number} departmentId
-	 * @param {String} description
-	 * @param {Number} value
-	 * @param {Number} qty
+	 * @param {number} departmentId
+	 * @param {string} description
+	 * @param {number} value
+	 * @param {number} [qty=1]
+	 * @param {?SellType} [sellType]
+	 * @returns {string}
 	 */
 	departmentSell(
 		departmentId: number,
 		description: string,
 		value: number,
-		qty = 1
+		qty = 1,
+		sellType?: SellType
 	): string {
-		var command =
+		let command =
 			'=R' +
 			departmentId +
 			'/$' +
@@ -98,6 +119,13 @@ export class Core {
 			')' +
 			'/*' +
 			Math.floor(qty);
+		if (sellType == SellType.FREE) {
+			command += '/&1';
+		} else if (sellType == SellType.ADVANCE_PAYMENT) {
+			command += '/&2';
+		} else if (sellType == SellType.COUPON_SINGLE_USE) {
+			command += '/&3';
+		}
 		return this.cmd(command);
 	}
 	/**
@@ -110,7 +138,55 @@ export class Core {
 			lineItem.departmentId,
 			lineItem.description,
 			lineItem.price,
-			lineItem.quantity
+			lineItem.quantity,
+			lineItem.sellType
+		);
+	}
+
+	/**
+	 * Opens a return document or check only if it is possibile. IF onlyCheck is false it triggers autoopen if check is ok
+	 * @date 1/11/2022 - 1:52:14 AM
+	 *
+	 * @param {Date} date
+	 * @param {number} closure
+	 * @param {number} number
+	 * @param {?boolean} [onlyCheck]
+	 * @returns {string}
+	 */
+	returnGoods(
+		date: Date,
+		closure: number,
+		number: number,
+		onlyCheck?: boolean
+	): string {
+		let command =
+			'=r/&' +
+			DateTime.fromJSDate(date).toFormat('ddLLyy') +
+			'/[' +
+			closure +
+			'/]' +
+			number;
+		if (onlyCheck === true) {
+			command += '/*1';
+		} else if (onlyCheck === false) {
+			command += '/*2';
+		}
+		return this.cmd(command);
+	}
+
+	/**
+	 * Opens a return document or check only if it is possibile. IF onlyCheck is false it triggers autoopen if check is ok
+	 * @date 1/11/2022 - 1:52:45 AM
+	 *
+	 * @param {ReturnInfoDTO} returnInfo
+	 * @returns {string}
+	 */
+	returnGoodsFromDTO(returnInfo: ReturnInfoDTO): string {
+		return this.returnGoods(
+			returnInfo.date,
+			returnInfo.closure,
+			returnInfo.number,
+			returnInfo.onlyCheck
 		);
 	}
 	/**
@@ -119,7 +195,7 @@ export class Core {
 	 * @param {String} code
 	 */
 	lottery(code: string): string {
-		var command = '="/?L/$1/(' + code + ')';
+		let command = '="/?L/$1/(' + code + ')';
 		return this.cmd(command);
 	}
 	/**
@@ -130,7 +206,7 @@ export class Core {
 	 * @param {String} description
 	 */
 	discountPercentage(percentage: number, description: string): string {
-		var command =
+		let command =
 			'=%-/*' + Math.round(percentage * 100) / 100 + '/(' + description + ')';
 		return this.cmd(command);
 	}
@@ -142,7 +218,7 @@ export class Core {
 	 * @param {String} description
 	 */
 	increasePercentage(percentage: number, description: string): string {
-		var command =
+		let command =
 			'=%+/*' + Math.round(percentage * 100) / 100 + '/(' + description + ')';
 		return this.cmd(command);
 	}
@@ -154,7 +230,7 @@ export class Core {
 	 * @param {String} description
 	 */
 	discountValue(value: number, description: string): string {
-		var command = '=V-/*' + Math.floor(value) + '/(' + description + ')';
+		let command = '=V-/*' + Math.floor(value) + '/(' + description + ')';
 		return this.cmd(command);
 	}
 	/**
@@ -165,7 +241,7 @@ export class Core {
 	 * @param {String} description
 	 */
 	increaseValue(value: number, description: string): string {
-		var command = '=V+/*' + Math.floor(value) + '/(' + description + ')';
+		let command = '=V+/*' + Math.floor(value) + '/(' + description + ')';
 		return this.cmd(command);
 	}
 	/**
@@ -187,12 +263,14 @@ export class Core {
 	 * @param {Boolean} cutPaper
 	 * @param {Boolean|null} heading
 	 */
-	openNonFiscalReceipt(cutPaper: boolean, header: boolean | null): string {
-		var command = '=o/*' + this.parseBool(cutPaper);
-
-		if (header != null && header) {
+	openNonFiscalReceipt(cutPaper?: boolean, header?: boolean): string {
+		let command = '=o';
+		if (cutPaper === true) {
+			command += '/*' + this.parseBool(cutPaper);
+		}
+		if (header === true) {
 			command += '/&2 ';
-		} else if (header != null && !header) {
+		} else if (header === false) {
 			command += '/&1 ';
 		}
 
@@ -214,49 +292,82 @@ export class Core {
 	payment(
 		paymentId: number,
 		value: number,
-		description: string | null
+		qty?: number,
+		description?: string
 	): string {
-		var command = '=T' + paymentId + '/$' + Math.floor(value);
+		let command = '=T' + paymentId + '/$' + Math.floor(value);
+		if (qty) {
+			command += '/&' + qty;
+		}
 		if (description != null && description != 'TOTALE') {
 			command += '/(' + description.substring(0, 36) + ')';
 		}
 		return this.cmd(command);
 	}
+
 	/**
 	 * Create the payment command e.g. =T3/$2000
+	 * @date 1/11/2022 - 1:54:00 AM
 	 *
-	 * @param {Number} paymentId
-	 * @param {Number} value
-	 * @param {String|null} description
+	 * @param {PaymentItemDTO} paymentItem
+	 * @returns {string}
 	 */
 	paymentFromPaymentItem(paymentItem: PaymentItemDTO): string {
 		return this.payment(
 			paymentItem.paymentId,
 			paymentItem.value,
-			null
+			paymentItem.ticketQty,
+			paymentItem.description
 		);
 	}
+
 	/**
+	 * Return a receipt providing date closure and number, if onlyCheck is set then checks if true and check&run if false
 	 *
 	 * @param {String} date
 	 * @param {Number} closure
 	 * @param {Number} number
+	 * @param onlyCheck
+	 * @param serialNumber
 	 */
-	checkReturn(date: string, closure: number, number: number): string {
-		var command = '=k/&' + date + '/[' + closure + '/]' + number + '/*2';
+	returnReceipt(
+		date: Date,
+		closure: number,
+		number: number,
+		onlyCheck?: boolean,
+		serialNumber?: string
+	): string {
+		let command =
+			'=k/&' +
+			DateTime.fromJSDate(date).toFormat('ddLLyy') +
+			'/[' +
+			closure +
+			'/]' +
+			number;
+		if (onlyCheck === true) {
+			command += '/*1';
+		} else if (onlyCheck === false) {
+			command += '/*2';
+		}
+		if (serialNumber && /[\d]{2}.{2}[\d]{7}/.test(serialNumber)) {
+			command += '/(' + serialNumber.replace(/[ ]/g, '') + ')';
+		}
 		return this.cmd(command);
 	}
 
 	/**
-	 * Return a receipt providing date closure and number
+	 * Return a receipt providing date closure and number, if onlyCheck is set then checks if true and check&run if false
 	 *
-	 * @param {String} date
-	 * @param {Number} closure
-	 * @param {Number} number
+	 * @param {ReturnInfoDTO} returnInfo
 	 */
-	returnReceipt(date: string, closure: number, number: number): string {
-		var command = '=k/&' + date + '/[' + closure + '/]' + number;
-		return this.cmd(command);
+	returnReceiptFromDTO(returnInfo: ReturnInfoDTO): string {
+		return this.returnReceipt(
+			returnInfo.date,
+			returnInfo.closure,
+			returnInfo.number,
+			returnInfo.onlyCheck,
+			returnInfo.serialNumber
+		);
 	}
 
 	/**
@@ -270,7 +381,7 @@ export class Core {
 	 * command to print the last receipt without the amounts of the articles, called “Receipt Gift "(in REG)
 	 */
 	giftReceipt(): string {
-		var command = '=C453/$2';
+		let command = '=C453/$2';
 		return this.cmd(command);
 	}
 	/**
@@ -296,14 +407,30 @@ export class Core {
 	/**
 	 * Create the command for alfanumeric rows ="/?A/(Prova stampa alfanumerica)
 	 *
-	 * @param {String} content
-	 * @param {Boolean} isDouble
+	 * @param {String|RowDTO} content
 	 */
-	printRow(content: string, isDouble: boolean): string {
-		var command = '="/?A/(' + content + ')';
-		if (isDouble) {
+	printRow(content: string | RowDTO): string {
+		console.debug(content);
+		let value;
+		if (typeof content == 'string') {
+			value = RowDTO.fromString(content as string);
+		} else {
+			value = content;
+		}
+		console.debug(value);
+
+		let command = '="';
+
+		if (value.barCodeType) {
+			command += '/$' + value.barCodeType;
+		}
+
+		command += '/(' + value.text + ')';
+
+		if (!value.barCodeType && value.isDouble) {
 			command += '/*2';
 		}
+		console.debug(command);
 		return this.cmd(command);
 	}
 	/**
@@ -312,7 +439,7 @@ export class Core {
 	 * @param {String} content
 	 */
 	printRowAfterTotal(content: string): string {
-		var command = '="/&1/(' + content.substring(0, 35) + ')';
+		let command = '="/&1/(' + content.substring(0, 35) + ')';
 		return this.cmd(command);
 	}
 	/**
@@ -321,7 +448,7 @@ export class Core {
 	 * @param {String} content
 	 */
 	printRowBeforeFiscalContent(content: string): string {
-		var command = '="/(' + content.substring(0, 48) + ')/&1';
+		let command = '="/(' + content.substring(0, 48) + ')/&1';
 		return this.cmd(command);
 	}
 	/**
@@ -635,8 +762,13 @@ export class Core {
 	 *
 	 * @param {String} date
 	 */
-	C451(from: string, to: string): string {
-		return this.cmd('=C451/$0/&' + from + '/[' + to);
+	C451(from: Date, to: Date): string {
+		return this.cmd(
+			'=C451/$0/&' +
+				DateTime.fromJSDate(from).toFormat('ddLLyy') +
+				'/[' +
+				DateTime.fromJSDate(from).toFormat('ddLLyy')
+		);
 	}
 	/**
 	 * Download DGFE data at specific date format DDMMYY e.g. 010121 (January 1st 2021)
@@ -683,10 +815,10 @@ export class Core {
 	 * @param {String} name
 	 */
 	C918(id: number, name: string): string {
-		var trimmedName = name.substr(0, 48).trim();
-		var spacedName = '';
+		let trimmedName = name.substr(0, 48).trim();
+		let spacedName = '';
 		if (trimmedName.length < 48) {
-			var spaces = Math.floor((48 - trimmedName.length) / 2);
+			let spaces = Math.floor((48 - trimmedName.length) / 2);
 			spacedName = trimmedName
 				.padStart(trimmedName.length + spaces, ' ')
 				.padEnd(48, ' ');
@@ -793,7 +925,7 @@ export class Core {
 		lalo: number,
 		single: boolean,
 		grp_code: number | null,
-		dpt_type: string
+		dpt_type: number
 	): string {
 		return this.cmd(
 			'>R' +
@@ -835,7 +967,7 @@ export class Core {
 		change: boolean,
 		cash: boolean,
 		pay_discount: boolean,
-		tender_credit_type: string,
+		tender_credit_type: number,
 		opendrawer: boolean,
 		input_total_amount: boolean,
 		ticket: boolean
@@ -877,7 +1009,7 @@ export class Core {
 	 * @param {String} ateco_code
 	 */
 	V(vatId: number, rate_type: string, value: number, ateco_code: string) {
-		var type = this.rateStringToInt(rate_type);
+		let type = this.rateStringToInt(rate_type);
 		return this.cmd(
 			'>>/?V/$' +
 				vatId +

@@ -1,5 +1,21 @@
-﻿import { ISlidingMsg } from "../interfaces/slidingMsg"
+﻿import { ISlidingMsg } from "../interfaces/ISlidingMsg"
+
+/**
+ * @inheritdoc
+ *
+ * @export
+ * @class SlidingMsg
+ * @typedef {SlidingMsg}
+ * @implements {ISlidingMsg}
+ */
 export class SlidingMsg implements ISlidingMsg {
-    name: string="";
-    value: number=0;
+	/**
+	 * @inheritdoc
+	 */
+	name: string = '';
+
+	/**
+	 * @inheritdoc
+	 */
+	value: number = 0;
 }

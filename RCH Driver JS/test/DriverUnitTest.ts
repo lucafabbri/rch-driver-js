@@ -1,9 +1,11 @@
 import assert from 'assert';
-import { Vat } from '../dist/esm';
+import { RchProtocol, Vat } from '../dist/esm';
 import {ConnectionConst} from '../dist/esm/ConnectionConst';
 
 import {Driver} from '../dist/esm/Driver';
-import {Core} from '../dist/esm/protocol/Core';
+import { Core } from '../dist/esm/protocol/Core';
+
+import { PrinterType } from '../dist/esm/printer/PrinterType';
 
 describe('#addCommandEventListener()', () => {
 	var driver = new Driver(
@@ -179,6 +181,8 @@ describe('#dumpDGFE()', function () {
 					new Date(2021, 11, 1, 0, 0, 0, 0),
 					new Date(2021, 11, 31, 0, 0, 0, 0)
 				);
+				result.receipts.forEach((c) => console.log(c));
+				result.closures.forEach(c => console.log(c))
 				assert.ok(result);
 			} else {
 				assert.fail('Driver not opened');
@@ -205,28 +209,24 @@ describe('#printReceipt()', function () {
 			await driver.open();
 			var result = await driver.printReceipt(
 				{
-					lotteryCode: null,
 					lineItems: [
 						{
 							price: 500,
 							quantity: 2,
 							description: 'MELE',
 							departmentId: 1,
-							discount: null,
 						},
 						{
 							price: 1000,
 							quantity: 1,
 							description: 'PERE',
 							departmentId: 1,
-							discount: null,
 						},
 						{
 							price: 1000,
 							quantity: 1,
 							description: 'SUCCO',
 							departmentId: 2,
-							discount: null,
 						},
 						{
 							price: 1500,
@@ -236,7 +236,6 @@ describe('#printReceipt()', function () {
 							discount: {
 								description: 'sconto',
 								value: 500,
-								percent: null,
 							},
 						},
 						{
@@ -246,7 +245,6 @@ describe('#printReceipt()', function () {
 							departmentId: 3,
 							discount: {
 								description: 'sconto',
-								value: null,
 								percent: 50,
 							},
 						},
@@ -263,6 +261,128 @@ describe('#printReceipt()', function () {
 			);
 			console.debug(result);
 			assert.ok(result);
+		} catch (e) {
+			assert.fail(e);
+		}
+		await driver.close();
+	});
+});
+describe('#cancelReceipt()', function () {
+	this.timeout(30000);
+	it('it should cancel a receipt', async function () {
+		var driver = new Driver(
+			ConnectionConst.TCPIP,
+			'192.168.1.10',
+			23,
+			null,
+			null
+		);
+		driver.addCommandEventListener((command: string) => console.log(command));
+		try {
+			await driver.open();
+			var receipt = await driver.printReceipt(
+				{
+					lineItems: [
+						{
+							price: 500,
+							quantity: 2,
+							description: 'MELE',
+							departmentId: 1,
+						},
+					],
+					paymentItems: [{value: 1000, paymentId: 1}],
+				},
+				false,
+				true
+			);
+			console.log(receipt.receipt);
+			if (
+				receipt.receipt.date &&
+				receipt.receipt.closure &&
+				receipt.receipt.number
+			) {
+				var result = await driver.printReceipt({
+					isCancel: true,
+					returnInfo: {
+						date: receipt.receipt.date,
+						closure: receipt.receipt.closure,
+						number: receipt.receipt.number,
+					},
+					lineItems: [
+						{
+							price: 500,
+							quantity: 2,
+							description: 'MELE',
+							departmentId: 1,
+						},
+					],
+				});
+				console.log(result);
+				assert.ok(result);
+			} else {
+				assert.fail('Error');
+			}
+		} catch (e) {
+			assert.fail(e);
+		}
+		await driver.close();
+	});
+});
+describe('#returnReceipt()', function () {
+	this.timeout(30000);
+	it('it should return a receipt', async function () {
+		var driver = new Driver(
+			ConnectionConst.TCPIP,
+			'192.168.1.10',
+			23,
+			null,
+			null
+		);
+		driver.addCommandEventListener((command: string) => console.log(command));
+		try {
+			await driver.open();
+			var receipt = await driver.printReceipt(
+				{
+					lineItems: [
+						{
+							price: 500,
+							quantity: 2,
+							description: 'MELE',
+							departmentId: 1,
+						},
+					],
+					paymentItems: [{value: 1000, paymentId: 1}],
+				},
+				false,
+				true
+			);
+			console.log(receipt.receipt);
+			if (
+				receipt.receipt.date &&
+				receipt.receipt.closure &&
+				receipt.receipt.number
+			) {
+				var result = await driver.printReceipt({
+					isReturn: true,
+					returnInfo: {
+						date: receipt.receipt.date,
+						closure: receipt.receipt.closure,
+						number: receipt.receipt.number,
+					},
+					lineItems: [
+						{
+							price: 500,
+							quantity: 1,
+							description: 'MELE',
+							departmentId: 1,
+						},
+					],
+				});
+				console.log(result);
+				assert.ok(result);
+			} else {
+				assert.fail('Error');
+			}
 		} catch (e) {
 			assert.fail(e);
 		}
@@ -322,7 +442,33 @@ describe('#print()', function () {
 		driver.addCommandEventListener((command: string) => console.log(command));
 		try {
 			await driver.open();
-			assert.ok(await driver.print(['che storia']));
+			assert.ok(
+				await driver.print([
+					'UPC-E',
+					'12345678|1',
+					'EAN-13',
+					'1234567891234|2',
+					'EAN-8',
+					'12345678|3',
+					'CODE-39',
+					'123456789123|4',
+					'UPC-A',
+					'123456789123|5',
+					'ITF',
+					'123456789123|6',
+					'CODABAR',
+					'123456789123|7',
+					'CODE-128',
+					'123456789123|8',
+					'CODE-93',
+					'123456789123|9',
+					'UPC-E_UPC-A',
+					'123456789123|10',
+					'che storia||1',
+					'che storia',
+					'che storia|11',
+				])
+			);
 		} catch (e) {
 			assert.fail(e);
 		}
@@ -359,7 +505,10 @@ describe('#deviceStatus()', function () {
 			null,
 			null
 		);
-		driver.addCommandEventListener((command: string) => console.log(command));
+		driver.addCommandEventListener((command: RchProtocol) => {
+			console.log(command);
+			console.log(command.areResponsesMatchingPacketId);
+		});
 		try {
 			await driver.open();
 			var result = await driver.getDeviceStatus();
@@ -393,3 +542,50 @@ describe('#getCashRegisterData()', function () {
 		await driver.close();
 	});
 });
+describe('#buildProgCommands', function () {
+	this.timeout(120000);
+	it('it should buildProgCommands', async function () {
+		var driver = new Driver(
+			ConnectionConst.TCPIP,
+			'192.168.1.10',
+			23,
+			null,
+			null
+		);
+		//driver.addCommandEventListener((command: string) => console.log(command));
+		try {
+			await driver.open();
+			var progs = await driver.allProgramming();
+			if (progs) {
+				var result = driver.buildProgCommands(progs, PrinterType.PRINTF, true);
+				console.log("| DESCRIZIONE".padEnd(48, ' ') + ' | '+'COMANDO'.padEnd(75,' ')+" |");
+				console.log("| ".padEnd(49, '-') + '|'+''.padEnd(78,'-'));
+				result.forEach(c => {
+					if (c.cmd) {
+						console.log(
+							('| '+c.description).padEnd(48, ' ') +
+								' | ' +
+								c.cmd.padEnd(75, ' ') +
+								' |'
+						);
+					} else {
+						console.log(
+							('| ' + c.description).padEnd(48, ' ') +
+								' | ' +
+								(c.error ?? '').padEnd(75, ' ') +
+								' |'
+						);
+					}
+				});
+				console.log('| '.padEnd(49, '-') + '|' + ''.padEnd(78, '-'));
+				assert.ok(result != null);
+			} else {
+				assert.fail();
+			}
+		} catch (e) {
+			assert.fail(e);
+		}
+		await driver.close();
+	});
+});
+

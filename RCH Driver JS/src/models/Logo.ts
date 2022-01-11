@@ -1,5 +1,21 @@
-﻿import { ILogo } from "../interfaces/logo"
-export class Logo implements ILogo{
-    id: number = 0;
-    value: number = 0;
+﻿import { ILogo } from "../interfaces/ILogo"
+
+/**
+ * @inheritdoc
+ *
+ * @export
+ * @class Logo
+ * @typedef {Logo}
+ * @implements {ILogo}
+ */
+export class Logo implements ILogo {
+	/**
+	 * @inheritdoc
+	 */
+	id: number = 0;
+
+	/**
+	 * @inheritdoc
+	 */
+	value: number = 0;
 }

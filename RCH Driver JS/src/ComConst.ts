@@ -1,3 +1,12 @@
+
+/**
+ * Protocol constants
+ * @date 1/11/2022 - 3:48:49 PM
+ *
+ * @export
+ * @class ComConst
+ * @typedef {ComConst}
+ */
 export class ComConst {
     static readonly CHR_zero: number = 0;
     static readonly CHR_SOH: number = 1;
@@ -53,6 +62,12 @@ export class ComConst {
     static readonly Cmd_LongTimeout_x: number = 60000;
     static readonly hashtableAPP: { [key: string]: number } = {};
 
+    /**
+     * Creates an instance of ComConst.
+     * @date 1/11/2022 - 3:48:57 PM
+     *
+     * @constructor
+     */
     constructor() {
         ComConst.hashtableAPP["=c"] = ComConst.Cmd_LongTimeout;    //Fattura  -1
         ComConst.hashtableAPP["=C450"] = -1;  //EG

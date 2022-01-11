@@ -1,3 +1,11 @@
+
+/**
+ * Status of a protocol request/response
+ * @date 1/11/2022 - 2:11:18 PM
+ *
+ * @export
+ * @enum {number}
+ */
 export enum RchStatus{
 	PENDING,
 	DISCONNECTED,
