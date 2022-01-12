@@ -1,6 +1,6 @@
 {
   "name": "rch-driver-js",
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "description": "RCH Driver for Javascript",
   "main": "dist/esm/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -25,6 +25,7 @@
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-typescript": "^7.16.7",
+    "@rollup/plugin-inject": "^4.0.3",
     "@types/mocha": "^9.0.0",
     "ctix": "^0.4.0",
     "dmd-bitbucket": "^0.1.10",
@@ -52,15 +53,10 @@
     "url": "https://lfabbri@bitbucket.org/rch-group/rch-driver-js/issues"
   },
   "dependencies": {
-    "@rollup/plugin-inject": "^4.0.3",
     "@types/lodash": "^4.14.178",
     "@types/luxon": "^2.0.8",
     "@types/node": "^16.0.0",
     "@types/serialport": "^8.0.2",
-    "local-devices": "^3.2.0",
-    "lodash": "^4.17.21",
-    "luxon": "^2.3.0",
-    "path": "^0.12.7",
-    "serialport": "^9.2.8"
+    "local-devices": "^3.2.0"
   }
 }
