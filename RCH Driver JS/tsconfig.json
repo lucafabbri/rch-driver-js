@@ -1,7 +1,8 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "./dist/esm"
+		"outDir": "./dist/esm",
+		"downlevelIteration": true
 	},
 	"include": ["src/**/*"],
 	"exclude": [
@@ -9,7 +10,7 @@
 		"build",
 		"dist",
 		"test",
-		"*.md",
+		"*.hbs",
 		"rollup.config.js"
 	]
 }

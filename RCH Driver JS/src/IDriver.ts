@@ -8,6 +8,7 @@ import { DayLightSavingTimeAndPeriodCheck } from "./printer/DayLightSavingTimeAn
 import { InactivityAndPendings } from "./printer/InactivityAndPendings";
 import { ProgCommand } from "./models/ProgCommand";
 import { RowDTO } from './dto/RowDTO';
+import { DriverConfiguration } from "./DriverConfiguration";
 
 
 /**
@@ -20,7 +21,7 @@ import { RowDTO } from './dto/RowDTO';
  */
 export interface IDriver {
 	//base commands
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:18 AM
@@ -28,15 +29,17 @@ export interface IDriver {
 	 * @returns {Promise<boolean>}
 	 */
 	close(): Promise<boolean>;
+
 	
 	/**
-	 * Description placeholder
-	 * @date 1/11/2022 - 2:15:58 AM
+	 * Open the connection
+	 * @date 1/11/2022 - 9:30:15 PM
 	 *
+	 * @param {DriverConfiguration} configuration
 	 * @returns {Promise<boolean>}
 	 */
-	open(): Promise<boolean>;
-	
+	open(configuration: DriverConfiguration): Promise<IDriver|null>;
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:55 AM
@@ -45,7 +48,7 @@ export interface IDriver {
 	 * @returns {Promise<RchProtocol>}
 	 */
 	sendCommand(command: string): Promise<RchProtocol>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:50 AM
@@ -56,7 +59,7 @@ export interface IDriver {
 	sendCommands(commands: Array<string>): Promise<Array<RchProtocol>>;
 
 	//discovery
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:45 AM
@@ -66,7 +69,7 @@ export interface IDriver {
 	discovery(): Promise<Array<IEcrDevice>>;
 
 	//composed actions
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:40 AM
@@ -76,7 +79,7 @@ export interface IDriver {
 	 * @returns {Promise<Dgfe>}
 	 */
 	dumpDGFE(from: Date, to: Date): Promise<Dgfe>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:36 AM
@@ -84,7 +87,7 @@ export interface IDriver {
 	 * @returns {Promise<Receipt>}
 	 */
 	getLastReceipt(): Promise<Receipt>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:33 AM
@@ -92,7 +95,7 @@ export interface IDriver {
 	 * @returns {(Promise<IProg | null>)}
 	 */
 	allProgramming(): Promise<IProg | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:30 AM
@@ -100,7 +103,7 @@ export interface IDriver {
 	 * @returns {Promise<boolean>}
 	 */
 	zReport(): Promise<boolean>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:26 AM
@@ -108,7 +111,7 @@ export interface IDriver {
 	 * @returns {Promise<boolean>}
 	 */
 	xReport(): Promise<boolean>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:22 AM
@@ -125,7 +128,7 @@ export interface IDriver {
 	): ProgCommand[];
 
 	//print
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:17 AM
@@ -135,12 +138,16 @@ export interface IDriver {
 	 * @param {boolean} header
 	 * @returns {Promise<boolean>}
 	 */
-	print(rows: string[] | RowDTO[], cutPaper: boolean, header: boolean): Promise<boolean>;
+	print(
+		rows: string[] | RowDTO[],
+		cutPaper: boolean,
+		header: boolean
+	): Promise<boolean>;
 	/**
-	 * 
-	 * @param bill 
-	 * @param printDepartmentSubtotal 
-	 * @param dumpResultFromDgfe 
+	 *
+	 * @param bill
+	 * @param printDepartmentSubtotal
+	 * @param dumpResultFromDgfe
 	 */
 	printReceipt(
 		bill: BillDTO,
@@ -149,7 +156,7 @@ export interface IDriver {
 	): Promise<PrintBillResponseDTO>;
 
 	//statuses
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:06 AM
@@ -157,7 +164,7 @@ export interface IDriver {
 	 * @returns {(Promise<DeviceStatus | null>)}
 	 */
 	getDeviceStatus(): Promise<DeviceStatus | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:15:02 AM
@@ -165,7 +172,7 @@ export interface IDriver {
 	 * @returns {(Promise<string | null>)}
 	 */
 	getCurrentDateTime(): Promise<Date | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:58 AM
@@ -173,7 +180,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getCurrentSubTotal(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:55 AM
@@ -181,7 +188,7 @@ export interface IDriver {
 	 * @returns {(Promise<string | null>)}
 	 */
 	getFwVersion(): Promise<string | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:52 AM
@@ -189,7 +196,7 @@ export interface IDriver {
 	 * @returns {(Promise<string | null>)}
 	 */
 	getSerialNumber(): Promise<string | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:47 AM
@@ -197,7 +204,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getCorrispettivoFiscale(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:43 AM
@@ -205,7 +212,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getTotalReturns(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:39 AM
@@ -213,7 +220,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getTotalCancelled(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:36 AM
@@ -221,7 +228,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getTotalCredits(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:32 AM
@@ -229,7 +236,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getTotalZeroingNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:29 AM
@@ -237,7 +244,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getGrandTotal(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:24 AM
@@ -245,7 +252,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getHwInitNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:20 AM
@@ -253,7 +260,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getLastNotFiscalDocumentNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:16 AM
@@ -261,7 +268,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getCashierNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:12 AM
@@ -269,7 +276,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getLastInvoiceNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:08 AM
@@ -277,7 +284,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getDailyCreditNoteNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:05 AM
@@ -285,7 +292,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getAnnualCreditNoteNumber(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:14:00 AM
@@ -293,7 +300,7 @@ export interface IDriver {
 	 * @returns {(Promise<DgfeStatus | null>)}
 	 */
 	getDgfeStatus(): Promise<DgfeStatus | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:56 AM
@@ -301,7 +308,7 @@ export interface IDriver {
 	 * @returns {(Promise<number | null>)}
 	 */
 	getDgfeFreeSpace(): Promise<number | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:52 AM
@@ -309,7 +316,7 @@ export interface IDriver {
 	 * @returns {(Promise<DayLightSavingTimeAndPeriodCheck | null>)}
 	 */
 	getDayLightSavingTimeAndPeriodCheck(): Promise<DayLightSavingTimeAndPeriodCheck | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:48 AM
@@ -317,7 +324,7 @@ export interface IDriver {
 	 * @returns {(Promise<PrinterStatus | null>)}
 	 */
 	getPrinterStatus(): Promise<PrinterStatus | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:42 AM
@@ -325,7 +332,7 @@ export interface IDriver {
 	 * @returns {(Promise<RTStatus | null>)}
 	 */
 	getRtStatus(): Promise<RTStatus | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:37 AM
@@ -333,15 +340,15 @@ export interface IDriver {
 	 * @returns {(Promise<InactivityAndPendings | null>)}
 	 */
 	getInactivityAndPendings(): Promise<InactivityAndPendings | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:32 AM
 	 *
-	 * @returns {(Promise<string | null>)}
+	 * @returns {(Promise<Date | null>)}
 	 */
-	getCommisioningDate(): Promise<string | null>;
-	
+	getCommisioningDate(): Promise<Date | null>;
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:29 AM
@@ -349,7 +356,7 @@ export interface IDriver {
 	 * @returns {(Promise<EthernetSettings | null>)}
 	 */
 	getEthernetSettings(): Promise<EthernetSettings | null>;
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:25 AM
@@ -359,7 +366,7 @@ export interface IDriver {
 	getCashRegisterData(): Promise<CashRegister | null>;
 
 	//listeners
-	
+
 	/**
 	 * Description placeholder
 	 * @date 1/11/2022 - 2:13:09 AM

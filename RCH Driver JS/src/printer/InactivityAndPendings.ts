@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 
 /**
  * Inactivity And Pendings
@@ -36,9 +37,9 @@ export class InactivityAndPendings {
 	 * First pending file datetime
 	 * @date 1/11/2022 - 12:23:04 PM
 	 *
-	 * @type {?string}
+	 * @type {?Date}
 	 */
-	firstPendingFileDateTime?: string;
+	firstPendingFileDateTime?: Date;
 
 	/**
 	 * Creates an instance of InactivityAndPendings.
@@ -57,7 +58,7 @@ export class InactivityAndPendings {
 				this.pendingFiles = parseInt(groups['pendingFiles']);
 				this.maxPendingFiles = parseInt(groups['maxPendingFiles']);
 				if (groups['firstPendingFileDateTime']) {
-					this.firstPendingFileDateTime = groups['firstPendingFileDateTime'];
+					this.firstPendingFileDateTime = DateTime.fromFormat(groups['firstPendingFileDateTime'],'dd-LL-yyyy HH:mm').toJSDate();
 				}
 			}
 		}

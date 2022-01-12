@@ -291,14 +291,19 @@ export class Core {
 	 */
 	payment(
 		paymentId: number,
-		value: number,
+		value?: number,
 		qty?: number,
 		description?: string
 	): string {
-		let command = '=T' + paymentId + '/$' + Math.floor(value);
+		let command = '=T' + paymentId
+		if (value) {
+			command += '/$' + Math.floor(value);
+		}
+
 		if (qty) {
 			command += '/&' + qty;
 		}
+		
 		if (description != null && description != 'TOTALE') {
 			command += '/(' + description.substring(0, 36) + ')';
 		}

@@ -230,17 +230,17 @@ export class CashRegister {
 	 * First pending file datetime
 	 * @date 1/11/2022 - 12:23:04 PM
 	 *
-	 * @type {?string}
+	 * @type {?Date}
 	 */
-	firstPendingFileDateTime?: string;
+	firstPendingFileDateTime?: Date;
 
 	/**
 	 * Date when the cashier was initialized
 	 * @date 1/11/2022 - 12:22:51 PM
 	 *
-	 * @type {?string}
+	 * @type {?Date}
 	 */
-	commissioningDate?: string;
+	commissioningDate?: Date;
 
 	/**
 	 * Ethernet settings

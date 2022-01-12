@@ -12,6 +12,7 @@ export * from './DeviceType';
 export * from './Dgfe';
 export * from './Document';
 export * from './Driver';
+export * from './DriverConfiguration';
 export * from './EcrDevice';
 export * from './IAbstractDevice';
 export * from './IAndroidDevice';

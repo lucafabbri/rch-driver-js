@@ -40,6 +40,7 @@ import {ClosurePayment} from './ClosurePayment';
 import {ClosureDiscount} from './ClosureDiscount';
 import {ProgCommand} from './models/ProgCommand';
 import { RowDTO } from './dto/RowDTO';
+import { DriverConfiguration } from './DriverConfiguration';
 
 
 /**
@@ -53,11 +54,11 @@ import { RowDTO } from './dto/RowDTO';
  * @implements {IDriver}
  */
 export class Driver implements IDriver {
-	connection: ConnectionConst;
-	comPort: string = 'COM3';
-	baudRate: number = 9600;
-	ip: string = '192.168.1.10';
-	ipPort: number = 23;
+	connection: ConnectionConst = ConnectionConst.TCPIP;
+	comPort?: string = 'COM3';
+	baudRate?: number = 9600;
+	ip?: string = '192.168.1.10';
+	ipPort?: number = 23;
 	packIds: string =
 		'01234567879abcdefghijklmnopqrstuvwxyzaABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	packId: number = 0;
@@ -72,27 +73,8 @@ export class Driver implements IDriver {
 	/**
 	 * Creates an instance of Driver.
 	 * @date 1/11/2022 - 3:58:28 PM
-	 *
-	 * @constructor
-	 * @param {ConnectionConst} connection
-	 * @param {(string | null)} ip
-	 * @param {(number | null)} ipPort
-	 * @param {(string | null)} comPort
-	 * @param {(number | null)} baudRate
 	 */
-	constructor(
-		connection: ConnectionConst,
-		ip: string | null,
-		ipPort: number | null,
-		comPort: string | null,
-		baudRate: number | null
-	) {
-		this.connection = connection;
-		if (ip) this.ip = ip;
-		if (ipPort) this.ipPort = ipPort;
-		if (comPort) this.comPort = comPort;
-		if (baudRate) this.baudRate = baudRate;
-	}
+	constructor() {}
 
 	/**
 	 * @inheritdoc
@@ -349,10 +331,7 @@ export class Driver implements IDriver {
 		);
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	async open(): Promise<boolean> {
+	private async initConnection(): Promise<boolean>{
 		return new Promise((resolve, reject) => {
 			let timer = setTimeout(() => {
 				console.debug(
@@ -375,7 +354,7 @@ export class Driver implements IDriver {
 						this.client.once('error', (error) => {
 							console.error(error);
 							this.client?.end();
-							reject(error);
+							reject(false);
 						});
 						this.client.once('open', () => {
 							clearTimeout(timer);
@@ -396,26 +375,46 @@ export class Driver implements IDriver {
 					}
 				case ConnectionConst.TCPIP:
 				default:
-					this.client = createConnection(this.ipPort, this.ip, () => {
-						clearTimeout(timer);
-						console.log(this.logTag + 'connection open');
-						this.client?.removeAllListeners('error');
-						this.client?.on('error', (error) => {
+					if (this.ip && this.ipPort) {
+						this.client = createConnection(this.ipPort, this.ip, () => {
+							clearTimeout(timer);
+							console.log(this.logTag + 'connection open');
+							this.client?.removeAllListeners('error');
+							this.client?.on('error', (error) => {
+								console.error(error);
+								this.client?.end();
+							});
+							resolve(true);
+						});
+						this.client?.on('close', () => {
+							console.log(this.logTag + 'connection closed');
+						});
+						this.client.once('error', (error) => {
 							console.error(error);
 							this.client?.end();
+							reject(false);
 						});
-						resolve(true);
-					});
-					this.client?.on('close', () => {
-						console.log(this.logTag + 'connection closed');
-					});
-					this.client.once('error', (error) => {
-						console.error(error);
-						this.client?.end();
-						reject(error);
-					});
+					} else {
+						reject(false);
+					}
 			}
 		});
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	async open(configuration: DriverConfiguration): Promise<IDriver | null> {
+		this.connection = configuration.connection;
+		this.ip = configuration.ip;
+		this.ipPort = configuration.ipPort;
+		this.comPort = configuration.comPort;
+		this.baudRate = configuration.baudRate;
+		if (await this.initConnection()) {
+			return this;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -610,7 +609,7 @@ export class Driver implements IDriver {
 
 	protected async populateDevice(device: EcrDevice): Promise<EcrDevice | null> {
 		try {
-			if (await this.open()) {
+			if (await this.initConnection()) {
 				let rchDefaults = new RchDefault();
 
 				let sendCommandResult = await this.sendCommand(
@@ -1241,7 +1240,7 @@ export class Driver implements IDriver {
 			if (result.isSuccess) {
 				return DateTime.fromFormat(
 					result.response[0].data,
-					'dd-LL-yyyy HH:mm'
+					'dd/LL/yyyy HH:mm:ss'
 				).toJSDate();
 			} else {
 				return null;
@@ -1306,7 +1305,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getCorrispettivoFiscale());
 			if (result.isSuccess) {
-				return parseInt(result.response[0].data);
+				return parseInt(result.response[0].data.replace(/[\.,]/g, ''));
 			} else {
 				return null;
 			}
@@ -1323,7 +1322,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getTotalReturns());
 			if (result.isSuccess) {
-				return parseInt(result.response[0].data);
+				return parseInt(result.response[0].data.replace(/[\.,]/g, ''));
 			} else {
 				return null;
 			}
@@ -1340,7 +1339,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getTotalCancelled());
 			if (result.isSuccess) {
-				return parseInt(result.response[0].data);
+				return parseInt(result.response[0].data.replace(/[\.,]/g, ''));
 			} else {
 				return null;
 			}
@@ -1357,7 +1356,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getTotalCredits());
 			if (result.isSuccess) {
-				return parseInt(result.response[0].data);
+				return parseInt(result.response[0].data.replace(/[\.,]/g, ''));
 			} else {
 				return null;
 			}
@@ -1391,7 +1390,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getGrandTotal());
 			if (result.isSuccess) {
-				return parseInt(result.response[0].data);
+				return parseInt(result.response[0].data.replace(/[\.,]/g, ''));
 			} else {
 				return null;
 			}
@@ -1615,11 +1614,14 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	async getCommisioningDate(): Promise<string | null> {
+	async getCommisioningDate(): Promise<Date | null> {
 		try {
 			let result = await this.sendCommand(this.core.inServiceStatus());
 			if (result.isSuccess) {
-				return result.response[0].data;
+				return DateTime.fromFormat(
+					result.response[0].data,
+					'yyyy/LL/dd'
+				).toJSDate();
 			} else {
 				return null;
 			}
