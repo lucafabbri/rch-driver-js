@@ -772,7 +772,7 @@ export class Core {
 			'=C451/$0/&' +
 				DateTime.fromJSDate(from).toFormat('ddLLyy') +
 				'/[' +
-				DateTime.fromJSDate(from).toFormat('ddLLyy')
+				DateTime.fromJSDate(to).toFormat('ddLLyy')
 		);
 	}
 	/**

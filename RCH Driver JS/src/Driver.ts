@@ -404,17 +404,13 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	async open(configuration: DriverConfiguration): Promise<IDriver | null> {
+	async open(configuration: DriverConfiguration): Promise<boolean> {
 		this.connection = configuration.connection;
 		this.ip = configuration.ip;
 		this.ipPort = configuration.ipPort;
 		this.comPort = configuration.comPort;
 		this.baudRate = configuration.baudRate;
-		if (await this.initConnection()) {
-			return this;
-		} else {
-			return null;
-		}
+		return await this.initConnection();
 	}
 
 	/**
@@ -677,7 +673,7 @@ export class Driver implements IDriver {
 		dgfe.receipts = [];
 
 		try {
-			await this.sendCommand(this.core.prg());
+			await this.sendCommand(this.core.z());
 			let sendCommandResult = await this.sendCommand(this.core.C451(from, to));
 			if (sendCommandResult.isSuccess) {
 				let rows = sendCommandResult.responseBody.join('\n');

@@ -38,7 +38,7 @@ export interface IDriver {
 	 * @param {DriverConfiguration} configuration
 	 * @returns {Promise<boolean>}
 	 */
-	open(configuration: DriverConfiguration): Promise<IDriver|null>;
+	open(configuration: DriverConfiguration): Promise<boolean>;
 
 	/**
 	 * Description placeholder

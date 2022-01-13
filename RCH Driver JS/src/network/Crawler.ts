@@ -1,7 +1,7 @@
 import { EcrDevice } from "../EcrDevice";
 import { IEcrDevice } from "../IEcrDevice";
 import { ConnectionConst } from "../ConnectionConst";
-import find, { IDevice } from 'local-devices';
+import find from 'local-devices';
 
 /**
  * This class is a local Network Crawler to find devices on the local network
