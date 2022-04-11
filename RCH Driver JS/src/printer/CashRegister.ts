@@ -1,8 +1,6 @@
-import { CashierKey } from "./CashierKey";
 import { DgfeStatus } from "./DgfeStatus";
 import { EthernetSettings } from "./EthernetSettings";
 import { PeriodicCheckStatus } from "./PeriodicCheckStatus";
-import { ReceiptStatus } from "./ReceiptStatus";
 import { PrinterStatus } from "./PrinterStatus";
 import { RTStatus } from "./RTStatus";
 import { DeviceStatus } from ".";

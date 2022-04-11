@@ -2,7 +2,14 @@
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
 		"outDir": "./dist/esm",
-		"downlevelIteration": true
+		"downlevelIteration": true,
+    "module": "CommonJS",
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true
 	},
 	"include": ["src/**/*"],
 	"exclude": [

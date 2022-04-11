@@ -1,0 +1,6278 @@
+
+
+  #addCommandEventListener()
+    ✔ it should add the command listner
+    ✔ it should remove the command listner
+
+  #formatCommandToByteArray()
+    1) it should format the command
+
+  #open()
+[Driver]: connection open
+    ✔ it should open tcp/ip connection with printer
+
+  #close()
+[Driver]: connection open
+    ✔ it should close tcp/ip connection with printer
+[Driver]: connection closed
+
+  #discover()
+[Driver]: #discovery on Serial Port: /dev/tty.BLTH
+[Error: Error: Resource busy, cannot open /dev/tty.BLTH]
+[Driver]: #populateDevice false
+[Driver]: #discovery Device Not Found on Serial Port: /dev/tty.BLTH
+[Driver]: #discovery on Serial Port: /dev/tty.Bluetooth-Incoming-Port
+[Driver]: connection closed
+[Driver]: connection open
+null
+Error [ERR_STREAM_WRITE_AFTER_END]: write after end
+    at new NodeError (internal/errors.js:322:7)
+    at Socket.Writable.write (internal/streams/writable.js:292:11)
+    at /Users/rchdeveloper/Documents/GitHub/rch-driver-js/RCH Driver JS/dist/esm/Driver.js:480:76
+    at new Promise (<anonymous>)
+    at Driver.sendCommand (/Users/rchdeveloper/Documents/GitHub/rch-driver-js/RCH Driver JS/dist/esm/Driver.js:449:16)
+    at Driver.<anonymous> (/Users/rchdeveloper/Documents/GitHub/rch-driver-js/RCH Driver JS/dist/esm/Driver.js:536:56)
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/rchdeveloper/Documents/GitHub/rch-driver-js/RCH Driver JS/node_modules/tslib/tslib.js:114:62) {
+  code: 'ERR_STREAM_WRITE_AFTER_END'
+}
+[Driver]: #populateDevice write after end
+[Driver]: #discovery Device Not Found on Serial Port: /dev/tty.Bluetooth-Incoming-Port
+[Driver]: connection closed
+[Crawler]: Devices found on Local Network: 4
+[Driver]: #discovery on TCP/IP: 192.168.1.2
+[Driver]: [ERROR] Attempt at connection exceeded timeout value
+[Driver]: [ERROR] Attempt at connection exceeded timeout value
+[Driver]: #populateDevice false
+[Driver]: #discovery Device Not Found on TCP/IP: 192.168.1.2
+[Driver]: #discovery on TCP/IP: 192.168.1.3
+Error: connect ECONNREFUSED 192.168.1.3:23
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1159:16) {
+  errno: -61,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '192.168.1.3',
+  port: 23
+}
+[Driver]: #populateDevice false
+[Driver]: #discovery Device Not Found on TCP/IP: 192.168.1.3
+[Driver]: #discovery on TCP/IP: 192.168.1.10
+[Driver]: connection closed
+[Driver]: connection open
+EcrDevice {
+  serialNumber: '72MU12000023',
+  partNumber: '',
+  type: 'PRINTF',
+  ip: '192.168.1.10',
+  ipPort: 23,
+  comPort: '',
+  baudRate: 9600,
+  hostName: '?',
+  macAddress: '00:50:c2:d2:60:17',
+  active: true,
+  fwVersion: '',
+  fwVersionLabel: 'FW v.  8.1.1  ',
+  hasProgDump: true,
+  nDepartments: 99,
+  nOperators: 99,
+  nPayments: 30,
+  nVats: 40,
+  prog: Prog {
+    vatIndexes: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcde',
+    statDepartment: false,
+    statVat: false,
+    statHour: false,
+    statClerk: false,
+    statFinancial: false,
+    statGrpDetail: false,
+    statGrpTot: false,
+    logo: [],
+    courtesyLine: [ [CourtesyLine], [CourtesyLine] ],
+    slidingMsg: { name: 'Messaggio scorrevole', value: 1 },
+    percDiscount: 0,
+    percAddon: 0,
+    drawerPulse: 2,
+    eCRNum: 1,
+    intInvoice: true,
+    invoice2Lines: false,
+    invoiceSubtotal: false,
+    invoiceClientCheck: false,
+    fidelity: true,
+    pcsOperatorPrint: false,
+    kbdPrebill: null,
+    periodCheck: null,
+    printECRNum: false,
+    singleQuantity: false,
+    printUnitPrice: false,
+    showChange: false,
+    mandSubtotal: false,
+    cutter: true,
+    midnightAlert: false,
+    creditNote: true,
+    creditNoteProgressive: 0,
+    cashDeclaration: false,
+    printBuffer: true,
+    departmentNet: false,
+    appendixCut: true,
+    vatVentilation: false,
+    printLastReceiptFromDGFE: true,
+    invoiceProgressive: 28007,
+    receiptLimit: 99999999,
+    xMLSendSchedule: XMLSendSchedule {
+      enabled: true,
+      hours: 4,
+      minutes: 50,
+      startHour: 50,
+      endHour: 30,
+      standBy: 10
+    },
+    invoiceText: [
+      [InvoiceText],
+      [InvoiceText],
+      [InvoiceText],
+      [InvoiceText],
+      [InvoiceText],
+      [InvoiceText]
+    ],
+    departments: [
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department], [Department],
+      [Department], [Department], [Department], [Department]
+    ],
+    vats: [
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat],
+      [Vat], [Vat], [Vat], [Vat], [Vat]
+    ],
+    operators: [
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator], [Operator],
+      [Operator], [Operator], [Operator], [Operator]
+    ],
+    payments: [
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment],
+      [Payment], [Payment], [Payment]
+    ],
+    groups: [
+      [Group], [Group],
+      [Group], [Group],
+      [Group], [Group],
+      [Group], [Group],
+      [Group], [Group]
+    ],
+    courtesyLines: [ [Object], [Object] ],
+    headings: [
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object], [Object],
+      [Object]
+    ]
+  },
+  hasDgfeFreeSpace: true,
+  connection: 'TCPIP'
+}
+[Driver]: #discovery on TCP/IP: 192.168.1.155
+[Driver]: connection closed
+Error: connect ECONNREFUSED 192.168.1.155:23
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1159:16) {
+  errno: -61,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '192.168.1.155',
+  port: 23
+}
+[Driver]: #populateDevice false
+[Driver]: #discovery Device Not Found on TCP/IP: 192.168.1.155
+    ✔ it should find RCH devices (11072ms)
+[Driver]: connection closed
+
+  #sendCommand()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+    ✔ it should send a command to the printer
+[Driver]: connection closed
+[Driver]: [ERROR] Attempt at connection exceeded timeout value
+
+  #sendCommands()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C4',
+    raw: '01003N=C4105',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '05',
+    checksumCalculated: '05',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '>/?V/$0/*1/&1/(620201)',
+    raw: '01023N>>/?V/$0/*1/&1/(620201)216',
+    length: 23,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '16',
+    checksumCalculated: '16',
+    controlCode: '>'
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'S',
+      errorCode: '0001',
+      follow: false,
+      data: 'S00010000',
+      raw: '01010NES0001000005B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '5B',
+      checksumCalculated: '5B',
+      controlCode: 'E',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1302',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '02',
+    checksumCalculated: '02',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+    ✔ it should send some commands to the printer (841ms)
+[Driver]: connection closed
+
+  #allProgramming()
+[Driver]: connection open
+[Driver]: [ERROR] Attempt at connection exceeded timeout value
+    2) it should get the printer programming
+
+  #dumpDGFE()
+[Driver]: connection open
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'REPARTO1                         22%        5,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          5,00\n' +
+    'di cui IVA                                  0,90\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                    5,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                          5,00\n' +
+    'Importo pagato                              5,00\n' +
+    '                14-12-2021 08:46                \n' +
+    '             DOCUMENTO N. 0189-0001             \n' +
+    '                *** 72MU1000023                 ',
+  number: 1,
+  closure: 189,
+  items: [ { description: 'REPARTO1', vat: 22, value: 500 } ],
+  payments: [ { description: 'CONTANTI', value: 500 } ],
+  date: 2021-12-14T07:46:00.000Z,
+  grandTotal: 500,
+  vatTotal: 90,
+  paymentTotal: 500
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'REPARTO1                         22%        2,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          2,00\n' +
+    'di cui IVA                                  0,36\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                    2,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                          2,00\n' +
+    'Importo pagato                              2,00\n' +
+    '                14-12-2021 09:30                \n' +
+    '             DOCUMENTO N. 0190-0001             \n' +
+    '                *** 72MU1000023                 ',
+  number: 1,
+  closure: 190,
+  items: [ { description: 'REPARTO1', vat: 22, value: 200 } ],
+  payments: [ { description: 'CONTANTI', value: 200 } ],
+  date: 2021-12-14T08:30:00.000Z,
+  grandTotal: 200,
+  vatTotal: 36,
+  paymentTotal: 200
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'REPARTO4                         22%       24,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                         24,00\n' +
+    'di cui IVA                                  4,33\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                   24,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                         24,00\n' +
+    'Importo pagato                             24,00\n' +
+    '                14-12-2021 09:40                \n' +
+    '             DOCUMENTO N. 0191-0001             \n' +
+    '                *** 72MU1000023                 ',
+  number: 1,
+  closure: 191,
+  items: [ { description: 'REPARTO4', vat: 22, value: 2400 } ],
+  payments: [ { description: 'CONTANTI', value: 2400 } ],
+  date: 2021-12-14T08:40:00.000Z,
+  grandTotal: 2400,
+  vatTotal: 433,
+  paymentTotal: 2400
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'Bibita in lattina FLAT           10%        0,90\n' +
+    'BUONO MONOUSO                    10%       -0,90\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          0,00\n' +
+    'di cui IVA                                  0,00\n' +
+    '------------------------------------------------\n' +
+    'TESSERA PRE PAGATA                          0,00\n' +
+    '------------------------------------------------\n' +
+    'Importo pagato                              0,00\n' +
+    '                21-12-2021 15:39                \n' +
+    '             DOCUMENTO N. 0193-0001             \n' +
+    '                *** 72MU1000023                 ',
+  number: 1,
+  closure: 193,
+  items: [
+    {
+      description: 'Bibita in lattina FLAT',
+      vat: 10,
+      value: 90,
+      discount: [Object]
+    }
+  ],
+  payments: [ { description: 'TESSERA PRE PAGATA', value: 0 } ],
+  date: 2021-12-21T14:39:00.000Z,
+  grandTotal: 0,
+  vatTotal: 0,
+  paymentTotal: 0
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'Dessert FLAT                      4%        1,00\n' +
+    'Contorno FLAT                     4%        1,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          2,00\n' +
+    'di cui IVA                                  0,08\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                    2,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                          2,00\n' +
+    'Importo pagato                              2,00\n' +
+    '                22-12-2021 10:50                \n' +
+    '             DOCUMENTO N. 0193-0002             \n' +
+    '                *** 72MU1000023                 ',
+  number: 2,
+  closure: 193,
+  items: [
+    { description: 'Dessert FLAT', vat: 4, value: 100 },
+    { description: 'Contorno FLAT', vat: 4, value: 100 }
+  ],
+  payments: [ { description: 'CONTANTI', value: 200 } ],
+  date: 2021-12-22T09:50:00.000Z,
+  grandTotal: 200,
+  vatTotal: 8,
+  paymentTotal: 200
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'Contorno FLAT                     4%        2,00\n' +
+    '   n.2 * 1,00                                   \n' +
+    'Dessert FLAT                      4%        1,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          3,00\n' +
+    'di cui IVA                                  0,12\n' +
+    '------------------------------------------------\n' +
+    'BANCOMAT                                    3,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento elettronico                       3,00\n' +
+    'Importo pagato                              3,00\n' +
+    '                22-12-2021 11:13                \n' +
+    '             DOCUMENTO N. 0193-0003             \n' +
+    '                *** 72MU1000023                 ',
+  number: 3,
+  closure: 193,
+  items: [
+    {
+      description: 'Contorno FLAT',
+      vat: 4,
+      value: 200,
+      qty: 2,
+      unitValue: 100
+    },
+    { description: 'Dessert FLAT', vat: 4, value: 100 }
+  ],
+  payments: [ { description: 'BANCOMAT', value: 300 } ],
+  date: 2021-12-22T10:13:00.000Z,
+  grandTotal: 300,
+  vatTotal: 12,
+  paymentTotal: 300
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '                emesso per RESO                 \n' +
+    '           Documento di riferimento:            \n' +
+    '               ND del 22-12-2021                \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'returned credit                  NS*       10,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                         10,00\n' +
+    'di cui IVA                                  0,00\n' +
+    '                22-12-2021 14:29                \n' +
+    '             DOCUMENTO N. 0193-0004             \n' +
+    '                *** 72MU1000023                 \n' +
+    'OPERATORE: tecnico                              \n' +
+    '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'ricarica carta pre pagata        10%       50,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                         50,00\n' +
+    'di cui IVA                                  4,55\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                   50,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                         50,00\n' +
+    'Importo pagato                             50,00\n' +
+    '                22-12-2021 14:49                \n' +
+    '             DOCUMENTO N. 0193-0005             \n' +
+    '                *** 72MU1000023                 ',
+  number: 5,
+  closure: 193,
+  items: [],
+  payments: [
+    { description: 'TOTALE COMPLESSIVO', value: 5000 },
+    { description: 'di cui IVA', value: 455 }
+  ],
+  date: 2021-12-22T13:49:00.000Z,
+  grandTotal: 1000,
+  vatTotal: 0,
+  paymentTotal: 5000
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'Contorno FLAT                    10%        2,00\n' +
+    '   n.2 * 1,00                                   \n' +
+    'Dessert FLAT                     10%        2,00\n' +
+    '   n.2 * 1,00                                   \n' +
+    'BUONO MONOUSO                    10%       -4,00\n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          0,00\n' +
+    'di cui IVA                                  0,00\n' +
+    '------------------------------------------------\n' +
+    'TESSERA PRE PAGATA                          0,00\n' +
+    '------------------------------------------------\n' +
+    'Importo pagato                              0,00\n' +
+    '                22-12-2021 14:49                \n' +
+    '             DOCUMENTO N. 0193-0006             \n' +
+    '                *** 72MU1000023                 ',
+  number: 6,
+  closure: 193,
+  items: [
+    {
+      description: 'Contorno FLAT',
+      vat: 10,
+      value: 200,
+      qty: 2,
+      unitValue: 100
+    },
+    {
+      description: 'Dessert FLAT',
+      vat: 10,
+      value: 200,
+      qty: 2,
+      unitValue: 100,
+      discount: [Object]
+    }
+  ],
+  payments: [ { description: 'TESSERA PRE PAGATA', value: 0 } ],
+  date: 2021-12-22T13:49:00.000Z,
+  grandTotal: 0,
+  vatTotal: 0,
+  paymentTotal: 0
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'Bibita in lattina FLAT            4%        0,90\n' +
+    'Contorno FLAT                     4%        2,00\n' +
+    '   n.2 * 1,00                                   \n' +
+    'Dessert FLAT                      4%        2,00\n' +
+    '   n.2 * 1,00                                   \n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                          4,90\n' +
+    'di cui IVA                                  0,19\n' +
+    '------------------------------------------------\n' +
+    'BANCOMAT                                    4,90\n' +
+    '------------------------------------------------\n' +
+    'Pagamento elettronico                       4,90\n' +
+    'Importo pagato                              4,90\n' +
+    '                22-12-2021 16:45                \n' +
+    '             DOCUMENTO N. 0195-0001             \n' +
+    '                *** 72MU1000023                 ',
+  number: 1,
+  closure: 195,
+  items: [
+    { description: 'Bibita in lattina FLAT', vat: 4, value: 90 },
+    {
+      description: 'Contorno FLAT',
+      vat: 4,
+      value: 200,
+      qty: 2,
+      unitValue: 100
+    },
+    {
+      description: 'Dessert FLAT',
+      vat: 4,
+      value: 200,
+      qty: 2,
+      unitValue: 100
+    }
+  ],
+  payments: [ { description: 'BANCOMAT', value: 490 } ],
+  date: 2021-12-22T15:45:00.000Z,
+  grandTotal: 490,
+  vatTotal: 19,
+  paymentTotal: 490
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     5,00\n' +
+    'GRAN TOTALE                         1.951.746,91\n' +
+    'IVA 0 22,00% :                                  \n' +
+    ' TOTALE VENDITE                             5,00\n' +
+    ' IMPONIBILE VENDITE                         4,10\n' +
+    ' IVA VENDITE                                0,90\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 0 22,00%                         0,90\n' +
+    'PAGATO CONTANTI                             5,00\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0187\n' +
+    'DOCUMENTI COMMERCIALI                       0001\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                08-12-2021 14:59                \n' +
+    '          DOC.GESTIONALE N. 0187-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:EFB1                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 187,
+  vats: [
+    ClosureVat {
+      id: 0,
+      vat: '22,00%',
+      total: 90,
+      sellsGrandTotal: 500,
+      sellsNetTotal: 410,
+      sellsVatTotal: 90
+    }
+  ],
+  payments: [ ClosurePayment { description: 'PAGATO CONTANTI', value: 500 } ],
+  discounts: [],
+  date: 2021-12-08T13:59:00.000Z,
+  sells: 5,
+  grandTotal: 195174691,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 1,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: 'EFB1'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     0,00\n' +
+    'GRAN TOTALE                         1.951.746,91\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0188\n' +
+    'DOCUMENTI COMMERCIALI                       0000\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                13-12-2021 12:49                \n' +
+    '          DOC.GESTIONALE N. 0188-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:3AF5                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 188,
+  vats: [],
+  payments: [],
+  discounts: [],
+  date: 2021-12-13T11:49:00.000Z,
+  sells: 0,
+  grandTotal: 195174691,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 0,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: '3AF5'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     5,00\n' +
+    'GRAN TOTALE                         1.951.751,91\n' +
+    'IVA 0 22,00% :                                  \n' +
+    ' TOTALE VENDITE                             5,00\n' +
+    ' IMPONIBILE VENDITE                         4,10\n' +
+    ' IVA VENDITE                                0,90\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 0 22,00%                         0,90\n' +
+    'PAGATO CONTANTI                             5,00\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0189\n' +
+    'DOCUMENTI COMMERCIALI                       0001\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                14-12-2021 09:20                \n' +
+    '          DOC.GESTIONALE N. 0189-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:0BFD                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 189,
+  vats: [
+    ClosureVat {
+      id: 0,
+      vat: '22,00%',
+      total: 90,
+      sellsGrandTotal: 500,
+      sellsNetTotal: 410,
+      sellsVatTotal: 90
+    }
+  ],
+  payments: [ ClosurePayment { description: 'PAGATO CONTANTI', value: 500 } ],
+  discounts: [],
+  date: 2021-12-14T08:20:00.000Z,
+  sells: 5,
+  grandTotal: 195175191,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 1,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: '0BFD'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     2,00\n' +
+    'GRAN TOTALE                         1.951.753,91\n' +
+    'IVA 0 22,00% :                                  \n' +
+    ' TOTALE VENDITE                             2,00\n' +
+    ' IMPONIBILE VENDITE                         1,64\n' +
+    ' IVA VENDITE                                0,36\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 0 22,00%                         0,36\n' +
+    'PAGATO CONTANTI                             2,00\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0190\n' +
+    'DOCUMENTI COMMERCIALI                       0001\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                14-12-2021 09:33                \n' +
+    '          DOC.GESTIONALE N. 0190-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:AE0D                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 190,
+  vats: [
+    ClosureVat {
+      id: 0,
+      vat: '22,00%',
+      total: 36,
+      sellsGrandTotal: 200,
+      sellsNetTotal: 164,
+      sellsVatTotal: 36
+    }
+  ],
+  payments: [ ClosurePayment { description: 'PAGATO CONTANTI', value: 200 } ],
+  discounts: [],
+  date: 2021-12-14T08:33:00.000Z,
+  sells: 2,
+  grandTotal: 195175391,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 1,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: 'AE0D'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                    24,00\n' +
+    'GRAN TOTALE                         1.951.777,91\n' +
+    'IVA 0 22,00% :                                  \n' +
+    ' TOTALE VENDITE                            24,00\n' +
+    ' IMPONIBILE VENDITE                        19,67\n' +
+    ' IVA VENDITE                                4,33\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 0 22,00%                         4,33\n' +
+    'PAGATO CONTANTI                            24,00\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0191\n' +
+    'DOCUMENTI COMMERCIALI                       0001\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                14-12-2021 09:43                \n' +
+    '          DOC.GESTIONALE N. 0191-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:FC81                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 191,
+  vats: [
+    ClosureVat {
+      id: 0,
+      vat: '22,00%',
+      total: 433,
+      sellsGrandTotal: 2400,
+      sellsNetTotal: 1967,
+      sellsVatTotal: 433
+    }
+  ],
+  payments: [ ClosurePayment { description: 'PAGATO CONTANTI', value: 2400 } ],
+  discounts: [],
+  date: 2021-12-14T08:43:00.000Z,
+  sells: 24,
+  grandTotal: 195177791,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 1,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: 'FC81'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     0,00\n' +
+    'GRAN TOTALE                         1.951.777,91\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0192\n' +
+    'DOCUMENTI COMMERCIALI                       0000\n' +
+    'DOCUMENTI GESTIONALI                        0002\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                21-12-2021 15:38                \n' +
+    '          DOC.GESTIONALE N. 0192-0002           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:73C0                    \n' +
+    '                  72MU1000023                   ',
+  number: 2,
+  closure: 192,
+  vats: [],
+  payments: [],
+  discounts: [],
+  date: 2021-12-21T14:38:00.000Z,
+  sells: 0,
+  grandTotal: 195177791,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 0,
+  managementDocuments: 2,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: '73C0'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                    55,00\n' +
+    'GRAN TOTALE                         1.951.832,91\n' +
+    'IVA 1 10,00% :                                  \n' +
+    ' TOTALE VENDITE                            54,90\n' +
+    ' IMPONIBILE VENDITE                        49,91\n' +
+    ' IVA VENDITE                                4,99\n' +
+    ' BENI IN SOSPESO                            4,45\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 1 10,00%                         4,55\n' +
+    'IVA 2  4,00% :                                  \n' +
+    ' TOTALE VENDITE                             5,00\n' +
+    ' IMPONIBILE VENDITE                         4,81\n' +
+    ' IVA VENDITE                                0,19\n' +
+    '--------------------                            \n' +
+    'TOTALE IVA 2  4,00%                         0,19\n' +
+    'IVA 6 NS :                                      \n' +
+    ' TOTALE RESI                               10,00\n' +
+    'PAGATO ELETTRONICO                          3,00\n' +
+    'PAGATO CONTANTI                            52,00\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0193\n' +
+    'DOCUMENTI COMMERCIALI                       0006\n' +
+    'DOCUMENTI GESTIONALI                        0039\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                22-12-2021 14:50                \n' +
+    '          DOC.GESTIONALE N. 0193-0039           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:0EC2                    \n' +
+    '                  72MU1000023                   ',
+  number: 39,
+  closure: 193,
+  vats: [
+    ClosureVat {
+      id: 2,
+      vat: '4,00%',
+      total: 19,
+      sellsGrandTotal: 500,
+      sellsNetTotal: 481,
+      sellsVatTotal: 19
+    }
+  ],
+  payments: [
+    ClosurePayment { description: 'PAGATO ELETTRONICO', value: 300 },
+    ClosurePayment { description: 'PAGATO CONTANTI', value: 5200 }
+  ],
+  discounts: [],
+  date: 2021-12-22T13:50:00.000Z,
+  sells: 55,
+  grandTotal: 195183291,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 6,
+  managementDocuments: 39,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: '0EC2'
+}
+Closure {
+  raw: '              DOCUMENTO GESTIONALE              \n' +
+    '            di chiusura giornaliera             \n' +
+    '                                            EURO\n' +
+    'VENDITE                                     0,00\n' +
+    'GRAN TOTALE                         1.951.832,91\n' +
+    'FATTURE                                        0\n' +
+    'TOT. FATTURE                                0,00\n' +
+    '------------------------------------------------\n' +
+    'CHIUSURA GIORNALIERA N.                     0194\n' +
+    'DOCUMENTI COMMERCIALI                       0000\n' +
+    'DOCUMENTI GESTIONALI                        0004\n' +
+    'LETTURE M.P.RIEPILOGO                       0000\n' +
+    '------------------------------------------------\n' +
+    '                22-12-2021 16:29                \n' +
+    '          DOC.GESTIONALE N. 0194-0004           \n' +
+    'RIPRISTINI                                  0017\n' +
+    'DGFE:01 SIGILLO FISCALE:CB36                    \n' +
+    '                  72MU1000023                   ',
+  number: 4,
+  closure: 194,
+  vats: [],
+  payments: [],
+  discounts: [],
+  date: 2021-12-22T15:29:00.000Z,
+  sells: 0,
+  grandTotal: 195183291,
+  invoices: 0,
+  invoicesTotal: 0,
+  fiscalDocuments: 0,
+  managementDocuments: 4,
+  summaryReadings: 0,
+  restores: 17,
+  dgfeNumber: 1,
+  fiscalSeal: 'CB36'
+}
+    ✔ it should get the printer DGFE dump (4379ms)
+[Driver]: connection closed
+
+  #printReceipt()
+[Driver]: connection open
+{
+  receipt: Receipt {
+    raw: '             DOCUMENTO COMMERCIALE              \n' +
+      '            di vendita o prestazione            \n' +
+      'DESCRIZIONE                      IVA   Prezzo(})\n' +
+      '#before                                         \n' +
+      '#test                                           \n' +
+      'MELE                             22%       10,00\n' +
+      '   n.2 * 5,00                                   \n' +
+      'PERE                             22%       10,00\n' +
+      'SUCCO                            10%       10,00\n' +
+      'VINO                             10%       15,00\n' +
+      'sconto                           10%       -5,00\n' +
+      'MELE                              4%       20,00\n' +
+      '   n.2 * 10,00                                  \n' +
+      'sconto 50%                        4%      -10,00\n' +
+      '------------------------------------------------\n' +
+      'TOTALE COMPLESSIVO                         50,00\n' +
+      'di cui IVA                                  5,81\n' +
+      '------------------------------------------------\n' +
+      'CONTANTI                                   25,00\n' +
+      'CARTA DI CREDITO                           25,00\n' +
+      '------------------------------------------------\n' +
+      'Pagamento contante                         25,00\n' +
+      'Pagamento elettronico                      25,00\n' +
+      'Importo pagato                             50,00\n' +
+      '                10-04-2022 12:03                \n' +
+      '             DOCUMENTO N. 0200-0004             \n' +
+      '                *** 72MU1000023                 ',
+    number: 4,
+    closure: 200,
+    items: [ [Object], [Object], [Object], [Object], [Object] ],
+    payments: [ [Object], [Object] ],
+    date: 2022-04-10T10:03:00.000Z,
+    grandTotal: 5000,
+    vatTotal: 581,
+    paymentTotal: 5000
+  }
+}
+    ✔ it should print a bill (4236ms)
+[Driver]: connection closed
+
+  #cancelReceipt()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'R1/$500/(MELE)/*2',
+    raw: '01018N=R1/$500/(MELE)/*223E',
+    length: 18,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3E',
+    checksumCalculated: '3E',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:209:20) {
+  errno: -54,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+[Driver]: connection closed
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'T1/$1000',
+    raw: '01009N=T1/$1000315',
+    length: 9,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '15',
+    checksumCalculated: '15',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'c',
+    raw: '01002N=c415',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '15',
+    checksumCalculated: '15',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'x',
+    raw: '01002N=x50F',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '0F',
+    checksumCalculated: '0F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '6',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K63F',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3F',
+    checksumCalculated: '3F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000449',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '49',
+      checksumCalculated: '49',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C4',
+    raw: '01003N=C4703',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '03',
+    checksumCalculated: '03',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '8',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C453/$0',
+    raw: '01008N=C453/$083A',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3A',
+    checksumCalculated: '3A',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '           LETTURA SCONTRINO DA DGFE            ',
+      raw: '           LETTURA SCONTRINO DA DGFE            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '            DGFE N. 01 INIZIALIZZATO            ',
+      raw: '            DGFE N. 01 INIZIALIZZATO            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             IL 23/11/20 ALLE 15:59             ',
+      raw: '             IL 23/11/20 ALLE 15:59             ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '           REG.TELEMATICO 72MU1000023           ',
+      raw: '           REG.TELEMATICO 72MU1000023           ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '         **       DISPOSITIVO       **          ',
+      raw: '         **       DISPOSITIVO       **          ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '         ** REGISTRATORE TELEMATICO **          ',
+      raw: '         ** REGISTRATORE TELEMATICO **          ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             DOCUMENTO COMMERCIALE              ',
+      raw: '             DOCUMENTO COMMERCIALE              ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '            di vendita o prestazione            ',
+      raw: '            di vendita o prestazione            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'DESCRIZIONE                      IVA   Prezzo(})',
+      raw: 'DESCRIZIONE                      IVA   Prezzo(})',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'MELE                             22%       10,00',
+      raw: 'MELE                             22%       10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '   n.2 * 5,00                                   ',
+      raw: '   n.2 * 5,00                                   ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'TOTALE COMPLESSIVO                         10,00',
+      raw: 'TOTALE COMPLESSIVO                         10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'di cui IVA                                  1,80',
+      raw: 'di cui IVA                                  1,80',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'CONTANTI                                   10,00',
+      raw: 'CONTANTI                                   10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'Pagamento contante                         10,00',
+      raw: 'Pagamento contante                         10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'Importo pagato                             10,00',
+      raw: 'Importo pagato                             10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                10-04-2022 12:03                ',
+      raw: '                10-04-2022 12:03                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             DOCUMENTO N. 0200-0005             ',
+      raw: '             DOCUMENTO N. 0200-0005             ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                *** 72MU1000023                 ',
+      raw: '                *** 72MU1000023                 ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                FINE STAMPA DGFE                ',
+      raw: '                FINE STAMPA DGFE                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000064B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1706',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '06',
+    checksumCalculated: '06',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'MELE                             22%       10,00\n' +
+    '   n.2 * 5,00                                   \n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                         10,00\n' +
+    'di cui IVA                                  1,80\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                   10,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                         10,00\n' +
+    'Importo pagato                             10,00\n' +
+    '                10-04-2022 12:03                \n' +
+    '             DOCUMENTO N. 0200-0005             \n' +
+    '                *** 72MU1000023                 ',
+  number: 5,
+  closure: 200,
+  items: [
+    {
+      description: 'MELE',
+      vat: 22,
+      value: 1000,
+      qty: 2,
+      unitValue: 500
+    }
+  ],
+  payments: [ { description: 'CONTANTI', value: 1000 } ],
+  date: 2022-04-10T10:03:00.000Z,
+  grandTotal: 1000,
+  vatTotal: 180,
+  paymentTotal: 1000
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '9',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K930',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '30',
+    checksumCalculated: '30',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'a',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'R1/$500/(MELE)/*2',
+    raw: '01018N=R1/$500/(MELE)/*2a6D',
+    length: 18,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6D',
+    checksumCalculated: '6D',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'b',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'T1',
+    raw: '01003N=T1b44',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '44',
+    checksumCalculated: '44',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000845',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '45',
+      checksumCalculated: '45',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'c',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'c',
+    raw: '01002N=cc42',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '42',
+    checksumCalculated: '42',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'd',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'x',
+    raw: '01002N=xd5E',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '5E',
+    checksumCalculated: '5E',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'e',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=Ke6C',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6C',
+    checksumCalculated: '6C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+{}
+    ✔ it should cancel a receipt (4779ms)
+[Driver]: connection closed
+
+  #returnReceipt()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'R1/$500/(MELE)/*2',
+    raw: '01018N=R1/$500/(MELE)/*223E',
+    length: 18,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3E',
+    checksumCalculated: '3E',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'T1/$1000',
+    raw: '01009N=T1/$1000315',
+    length: 9,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '15',
+    checksumCalculated: '15',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'c',
+    raw: '01002N=c415',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '15',
+    checksumCalculated: '15',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'x',
+    raw: '01002N=x50F',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '0F',
+    checksumCalculated: '0F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '6',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K63F',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3F',
+    checksumCalculated: '3F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000449',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '49',
+      checksumCalculated: '49',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C4',
+    raw: '01003N=C4703',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '03',
+    checksumCalculated: '03',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '8',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C453/$0',
+    raw: '01008N=C453/$083A',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3A',
+    checksumCalculated: '3A',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '           LETTURA SCONTRINO DA DGFE            ',
+      raw: '           LETTURA SCONTRINO DA DGFE            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '            DGFE N. 01 INIZIALIZZATO            ',
+      raw: '            DGFE N. 01 INIZIALIZZATO            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             IL 23/11/20 ALLE 15:59             ',
+      raw: '             IL 23/11/20 ALLE 15:59             ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '           REG.TELEMATICO 72MU1000023           ',
+      raw: '           REG.TELEMATICO 72MU1000023           ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '         **       DISPOSITIVO       **          ',
+      raw: '         **       DISPOSITIVO       **          ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '         ** REGISTRATORE TELEMATICO **          ',
+      raw: '         ** REGISTRATORE TELEMATICO **          ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             DOCUMENTO COMMERCIALE              ',
+      raw: '             DOCUMENTO COMMERCIALE              ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '            di vendita o prestazione            ',
+      raw: '            di vendita o prestazione            ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'DESCRIZIONE                      IVA   Prezzo(})',
+      raw: 'DESCRIZIONE                      IVA   Prezzo(})',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'MELE                             22%       10,00',
+      raw: 'MELE                             22%       10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '   n.2 * 5,00                                   ',
+      raw: '   n.2 * 5,00                                   ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'TOTALE COMPLESSIVO                         10,00',
+      raw: 'TOTALE COMPLESSIVO                         10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'di cui IVA                                  1,80',
+      raw: 'di cui IVA                                  1,80',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'CONTANTI                                   10,00',
+      raw: 'CONTANTI                                   10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'Pagamento contante                         10,00',
+      raw: 'Pagamento contante                         10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: 'Importo pagato                             10,00',
+      raw: 'Importo pagato                             10,00',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                10-04-2022 12:04                ',
+      raw: '                10-04-2022 12:04                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '             DOCUMENTO N. 0200-0007             ',
+      raw: '             DOCUMENTO N. 0200-0007             ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                *** 72MU1000023                 ',
+      raw: '                *** 72MU1000023                 ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                                                ',
+      raw: '                                                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '                FINE STAMPA DGFE                ',
+      raw: '                FINE STAMPA DGFE                ',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '',
+      packetIdModulus: '',
+      checksumVerified: false,
+      errorType: '',
+      errorCode: '',
+      follow: false,
+      data: '------------------------------------------------',
+      raw: '------------------------------------------------',
+      length: 48,
+      isDump: true
+    },
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000064B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1706',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '06',
+    checksumCalculated: '06',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+Receipt {
+  raw: '             DOCUMENTO COMMERCIALE              \n' +
+    '            di vendita o prestazione            \n' +
+    'DESCRIZIONE                      IVA   Prezzo(})\n' +
+    'MELE                             22%       10,00\n' +
+    '   n.2 * 5,00                                   \n' +
+    '------------------------------------------------\n' +
+    'TOTALE COMPLESSIVO                         10,00\n' +
+    'di cui IVA                                  1,80\n' +
+    '------------------------------------------------\n' +
+    'CONTANTI                                   10,00\n' +
+    '------------------------------------------------\n' +
+    'Pagamento contante                         10,00\n' +
+    'Importo pagato                             10,00\n' +
+    '                10-04-2022 12:04                \n' +
+    '             DOCUMENTO N. 0200-0007             \n' +
+    '                *** 72MU1000023                 ',
+  number: 7,
+  closure: 200,
+  items: [
+    {
+      description: 'MELE',
+      vat: 22,
+      value: 1000,
+      qty: 2,
+      unitValue: 500
+    }
+  ],
+  payments: [ { description: 'CONTANTI', value: 1000 } ],
+  date: 2022-04-10T10:04:00.000Z,
+  grandTotal: 1000,
+  vatTotal: 180,
+  paymentTotal: 1000
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '9',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K930',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '30',
+    checksumCalculated: '30',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'a',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'R1/$500/(MELE)/*1',
+    raw: '01018N=R1/$500/(MELE)/*1a6E',
+    length: 18,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6E',
+    checksumCalculated: '6E',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'b',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'T1',
+    raw: '01003N=T1b44',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '44',
+    checksumCalculated: '44',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000845',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '45',
+      checksumCalculated: '45',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'c',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'c',
+    raw: '01002N=cc42',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '42',
+    checksumCalculated: '42',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'd',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'x',
+    raw: '01002N=xd5E',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '5E',
+    checksumCalculated: '5E',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'e',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=Ke6C',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6C',
+    checksumCalculated: '6C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+{}
+    ✔ it should return a receipt (4503ms)
+[Driver]: connection closed
+
+  #zReport()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C3',
+    raw: '01003N=C3201',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '01',
+    checksumCalculated: '01',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+Error: connect ETIMEDOUT 192.168.1.2:23
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1159:16) {
+  errno: -60,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '192.168.1.2',
+  port: 23
+}
+[Driver]: connection closed
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C10',
+    raw: '01004N=C10335',
+    length: 4,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '35',
+    checksumCalculated: '35',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1405',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '05',
+    checksumCalculated: '05',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K53C',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3C',
+    checksumCalculated: '3C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+    ✔ it should print the Z report (41613ms)
+[Driver]: connection closed
+
+  #xReport()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C2',
+    raw: '01003N=C2200',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '00',
+    checksumCalculated: '00',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C10',
+    raw: '01004N=C10335',
+    length: 4,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '35',
+    checksumCalculated: '35',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1405',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '05',
+    checksumCalculated: '05',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K53C',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3C',
+    checksumCalculated: '3C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+    ✔ it should print the X eport (1361ms)
+[Driver]: connection closed
+
+  #print()
+[Driver]: connection open
+UPC-E
+{ text: 'UPC-E' }
+="/(UPC-E)
+12345678|1
+{ text: '12345678', barCodeType: 1 }
+="/$1/(12345678)
+EAN-13
+{ text: 'EAN-13' }
+="/(EAN-13)
+1234567891234|2
+{ text: '1234567891234', barCodeType: 2 }
+="/$2/(1234567891234)
+EAN-8
+{ text: 'EAN-8' }
+="/(EAN-8)
+12345678|3
+{ text: '12345678', barCodeType: 3 }
+="/$3/(12345678)
+CODE-39
+{ text: 'CODE-39' }
+="/(CODE-39)
+123456789123|4
+{ text: '123456789123', barCodeType: 4 }
+="/$4/(123456789123)
+UPC-A
+{ text: 'UPC-A' }
+="/(UPC-A)
+123456789123|5
+{ text: '123456789123', barCodeType: 5 }
+="/$5/(123456789123)
+ITF
+{ text: 'ITF' }
+="/(ITF)
+123456789123|6
+{ text: '123456789123', barCodeType: 6 }
+="/$6/(123456789123)
+CODABAR
+{ text: 'CODABAR' }
+="/(CODABAR)
+123456789123|7
+{ text: '123456789123', barCodeType: 7 }
+="/$7/(123456789123)
+CODE-128
+{ text: 'CODE-128' }
+="/(CODE-128)
+123456789123|8
+{ text: '123456789123', barCodeType: 8 }
+="/$8/(123456789123)
+CODE-93
+{ text: 'CODE-93' }
+="/(CODE-93)
+123456789123|9
+{ text: '123456789123', barCodeType: 9 }
+="/$9/(123456789123)
+UPC-E_UPC-A
+{ text: 'UPC-E_UPC-A' }
+="/(UPC-E_UPC-A)
+123456789123|10
+{ text: '123456789123', barCodeType: 10 }
+="/$10/(123456789123)
+che storia||1
+{ text: 'che storia', isDouble: true }
+="/(che storia)/*2
+che storia
+{ text: 'che storia' }
+="/(che storia)
+che storia|11
+{ text: 'che storia', barCodeType: 11 }
+="/$11/(che storia)
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=K138',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '38',
+    checksumCalculated: '38',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'C1',
+    raw: '01003N=C1203',
+    length: 3,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '03',
+    checksumCalculated: '03',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'o/&1 ',
+    raw: '01006N=o/&1 302',
+    length: 6,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '02',
+    checksumCalculated: '02',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(UPC-E)',
+    raw: '01010N="/(UPC-E)457',
+    length: 10,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '57',
+    checksumCalculated: '57',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$1/(12345678)',
+    raw: '01016N="/$1/(12345678)54C',
+    length: 16,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '4C',
+    checksumCalculated: '4C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '6',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(EAN-13)',
+    raw: '01011N="/(EAN-13)61F',
+    length: 11,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '1F',
+    checksumCalculated: '1F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000449',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '49',
+      checksumCalculated: '49',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$2/(1234567891234)',
+    raw: '01021N="/$2/(1234567891234)774',
+    length: 21,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '74',
+    checksumCalculated: '74',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '8',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(EAN-8)',
+    raw: '01010N="/(EAN-8)82A',
+    length: 10,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '2A',
+    checksumCalculated: '2A',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000064B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$3/(12345678)',
+    raw: '01016N="/$3/(12345678)74C',
+    length: 16,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '4C',
+    checksumCalculated: '4C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '9',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(CODE-39)',
+    raw: '01012N="/(CODE-39)95C',
+    length: 12,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '5C',
+    checksumCalculated: '5C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'a',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$4/(123456789123)',
+    raw: '01020N="/$4/(123456789123)a11',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '11',
+    checksumCalculated: '11',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'b',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(UPC-A)',
+    raw: '01010N="/(UPC-A)b05',
+    length: 10,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '05',
+    checksumCalculated: '05',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000845',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '45',
+      checksumCalculated: '45',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'c',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$5/(123456789123)',
+    raw: '01020N="/$5/(123456789123)c12',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '12',
+    checksumCalculated: '12',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'd',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(ITF)',
+    raw: '01008N="/(ITF)d7B',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '7B',
+    checksumCalculated: '7B',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'e',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$6/(123456789123)',
+    raw: '01020N="/$6/(123456789123)e17',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '17',
+    checksumCalculated: '17',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'f',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(CODABAR)',
+    raw: '01012N="/(CODABAR)f71',
+    length: 12,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '71',
+    checksumCalculated: '71',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'g',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$7/(123456789123)',
+    raw: '01020N="/$7/(123456789123)g14',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '14',
+    checksumCalculated: '14',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'h',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(CODE-128)',
+    raw: '01013N="/(CODE-128)h3D',
+    length: 13,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3D',
+    checksumCalculated: '3D',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000449',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '49',
+      checksumCalculated: '49',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'i',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$8/(123456789123)',
+    raw: '01020N="/$8/(123456789123)i15',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '15',
+    checksumCalculated: '15',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'j',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(CODE-93)',
+    raw: '01012N="/(CODE-93)j0F',
+    length: 12,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '0F',
+    checksumCalculated: '0F',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000064B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'k',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$9/(123456789123)',
+    raw: '01020N="/$9/(123456789123)k16',
+    length: 20,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '16',
+    checksumCalculated: '16',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000074A',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'l',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(UPC-E_UPC-A)',
+    raw: '01016N="/(UPC-E_UPC-A)l7C',
+    length: 16,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '7C',
+    checksumCalculated: '7C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000845',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '45',
+      checksumCalculated: '45',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'm',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$10/(123456789123)',
+    raw: '01021N="/$10/(123456789123)m29',
+    length: 21,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '29',
+    checksumCalculated: '29',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000944',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '44',
+      checksumCalculated: '44',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'n',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(che storia)/*2',
+    raw: '01018N="/(che storia)/*2n40',
+    length: 18,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '40',
+    checksumCalculated: '40',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000004D',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4D',
+      checksumCalculated: '4D',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'o',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/(che storia)',
+    raw: '01015N="/(che storia)o7B',
+    length: 15,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '7B',
+    checksumCalculated: '7B',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000014C',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4C',
+      checksumCalculated: '4C',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'p',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '"/$11/(che storia)',
+    raw: '01019N="/$11/(che storia)p63',
+    length: 19,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '63',
+    checksumCalculated: '63',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000024F',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'q',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'o',
+    raw: '01002N=oq5C',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '5C',
+    checksumCalculated: '5C',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000034E',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4E',
+      checksumCalculated: '4E',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'r',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'c',
+    raw: '01002N=cr53',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '53',
+    checksumCalculated: '53',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000449',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '49',
+      checksumCalculated: '49',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 's',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'x',
+    raw: '01002N=xs49',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '49',
+    checksumCalculated: '49',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON00000000548',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '48',
+      checksumCalculated: '48',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 't',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: 'K',
+    raw: '01002N=Kt7D',
+    length: 2,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '7D',
+    checksumCalculated: '7D',
+    controlCode: '='
+  },
+  response: [
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: 'N',
+      errorCode: '0000',
+      follow: false,
+      data: 'N00000000',
+      raw: '01010NON0000000064B',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: 'O',
+      receiptStatus: 0
+    }
+  ]
+}
+    ✔ it should print non fiscal (2269ms)
+[Driver]: connection closed
+
+  #printerStatus()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i/*4',
+    raw: '01008N<</?i/*410C',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '0C',
+    checksumCalculated: '0C',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007Ni00000092A',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '2A',
+      checksumCalculated: '2A',
+      controlCode: 'i'
+    }
+  ]
+}
+PrinterStatus {
+  error: false,
+  paperOver: false,
+  coverOpen: false,
+  cutterOk: true
+}
+    ✔ it should get the PrinterStatus (223ms)
+[Driver]: connection closed
+
+  #deviceStatus()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?s',
+    raw: '01005N<</?s12A',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '2A',
+    checksumCalculated: '2A',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000RE0000',
+      raw: '01013Ns000000RE0000922',
+      length: 13,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '22',
+      checksumCalculated: '22',
+      controlCode: 's'
+    }
+  ]
+}
+true
+DeviceStatus {
+  errorCode: 0,
+  receiptStatus: 0,
+  key: 'R',
+  currency: 'E',
+  lastFiscalDocumentNumber: 0
+}
+    ✔ it should get the DeviceStatus
+[Driver]: connection closed
+
+  #getCashRegisterData()
+[Driver]: connection open
+RchProtocol {
+  request: RchMessage {
+    packetId: '1',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?s',
+    raw: '01005N<</?s12A',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '2A',
+    checksumCalculated: '2A',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000RE0000',
+      raw: '01013Ns000000RE0000922',
+      length: 13,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '22',
+      checksumCalculated: '22',
+      controlCode: 's'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '2',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?d',
+    raw: '01005N<</?d23E',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3E',
+    checksumCalculated: '3E',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '10/04/2022 12:05:04',
+      raw: '01020Nd10/04/2022 12:05:0400E',
+      length: 20,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0E',
+      checksumCalculated: '0E',
+      controlCode: 'd'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '3',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?S',
+    raw: '01005N<</?S308',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '08',
+    checksumCalculated: '08',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: 'S',
+      errorCode: '0020',
+      follow: false,
+      data: 'S00200000',
+      raw: '01010NES00200000159',
+      length: 10,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '59',
+      checksumCalculated: '59',
+      controlCode: 'E',
+      receiptStatus: 0
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '4',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?f',
+    raw: '01005N<</?f43A',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3A',
+    checksumCalculated: '3A',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: 'FW v.  8.1.1  ',
+      raw: '01015NfFW v.  8.1.1  27C',
+      length: 15,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '7C',
+      checksumCalculated: '7C',
+      controlCode: 'f'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '5',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?m',
+    raw: '01005N<</?m530',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '30',
+    checksumCalculated: '30',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: ' U1 72000023',
+      raw: '01013Nm U1 72000023341',
+      length: 13,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '41',
+      checksumCalculated: '41',
+      controlCode: 'm'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '6',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?1',
+    raw: '01005N<</?166F',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6F',
+    checksumCalculated: '6F',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '0',
+      raw: '01002N1044A',
+      length: 2,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4A',
+      checksumCalculated: '4A',
+      controlCode: '1'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?r',
+    raw: '01005N<</?r72D',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '2D',
+    checksumCalculated: '2D',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '0',
+      raw: '01002Nr0508',
+      length: 2,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '08',
+      checksumCalculated: '08',
+      controlCode: 'r'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '8',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?v',
+    raw: '01005N<</?v826',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '26',
+    checksumCalculated: '26',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '0',
+      raw: '01002Nv060F',
+      length: 2,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0F',
+      checksumCalculated: '0F',
+      controlCode: 'v'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '7',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?5',
+    raw: '01005N<</?576A',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '6A',
+    checksumCalculated: '6A',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '0',
+      raw: '01002N5054F',
+      length: 2,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4F',
+      checksumCalculated: '4F',
+      controlCode: '5'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: '9',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?7',
+    raw: '01005N<</?7966',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '66',
+    checksumCalculated: '66',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '200',
+      raw: '01004N720074B',
+      length: 4,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '4B',
+      checksumCalculated: '4B',
+      controlCode: '7'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'a',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?8',
+    raw: '01005N<</?8a31',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '31',
+    checksumCalculated: '31',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '1.952.066,85',
+      raw: '01013N81.952.066,8576E',
+      length: 13,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '6E',
+      checksumCalculated: '6E',
+      controlCode: '8'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'b',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?0',
+    raw: '01005N<</?0b3A',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '3A',
+    checksumCalculated: '3A',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '17',
+      raw: '01003N017870',
+      length: 3,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '70',
+      checksumCalculated: '70',
+      controlCode: '0'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'c',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?N',
+    raw: '01005N<</?Nc45',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '45',
+    checksumCalculated: '45',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '3',
+      raw: '01002NN393B',
+      length: 2,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '3B',
+      checksumCalculated: '3B',
+      controlCode: 'N'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'd',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?n',
+    raw: '01005N<</?nd62',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '62',
+    checksumCalculated: '62',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '01',
+      raw: '01003Nn01021',
+      length: 3,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '21',
+      checksumCalculated: '21',
+      controlCode: 'n'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'e',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?F/*2',
+    raw: '01008N<</?F/*2e71',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '71',
+    checksumCalculated: '71',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '028007',
+      raw: '01007NF028007100',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '00',
+      checksumCalculated: '00',
+      controlCode: 'F'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'f',
+    packetIdModulus: '2',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?F/*3',
+    raw: '01008N<</?F/*3f73',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '73',
+    checksumCalculated: '73',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '2',
+      packetIdModulus: '0',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007NF00000020E',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0E',
+      checksumCalculated: '0E',
+      controlCode: 'F'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'g',
+    packetIdModulus: '3',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?F/*4',
+    raw: '01008N<</?F/*4g75',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '75',
+    checksumCalculated: '75',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '3',
+      packetIdModulus: '1',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007NF00000030F',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0F',
+      checksumCalculated: '0F',
+      controlCode: 'F'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'h',
+    packetIdModulus: '4',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i',
+    raw: '01005N<</?ih69',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '69',
+    checksumCalculated: '69',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '4',
+      packetIdModulus: '2',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007Ni000000427',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '27',
+      checksumCalculated: '27',
+      controlCode: 'i'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'i',
+    packetIdModulus: '5',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?g',
+    raw: '01005N<</?gi66',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '66',
+    checksumCalculated: '66',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '5',
+      packetIdModulus: '3',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '063',
+      raw: '01004Ng06351E',
+      length: 4,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '1E',
+      checksumCalculated: '1E',
+      controlCode: 'g'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'j',
+    packetIdModulus: '6',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i/*2',
+    raw: '01008N<</?i/*2j51',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '51',
+    checksumCalculated: '51',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '6',
+      packetIdModulus: '4',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007Ni000000625',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '25',
+      checksumCalculated: '25',
+      controlCode: 'i'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'k',
+    packetIdModulus: '7',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i/*4',
+    raw: '01008N<</?i/*4k56',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '56',
+    checksumCalculated: '56',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '7',
+      packetIdModulus: '5',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '000000',
+      raw: '01007Ni000000724',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '24',
+      checksumCalculated: '24',
+      controlCode: 'i'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'l',
+    packetIdModulus: '8',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i/*3',
+    raw: '01008N<</?i/*3l56',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '56',
+    checksumCalculated: '56',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '8',
+      packetIdModulus: '6',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '111000',
+      raw: '01007Ni11100082A',
+      length: 7,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '2A',
+      checksumCalculated: '2A',
+      controlCode: 'i'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'm',
+    packetIdModulus: '9',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?i/*5',
+    raw: '01008N<</?i/*5m51',
+    length: 8,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '51',
+    checksumCalculated: '51',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '9',
+      packetIdModulus: '7',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '0  0/25',
+      raw: '01008Ni0  0/2590D',
+      length: 8,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0D',
+      checksumCalculated: '0D',
+      controlCode: 'i'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'n',
+    packetIdModulus: '0',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?D',
+    raw: '01005N<</?Dn42',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '42',
+    checksumCalculated: '42',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '0',
+      packetIdModulus: '8',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: '2021/01/26',
+      raw: '01011ND2021/01/2600D',
+      length: 11,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '0D',
+      checksumCalculated: '0D',
+      controlCode: 'D'
+    }
+  ]
+}
+RchProtocol {
+  request: RchMessage {
+    packetId: 'o',
+    packetIdModulus: '1',
+    checksumVerified: true,
+    errorType: undefined,
+    errorCode: undefined,
+    follow: false,
+    data: '</?e',
+    raw: '01005N<</?eo62',
+    length: 5,
+    isDump: false,
+    adds: 1,
+    protocol: 'N',
+    checksum: '62',
+    checksumCalculated: '62',
+    controlCode: '<'
+  },
+  response: [
+    RchMessage {
+      packetId: '1',
+      packetIdModulus: '9',
+      checksumVerified: true,
+      errorType: undefined,
+      errorCode: undefined,
+      follow: false,
+      data: 'IP 192.168.1.10,SN 255.255.255.0,GW 192.168.1.1,DNS 8.8.8.8,PORT 23,MAC 00:50:C2:D2:60:17',
+      raw: '01090NeIP 192.168.1.10,SN 255.255.255.0,GW 192.168.1.1,DNS 8.8.8.8,PORT 23,MAC 00:50:C2:D2:60:1711C',
+      length: 90,
+      isDump: false,
+      adds: 1,
+      protocol: 'N',
+      checksum: '1C',
+      checksumCalculated: '1C',
+      controlCode: 'e'
+    }
+  ]
+}
+{
+  deviceStatus: DeviceStatus {
+    errorCode: 0,
+    receiptStatus: 0,
+    key: 'R',
+    currency: 'E',
+    lastFiscalDocumentNumber: 0
+  },
+  dateTime: 2022-04-10T10:05:04.000Z,
+  subtotal: NaN,
+  fwVersion: 'FW v.  8.1.1  ',
+  serialNumber: '72MU72000023',
+  corrispettivoFiscale: 0,
+  totalReturns: 0,
+  totalCancelled: 0,
+  totalCredits: 0,
+  totalZeroingNumber: 200,
+  grandTotal: 195206685,
+  hwInitNumber: 17,
+  lastNotFiscalDocumentNumber: 3,
+  cashierNumber: 1,
+  lastInvoiceNumber: 28007,
+  dailyCreditNoteNumber: 0,
+  annualCreditNoteNumber: 0,
+  dgfeStatus: 0,
+  dgfeFreeSpace: 63,
+  daylightSavingTime: false,
+  periodicCheck: 0,
+  printerStatus: PrinterStatus {
+    error: false,
+    paperOver: false,
+    coverOpen: false,
+    cutterOk: true
+  },
+  rtStatus: RTStatus {
+    registered: true,
+    active: true,
+    rt: true,
+    operating: true,
+    revocation: false,
+    decommissioned: false
+  },
+  inactive: false,
+  pendingFiles: 0,
+  maxPendingFiles: 25,
+  firstPendingFileDateTime: undefined,
+  commissioningDate: 2021-01-25T23:00:00.000Z,
+  ethernetSettings: EthernetSettings {
+    ip: '192.168.1.10',
+    subnet: '255.255.255.0',
+    gateway: '192.168.1.1',
+    dns: '8.8.8.8',
+    port: 23,
+    mac: '00:50:C2:D2:60:17'
+  }
+}
+    ✔ it should get the DeviceStatus (2524ms)
+[Driver]: connection closed
+
+  #buildProgCommands
+[Driver]: connection open
+| DESCRIZIONE                                    | COMANDO                                                                     |
+| -----------------------------------------------|------------------------------------------------------------------------------
+| Clear                                          | =K                                                                          |
+| Chiave programmazioni                          | =C4                                                                         |
+| Avviso di mezzanotte                           | >C126/$0                                                                    |
+| Numero ECR                                     | >C132/$0                                                                    |
+| Fattura subtotale                              | >C133/$0                                                                    |
+| Mostra resto                                   | >C136/$0                                                                    |
+| Impostazioni fattura                           | >C917/&1/*0/]0/_0/@1                                                        |
+| Stampa singola quantità                        | manca valore                                                                |
+| Abilitazione buffer                            | >C932/$1                                                                    |
+| Abilitazione taglierina                        | >C997/$1                                                                    |
+| Intestazione fattura, riga 1                   | >C918/*1/$1/(Assolve gli obblighi di cui all'articolo 62,    )              |
+| Intestazione fattura, riga 2                   | >C918/*1/$2/(comma 1, del decreto legge 24 gennaio 2012,     )              |
+| Intestazione fattura, riga 3                   | >C918/*1/$3/(n. 1, convertito, con modificazioni, dalla      )              |
+| Intestazione fattura, riga 4                   | >C918/*1/$4/(legge 24 marzo 2012, n. 27                      )              |
+| Intestazione fattura, riga 5                   | >C918/*1/$5/(                                                )              |
+| Intestazione fattura, riga 6                   | >C918/*1/$6/(                                                )              |
+| Operatore 1 Luca                               | >O1/?A/(Luca                )                                               |
+| Operatore 2                                    | >O2/?A/(                    )                                               |
+| Operatore 3                                    | >O3/?A/(                    )                                               |
+| Operatore 4                                    | >O4/?A/(                    )                                               |
+| Operatore 5                                    | >O5/?A/(                    )                                               |
+| Operatore 6                                    | >O6/?A/(                    )                                               |
+| Operatore 7                                    | >O7/?A/(                    )                                               |
+| Operatore 8                                    | >O8/?A/(                    )                                               |
+| Operatore 9                                    | >O9/?A/(                    )                                               |
+| Operatore 10                                   | >O10/?A/(                    )                                              |
+| Operatore 11                                   | >O11/?A/(                    )                                              |
+| Operatore 12                                   | >O12/?A/(                    )                                              |
+| Operatore 13                                   | >O13/?A/(                    )                                              |
+| Operatore 14                                   | >O14/?A/(                    )                                              |
+| Operatore 15                                   | >O15/?A/(                    )                                              |
+| Operatore 16                                   | >O16/?A/(                    )                                              |
+| Operatore 17                                   | >O17/?A/(                    )                                              |
+| Operatore 18                                   | >O18/?A/(                    )                                              |
+| Operatore 19                                   | >O19/?A/(                    )                                              |
+| Operatore 20                                   | >O20/?A/(                    )                                              |
+| Operatore 21                                   | >O21/?A/(                    )                                              |
+| Operatore 22                                   | >O22/?A/(                    )                                              |
+| Operatore 23                                   | >O23/?A/(                    )                                              |
+| Operatore 24                                   | >O24/?A/(                    )                                              |
+| Operatore 25                                   | >O25/?A/(                    )                                              |
+| Operatore 26                                   | >O26/?A/(                    )                                              |
+| Operatore 27                                   | >O27/?A/(                    )                                              |
+| Operatore 28                                   | >O28/?A/(                    )                                              |
+| Operatore 29                                   | >O29/?A/(                    )                                              |
+| Operatore 30                                   | >O30/?A/(                    )                                              |
+| Operatore 31                                   | >O31/?A/(                    )                                              |
+| Operatore 32                                   | >O32/?A/(                    )                                              |
+| Operatore 33                                   | >O33/?A/(                    )                                              |
+| Operatore 34                                   | >O34/?A/(                    )                                              |
+| Operatore 35                                   | >O35/?A/(                    )                                              |
+| Operatore 36                                   | >O36/?A/(                    )                                              |
+| Operatore 37                                   | >O37/?A/(                    )                                              |
+| Operatore 38                                   | >O38/?A/(                    )                                              |
+| Operatore 39                                   | >O39/?A/(                    )                                              |
+| Operatore 40                                   | >O40/?A/(                    )                                              |
+| Operatore 41                                   | >O41/?A/(                    )                                              |
+| Operatore 42                                   | >O42/?A/(                    )                                              |
+| Operatore 43                                   | >O43/?A/(                    )                                              |
+| Operatore 44                                   | >O44/?A/(                    )                                              |
+| Operatore 45                                   | >O45/?A/(                    )                                              |
+| Operatore 46                                   | >O46/?A/(                    )                                              |
+| Operatore 47                                   | >O47/?A/(                    )                                              |
+| Operatore 48                                   | >O48/?A/(                    )                                              |
+| Operatore 49                                   | >O49/?A/(                    )                                              |
+| Operatore 50                                   | >O50/?A/(                    )                                              |
+| Operatore 51                                   | >O51/?A/(                    )                                              |
+| Operatore 52                                   | >O52/?A/(                    )                                              |
+| Operatore 53                                   | >O53/?A/(                    )                                              |
+| Operatore 54                                   | >O54/?A/(                    )                                              |
+| Operatore 55                                   | >O55/?A/(                    )                                              |
+| Operatore 56                                   | >O56/?A/(                    )                                              |
+| Operatore 57                                   | >O57/?A/(                    )                                              |
+| Operatore 58                                   | >O58/?A/(                    )                                              |
+| Operatore 59                                   | >O59/?A/(                    )                                              |
+| Operatore 60                                   | >O60/?A/(                    )                                              |
+| Operatore 61                                   | >O61/?A/(                    )                                              |
+| Operatore 62                                   | >O62/?A/(                    )                                              |
+| Operatore 63                                   | >O63/?A/(                    )                                              |
+| Operatore 64                                   | >O64/?A/(                    )                                              |
+| Operatore 65                                   | >O65/?A/(                    )                                              |
+| Operatore 66                                   | >O66/?A/(                    )                                              |
+| Operatore 67                                   | >O67/?A/(                    )                                              |
+| Operatore 68                                   | >O68/?A/(                    )                                              |
+| Operatore 69                                   | >O69/?A/(                    )                                              |
+| Operatore 70                                   | >O70/?A/(                    )                                              |
+| Operatore 71                                   | >O71/?A/(                    )                                              |
+| Operatore 72                                   | >O72/?A/(                    )                                              |
+| Operatore 73                                   | >O73/?A/(                    )                                              |
+| Operatore 74                                   | >O74/?A/(                    )                                              |
+| Operatore 75                                   | >O75/?A/(                    )                                              |
+| Operatore 76                                   | >O76/?A/(                    )                                              |
+| Operatore 77                                   | >O77/?A/(                    )                                              |
+| Operatore 78                                   | >O78/?A/(                    )                                              |
+| Operatore 79                                   | >O79/?A/(                    )                                              |
+| Operatore 80                                   | >O80/?A/(                    )                                              |
+| Operatore 81                                   | >O81/?A/(                    )                                              |
+| Operatore 82                                   | >O82/?A/(                    )                                              |
+| Operatore 83                                   | >O83/?A/(                    )                                              |
+| Operatore 84                                   | >O84/?A/(                    )                                              |
+| Operatore 85                                   | >O85/?A/(                    )                                              |
+| Operatore 86                                   | >O86/?A/(                    )                                              |
+| Operatore 87                                   | >O87/?A/(                    )                                              |
+| Operatore 88                                   | >O88/?A/(                    )                                              |
+| Operatore 89                                   | >O89/?A/(                    )                                              |
+| Operatore 90                                   | >O90/?A/(                    )                                              |
+| Operatore 91                                   | >O91/?A/(                    )                                              |
+| Operatore 92                                   | >O92/?A/(                    )                                              |
+| Operatore 93                                   | >O93/?A/(                    )                                              |
+| Operatore 94                                   | >O94/?A/(                    )                                              |
+| Operatore 95                                   | >O95/?A/(                    )                                              |
+| Operatore 96                                   | >O96/?A/(                    )                                              |
+| Operatore 97                                   | >O97/?A/(                    )                                              |
+| Operatore 98                                   | >O98/?A/(                    )                                              |
+| Operatore 99                                   | >O99/?A/(                    )                                              |
+| Reparto 1 (REPARTO 1           )               | >R1/?A/$100/*0/(REPARTO 1           )/&0/[0/]0/_0/@0                        |
+| Reparto 2 (REPARTO 2           )               | >R2/?A/$100/*0/(REPARTO 2           )/&0/[0/]0/_0/@0                        |
+| Reparto 3 (REPARTO 3           )               | >R3/?A/$100/*0/(REPARTO 3           )/&0/[0/]0/_0/@0                        |
+| Reparto 4 (REPARTO 4           )               | >R4/?A/$100/*0/(REPARTO 4           )/&0/[0/]0/_0/@0                        |
+| Reparto 5 (REPARTO 5           )               | >R5/?A/$100/*0/(REPARTO 5           )/&0/[0/]0/_0/@0                        |
+| Reparto 6 (REPARTO 6           )               | >R6/?A/$100/*0/(REPARTO 6           )/&0/[0/]0/_0/@0                        |
+| Reparto 7 (REPARTO 7           )               | >R7/?A/$100/*0/(REPARTO 7           )/&0/[0/]0/_0/@0                        |
+| Reparto 8 (REPARTO 8           )               | >R8/?A/$100/*0/(REPARTO 8           )/&0/[0/]0/_0/@0                        |
+| Reparto 9 (REPARTO 9           )               | >R9/?A/$100/*0/(REPARTO 9           )/&0/[0/]0/_0/@0                        |
+| Reparto 10 (REPARTO 10          )              | >R10/?A/$100/*0/(REPARTO 10          )/&0/[0/]0/_0/@0                       |
+| Reparto 11 (REPARTO 11          )              | >R11/?A/$100/*0/(REPARTO 11          )/&0/[0/]0/_0/@0                       |
+| Reparto 12 (REPARTO 12          )              | >R12/?A/$100/*0/(REPARTO 12          )/&0/[0/]0/_0/@0                       |
+| Reparto 13 (REPARTO 13          )              | >R13/?A/$100/*0/(REPARTO 13          )/&0/[0/]0/_0/@0                       |
+| Reparto 14 (REPARTO 14          )              | >R14/?A/$100/*0/(REPARTO 14          )/&0/[0/]0/_0/@0                       |
+| Reparto 15 (REPARTO 15          )              | >R15/?A/$100/*0/(REPARTO 15          )/&0/[0/]0/_0/@0                       |
+| Reparto 16 (REPARTO 16          )              | >R16/?A/$100/*0/(REPARTO 16          )/&0/[0/]0/_0/@0                       |
+| Reparto 17 (REPARTO 17          )              | >R17/?A/$100/*0/(REPARTO 17          )/&0/[0/]0/_0/@0                       |
+| Reparto 18 (REPARTO 18          )              | >R18/?A/$100/*0/(REPARTO 18          )/&0/[0/]0/_0/@0                       |
+| Reparto 19 (REPARTO 19          )              | >R19/?A/$100/*0/(REPARTO 19          )/&0/[0/]0/_0/@0                       |
+| Reparto 20 (REPARTO 20          )              | >R20/?A/$100/*0/(REPARTO 20          )/&0/[0/]0/_0/@0                       |
+| Reparto 21 (REPARTO 21          )              | >R21/?A/$100/*0/(REPARTO 21          )/&0/[0/]0/_0/@0                       |
+| Reparto 22 (REPARTO 22          )              | >R22/?A/$100/*0/(REPARTO 22          )/&0/[0/]0/_0/@0                       |
+| Reparto 23 (REPARTO 23          )              | >R23/?A/$100/*0/(REPARTO 23          )/&0/[0/]0/_0/@0                       |
+| Reparto 24 (REPARTO 24          )              | >R24/?A/$100/*0/(REPARTO 24          )/&0/[0/]0/_0/@0                       |
+| Reparto 25 (REPARTO 25          )              | >R25/?A/$100/*0/(REPARTO 25          )/&0/[0/]0/_0/@0                       |
+| Reparto 26 (REPARTO 26          )              | >R26/?A/$100/*0/(REPARTO 26          )/&0/[0/]0/_0/@0                       |
+| Reparto 27 (REPARTO 27          )              | >R27/?A/$100/*0/(REPARTO 27          )/&0/[0/]0/_0/@0                       |
+| Reparto 28 (REPARTO 28          )              | >R28/?A/$100/*0/(REPARTO 28          )/&0/[0/]0/_0/@0                       |
+| Reparto 29 (REPARTO 29          )              | >R29/?A/$100/*0/(REPARTO 29          )/&0/[0/]0/_0/@0                       |
+| Reparto 30 (REPARTO 30          )              | >R30/?A/$100/*0/(REPARTO 30          )/&0/[0/]0/_0/@0                       |
+| Reparto 31 (REPARTO 31          )              | >R31/?A/$100/*0/(REPARTO 31          )/&0/[0/]0/_0/@0                       |
+| Reparto 32 (REPARTO 32          )              | >R32/?A/$100/*0/(REPARTO 32          )/&0/[0/]0/_0/@0                       |
+| Reparto 33 (REPARTO 33          )              | >R33/?A/$100/*0/(REPARTO 33          )/&0/[0/]0/_0/@0                       |
+| Reparto 34 (REPARTO 34          )              | >R34/?A/$100/*0/(REPARTO 34          )/&0/[0/]0/_0/@0                       |
+| Reparto 35 (REPARTO 35          )              | >R35/?A/$100/*0/(REPARTO 35          )/&0/[0/]0/_0/@0                       |
+| Reparto 36 (REPARTO 36          )              | >R36/?A/$100/*0/(REPARTO 36          )/&0/[0/]0/_0/@0                       |
+| Reparto 37 (REPARTO 37          )              | >R37/?A/$100/*0/(REPARTO 37          )/&0/[0/]0/_0/@0                       |
+| Reparto 38 (REPARTO 38          )              | >R38/?A/$100/*0/(REPARTO 38          )/&0/[0/]0/_0/@0                       |
+| Reparto 39 (REPARTO 39          )              | >R39/?A/$100/*0/(REPARTO 39          )/&0/[0/]0/_0/@0                       |
+| Reparto 40 (REPARTO 40          )              | >R40/?A/$100/*0/(REPARTO 40          )/&0/[0/]0/_0/@0                       |
+| Reparto 41 (REPARTO 41          )              | >R41/?A/$100/*1/(REPARTO 41          )/&0/[0/]0/_0/@1                       |
+| Reparto 42 (REPARTO 42          )              | >R42/?A/$100/*1/(REPARTO 42          )/&0/[0/]0/_0/@1                       |
+| Reparto 43 (REPARTO 43          )              | >R43/?A/$100/*1/(REPARTO 43          )/&0/[0/]0/_0/@1                       |
+| Reparto 44 (REPARTO 44          )              | >R44/?A/$100/*1/(REPARTO 44          )/&0/[0/]0/_0/@1                       |
+| Reparto 45 (REPARTO 45          )              | >R45/?A/$100/*1/(REPARTO 45          )/&0/[0/]0/_0/@1                       |
+| Reparto 46 (REPARTO 46          )              | >R46/?A/$100/*1/(REPARTO 46          )/&0/[0/]0/_0/@1                       |
+| Reparto 47 (REPARTO 47          )              | >R47/?A/$100/*1/(REPARTO 47          )/&0/[0/]0/_0/@1                       |
+| Reparto 48 (REPARTO 48          )              | >R48/?A/$100/*1/(REPARTO 48          )/&0/[0/]0/_0/@1                       |
+| Reparto 49 (REPARTO 49          )              | >R49/?A/$100/*1/(REPARTO 49          )/&0/[0/]0/_0/@1                       |
+| Reparto 50 (REPARTO 50          )              | >R50/?A/$100/*1/(REPARTO 50          )/&0/[0/]0/_0/@1                       |
+| Reparto 51 (REPARTO 51          )              | >R51/?A/$100/*1/(REPARTO 51          )/&0/[0/]0/_0/@1                       |
+| Reparto 52 (REPARTO 52          )              | >R52/?A/$100/*1/(REPARTO 52          )/&0/[0/]0/_0/@1                       |
+| Reparto 53 (REPARTO 53          )              | >R53/?A/$100/*0/(REPARTO 53          )/&0/[0/]0/_0/@0                       |
+| Reparto 54 (REPARTO 54          )              | >R54/?A/$100/*1/(REPARTO 54          )/&0/[0/]0/_0/@1                       |
+| Reparto 55 (REPARTO 55          )              | >R55/?A/$100/*1/(REPARTO 55          )/&0/[0/]0/_0/@1                       |
+| Reparto 56 (REPARTO 56          )              | >R56/?A/$100/*1/(REPARTO 56          )/&0/[0/]0/_0/@1                       |
+| Reparto 57 (REPARTO 57          )              | >R57/?A/$100/*1/(REPARTO 57          )/&0/[0/]0/_0/@1                       |
+| Reparto 58 (REPARTO 58          )              | >R58/?A/$100/*1/(REPARTO 58          )/&0/[0/]0/_0/@1                       |
+| Reparto 59 (REPARTO 59          )              | >R59/?A/$100/*1/(REPARTO 59          )/&0/[0/]0/_0/@1                       |
+| Reparto 60 (REPARTO 60          )              | >R60/?A/$100/*1/(REPARTO 60          )/&0/[0/]0/_0/@1                       |
+| Reparto 61 (REPARTO 61          )              | >R61/?A/$100/*1/(REPARTO 61          )/&0/[0/]0/_0/@1                       |
+| Reparto 62 (REPARTO 62          )              | >R62/?A/$100/*1/(REPARTO 62          )/&0/[0/]0/_0/@1                       |
+| Reparto 63 (REPARTO 63          )              | >R63/?A/$100/*1/(REPARTO 63          )/&0/[0/]0/_0/@1                       |
+| Reparto 64 (REPARTO 64          )              | >R64/?A/$100/*1/(REPARTO 64          )/&0/[0/]0/_0/@1                       |
+| Reparto 65 (REPARTO 65          )              | >R65/?A/$100/*1/(REPARTO 65          )/&0/[0/]0/_0/@1                       |
+| Reparto 66 (REPARTO 66          )              | >R66/?A/$100/*0/(REPARTO 66          )/&0/[0/]0/_0/@0                       |
+| Reparto 67 (REPARTO 67          )              | >R67/?A/$100/*1/(REPARTO 67          )/&0/[0/]0/_0/@1                       |
+| Reparto 68 (REPARTO 68          )              | >R68/?A/$100/*1/(REPARTO 68          )/&0/[0/]0/_0/@1                       |
+| Reparto 69 (REPARTO 69          )              | >R69/?A/$100/*1/(REPARTO 69          )/&0/[0/]0/_0/@1                       |
+| Reparto 70 (REPARTO 70          )              | >R70/?A/$100/*1/(REPARTO 70          )/&0/[0/]0/_0/@1                       |
+| Reparto 71 (REPARTO 71          )              | >R71/?A/$100/*1/(REPARTO 71          )/&0/[0/]0/_0/@1                       |
+| Reparto 72 (REPARTO 72          )              | >R72/?A/$100/*1/(REPARTO 72          )/&0/[0/]0/_0/@1                       |
+| Reparto 73 (REPARTO 73          )              | >R73/?A/$100/*1/(REPARTO 73          )/&0/[0/]0/_0/@1                       |
+| Reparto 74 (REPARTO 74          )              | >R74/?A/$100/*1/(REPARTO 74          )/&0/[0/]0/_0/@1                       |
+| Reparto 75 (REPARTO 75          )              | >R75/?A/$100/*1/(REPARTO 75          )/&0/[0/]0/_0/@1                       |
+| Reparto 76 (REPARTO 76          )              | >R76/?A/$100/*1/(REPARTO 76          )/&0/[0/]0/_0/@1                       |
+| Reparto 77 (REPARTO 77          )              | >R77/?A/$100/*1/(REPARTO 77          )/&0/[0/]0/_0/@1                       |
+| Reparto 78 (REPARTO 78          )              | >R78/?A/$100/*1/(REPARTO 78          )/&0/[0/]0/_0/@1                       |
+| Reparto 79 (REPARTO 79          )              | >R79/?A/$100/*0/(REPARTO 79          )/&0/[0/]0/_0/@0                       |
+| Reparto 80 (REPARTO 80          )              | >R80/?A/$100/*0/(REPARTO 80          )/&0/[0/]0/_0/@0                       |
+| Reparto 81 (REPARTO 81          )              | >R81/?A/$100/*0/(REPARTO 81          )/&0/[0/]0/_0/@0                       |
+| Reparto 82 (REPARTO 82          )              | >R82/?A/$100/*0/(REPARTO 82          )/&0/[0/]0/_0/@0                       |
+| Reparto 83 (REPARTO 83          )              | >R83/?A/$100/*0/(REPARTO 83          )/&0/[0/]0/_0/@0                       |
+| Reparto 84 (REPARTO 84          )              | >R84/?A/$100/*0/(REPARTO 84          )/&0/[0/]0/_0/@0                       |
+| Reparto 85 (REPARTO 85          )              | >R85/?A/$100/*0/(REPARTO 85          )/&0/[0/]0/_0/@0                       |
+| Reparto 86 (REPARTO 86          )              | >R86/?A/$100/*0/(REPARTO 86          )/&0/[0/]0/_0/@0                       |
+| Reparto 87 (REPARTO 87          )              | >R87/?A/$100/*0/(REPARTO 87          )/&0/[0/]0/_0/@0                       |
+| Reparto 88 (REPARTO 88          )              | >R88/?A/$100/*0/(REPARTO 88          )/&0/[0/]0/_0/@0                       |
+| Reparto 89 (REPARTO 89          )              | >R89/?A/$100/*0/(REPARTO 89          )/&0/[0/]0/_0/@0                       |
+| Reparto 90 (REPARTO 90          )              | >R90/?A/$100/*0/(REPARTO 90          )/&0/[0/]0/_0/@0                       |
+| Reparto 91 (REPARTO 91          )              | >R91/?A/$100/*0/(REPARTO 91          )/&0/[0/]0/_0/@0                       |
+| Reparto 92 (REPARTO 92          )              | >R92/?A/$100/*0/(REPARTO 92          )/&0/[0/]0/_0/@0                       |
+| Reparto 93 (REPARTO 93          )              | >R93/?A/$100/*0/(REPARTO 93          )/&0/[0/]0/_0/@0                       |
+| Reparto 94 (REPARTO 94          )              | >R94/?A/$100/*0/(REPARTO 94          )/&0/[0/]0/_0/@0                       |
+| Reparto 95 (REPARTO 95          )              | >R95/?A/$100/*0/(REPARTO 95          )/&0/[0/]0/_0/@0                       |
+| Reparto 96 (REPARTO 96          )              | >R96/?A/$100/*0/(REPARTO 96          )/&0/[0/]0/_0/@0                       |
+| Reparto 97 (REPARTO 97          )              | >R97/?A/$100/*0/(REPARTO 97          )/&0/[0/]0/_0/@0                       |
+| Reparto 98 (REPARTO 98          )              | >R98/?A/$100/*0/(REPARTO 98          )/&0/[0/]0/_0/@0                       |
+| Reparto 99 (REPARTO 99          )              | >R99/?A/$100/*0/(REPARTO 99          )/&0/[0/]0/_0/@0                       |
+| Pagamento 1 CONTANTI                           | >T1/?A/$1/&1/[0/]0/^0/_0/(CONTANTI            )                             |
+| Pagamento 2 CARTA DI CREDITO                   | >T2/?A/$0/&0/[0/]0/^0/_0/(CARTA DI CREDITO    )                             |
+| Pagamento 3 ASSEGNO                            | >T3/?A/$0/&1/[0/]0/^0/_0/(ASSEGNO             )                             |
+| Pagamento 4 NON RISCOSSO SEGUE                 | >T4/?A/$0/&0/[3/]0/^0/_0/(NON RISCOSSO SEGUE  )                             |
+| Pagamento 5 CHIUSURA A CREDITO                 | >T5/?A/$0/&0/[0/]0/^0/_0/(CHIUSURA A CREDITO  )                             |
+| Pagamento 6 BUONI PASTO                        | >T6/?A/$0/&0/[0/]1/^0/_1/(BUONI PASTO         )                             |
+| Pagamento 7 satispay                           | >T7/?A/$0/&0/[0/]0/^0/_0/(satispay            )                             |
+| Pagamento 8 CASHMATIC                          | >T8/?A/$0/&0/[0/]0/^0/_0/(CASHMATIC           )                             |
+| Pagamento 9 SCISSIONE PAGAMENTI                | >T9/?A/$0/&0/[0/]0/^0/_0/(SCISSIONE PAGAMENTI )                             |
+| Pagamento 10 CIMA                              | >T10/?A/$1/&1/[0/]0/^0/_0/(CIMA                )                            |
+| Pagamento 11 SCISSIONE PAGAMENTI               | >T11/?A/$0/&0/[0/]0/^0/_0/(SCISSIONE PAGAMENTI )                            |
+| Pagamento 12 ACCONTO                           | >T12/?A/$0/&0/[5/]0/^0/_0/(ACCONTO             )                            |
+| Pagamento 13 ELETTRONICO                       | >T13/?A/$0/&0/[0/]0/^0/_0/(ELETTRONICO         )                            |
+| Pagamento 14 PAGAMENTO 14                      | >T14/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 14        )                            |
+| Pagamento 15 PAGAMENTO 15                      | >T15/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 15        )                            |
+| Pagamento 16 PAGAMENTO 16                      | >T16/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 16        )                            |
+| Pagamento 17 PAGAMENTO 17                      | >T17/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 17        )                            |
+| Pagamento 18 PAGAMENTO 18                      | >T18/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 18        )                            |
+| Pagamento 19 PAGAMENTO 19                      | >T19/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 19        )                            |
+| Pagamento 20 PAGAMENTO 20                      | >T20/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 20        )                            |
+| Pagamento 21 PAGAMENTO 21                      | >T21/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 21        )                            |
+| Pagamento 22 PAGAMENTO 22                      | >T22/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 22        )                            |
+| Pagamento 23 PAGAMENTO 23                      | >T23/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 23        )                            |
+| Pagamento 24 PAGAMENTO 24                      | >T24/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 24        )                            |
+| Pagamento 25 PAGAMENTO 25                      | >T25/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 25        )                            |
+| Pagamento 26 PAGAMENTO 26                      | >T26/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 26        )                            |
+| Pagamento 27 PAGAMENTO 27                      | >T27/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 27        )                            |
+| Pagamento 28 PAGAMENTO 28                      | >T28/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 28        )                            |
+| Pagamento 29 PAGAMENTO 29                      | >T29/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 29        )                            |
+| Pagamento 30 PAGAMENTO 30                      | >T30/?A/$1/&1/[0/]1/^0/_0/(PAGAMENTO 30        )                            |
+| IVA 0                                          | >>/?V/$0/*2200/&0/(000000)                                                  |
+| IVA 1                                          | >>/?V/$1/*1000/&0/(000000)                                                  |
+| IVA 2                                          | >>/?V/$2/*400/&0/(000000)                                                   |
+| IVA 3                                          | >>/?V/$3/*500/&0/(000000)                                                   |
+| IVA 4                                          | >>/?V/$4/*0/&0/(000000)                                                     |
+| IVA 5                                          | >>/?V/$5/*1/&1/(000000)                                                     |
+| IVA 6                                          | >>/?V/$6/*2/&1/(000000)                                                     |
+| IVA 7                                          | >>/?V/$7/*3/&1/(000000)                                                     |
+| IVA 8                                          | >>/?V/$8/*4/&1/(000000)                                                     |
+| IVA 9                                          | >>/?V/$9/*5/&1/(000000)                                                     |
+| IVA 10                                         | >>/?V/$10/*6/&1/(000000)                                                    |
+| IVA 11                                         | >>/?V/$11/*1/&1/(000000)                                                    |
+| IVA 12                                         | >>/?V/$12/*0/&2/(000000)                                                    |
+| IVA 13                                         | >>/?V/$13/*2200/&0/(000000)                                                 |
+| IVA 14                                         | >>/?V/$14/*1000/&0/(000000)                                                 |
+| IVA 15                                         | >>/?V/$15/*400/&0/(000000)                                                  |
+| IVA 16                                         | >>/?V/$16/*500/&0/(000000)                                                  |
+| IVA 17                                         | >>/?V/$17/*0/&0/(000000)                                                    |
+| IVA 18                                         | >>/?V/$18/*1/&1/(000000)                                                    |
+| IVA 19                                         | >>/?V/$19/*2/&1/(000000)                                                    |
+| IVA 20                                         | >>/?V/$20/*3/&1/(000000)                                                    |
+| IVA 21                                         | >>/?V/$21/*4/&1/(000000)                                                    |
+| IVA 22                                         | >>/?V/$22/*5/&1/(000000)                                                    |
+| IVA 23                                         | >>/?V/$23/*6/&1/(000000)                                                    |
+| IVA 24                                         | >>/?V/$24/*1/&1/(000000)                                                    |
+| IVA 25                                         | >>/?V/$25/*0/&2/(000000)                                                    |
+| IVA 26                                         | >>/?V/$26/*2200/&0/(000000)                                                 |
+| IVA 27                                         | >>/?V/$27/*1000/&0/(000000)                                                 |
+| IVA 28                                         | >>/?V/$28/*400/&0/(000000)                                                  |
+| IVA 29                                         | >>/?V/$29/*500/&0/(000000)                                                  |
+| IVA 30                                         | >>/?V/$30/*0/&0/(000000)                                                    |
+| IVA 31                                         | >>/?V/$31/*1/&1/(000000)                                                    |
+| IVA 32                                         | >>/?V/$32/*2/&1/(000000)                                                    |
+| IVA 33                                         | >>/?V/$33/*3/&1/(000000)                                                    |
+| IVA 34                                         | >>/?V/$34/*4/&1/(000000)                                                    |
+| IVA 35                                         | >>/?V/$35/*5/&1/(000000)                                                    |
+| IVA 36                                         | >>/?V/$36/*6/&1/(000000)                                                    |
+| IVA 37                                         | >>/?V/$37/*1/&1/(000000)                                                    |
+| IVA 38                                         | >>/?V/$38/*0/&2/(000000)                                                    |
+| IVA 39                                         | >>/?V/$39/*0/&0/(000000)                                                    |
+| Intestazione 1                                 |  >>/?H/$1/(                   RCH S.p.a.                   )                |
+| Intestazione 2                                 |  >>/?H/$2/(                     prova                      )                |
+| Intestazione 3                                 |  >>/?H/$3/(                      Test                      )                |
+| Intestazione 4                                 |  >>/?H/$4/(                    insomma                     )                |
+| Intestazione 5                                 |  >>/?H/$5/(                      vai                       )                |
+| Intestazione 6                                 |  >>/?H/$6/(                     wcoco                      )                |
+| Intestazione 7                                 |  >>/?H/$7/(                   Fattura 1                    )                |
+| Intestazione 8                                 |  >>/?H/$8/(                      Test                      )                |
+| Intestazione 9                                 |  >>/?H/$9/(                      test                      )                |
+| Intestazione 10                                |  >>/?H/$10/(                      test                      )               |
+| Intestazione 11                                |  >>/?H/$11/(                      test                      )               |
+| Intestazione 12                                |  >>/?H/$12/(                      tets                      )               |
+| Intestazione 13                                |  >>/?H/$13/(                      test                      )               |
+| Riga di cortesia 1                             |  >>/?t/$1/(linea di cortesia 1)                                             |
+| Riga di cortesia 2                             |  >>/?t/$2/(linea di cortesia 2)                                             |
+| Clear                                          | =K                                                                          |
+| Chiave registratore                            | =C1                                                                         |
+| -----------------------------------------------|------------------------------------------------------------------------------
+    ✔ it should buildProgCommands (4756ms)
+[Driver]: connection closed
+
+
+  18 passing (2m)
+  2 failing
+
+  1) #formatCommandToByteArray()
+       it should format the command:
+
+      AssertionError [ERR_ASSERTION]: [
+  2,
+  48,
+  49,
+  48,
+  48,
+  50,
+  78,
+  61,
+  75,
+  49,
+  51,
+  56,
+  3
+] == [
+  2,
+  48,
+  49,
+  48,
+  48,
+  50,
+  78,
+  61,
+  75,
+  48,
+  51,
+  57,
+  3
+]
+      + expected - actual
+
+         50
+         78
+         61
+         75
+      -  49
+      +  48
+         51
+      -  56
+      +  57
+         3
+       ]
+      
+      at Context.<anonymous> (test/DriverUnitTest.js:24:26)
+      at processImmediate (internal/timers.js:464:21)
+
+  2) #allProgramming()
+       it should get the printer programming:
+     Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/Users/rchdeveloper/Documents/GitHub/rch-driver-js/RCH Driver JS/test/DriverUnitTest.js)
+      at listOnTimeout (internal/timers.js:557:17)
+      at processTimers (internal/timers.js:500:7)
+
+
+

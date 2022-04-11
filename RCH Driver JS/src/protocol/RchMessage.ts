@@ -1,5 +1,6 @@
-import { ComConst, Utils } from "..";
+import { ComConst } from "..";
 import { ReceiptStatus } from "../printer/ReceiptStatus";
+import { Utils } from "../Utils";
 
 /**
  * Encapsulate a protocol message

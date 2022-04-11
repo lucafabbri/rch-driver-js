@@ -1,7 +1,5 @@
 ﻿import { ICourtesyLine } from "../interfaces/ICourtesyLine"
 import { IDepartment } from "../interfaces/IDepartment"
-import { IDevice } from "../interfaces/IDevice"
-import { IDocument } from "../interfaces/IDocument"
 import { IGroup } from "../interfaces/IGroup"
 import { IHeadingRow } from "../interfaces/IHeadingRow"
 import { IInvoiceText } from "../interfaces/IInvoiceText"

@@ -3,12 +3,10 @@ import {EcrDevice} from './EcrDevice';
 import {IDriver} from './IDriver';
 import {IEcrDevice} from './IEcrDevice';
 import {Prog} from './models/Prog';
-import {Core} from './protocol/Core';
 import {RchProtocol} from './protocol/RchProtocol';
-import {RchDefault} from './utils/RchDefault';
-import {Utils} from './utils/Utils';
+import {RchDefault} from './RchDefault';
+import {Utils} from './Utils';
 import {IProg} from './interfaces/IProg';
-import {BillDTO} from './dto/BillDTO';
 import {PrintBillResponseDTO} from './dto/PrintBillResponseDTO';
 import {Duplex} from 'stream';
 import {RchMessage} from './protocol/RchMessage';
@@ -18,15 +16,14 @@ import {DgfeStatus, RTStatus, EthernetSettings, CashRegister} from './printer';
 import {DayLightSavingTimeAndPeriodCheck} from './printer/DayLightSavingTimeAndPeriodCheck';
 import {InactivityAndPendings} from './printer/InactivityAndPendings';
 import {ConnectionConst} from './ConnectionConst';
-import {createConnection, Socket} from 'net';
+import {createConnection} from 'net';
 import {Crawler} from './network/Crawler';
-import SerialPort from 'serialport';
-import {DateTime} from 'luxon';
+import { SerialPort } from 'serialport';
+import { DateTime } from 'luxon';
 import _ from 'lodash';
 import {
 	Dgfe,
 	Receipt,
-	RegexUtils,
 	Closure,
 	ReceiptItem,
 	ReceiptPayment,
@@ -39,8 +36,9 @@ import {ClosureVat} from './ClosureVat';
 import {ClosurePayment} from './ClosurePayment';
 import {ClosureDiscount} from './ClosureDiscount';
 import {ProgCommand} from './models/ProgCommand';
-import { RowDTO } from './dto/RowDTO';
 import { DriverConfiguration } from './DriverConfiguration';
+import { RegexUtils } from './RegexUtils';
+import { BillDTO, Core, RowDTO } from 'rch-driver-js-core';
 
 
 /**
@@ -59,8 +57,7 @@ export class Driver implements IDriver {
 	baudRate?: number = 9600;
 	ip?: string = '192.168.1.10';
 	ipPort?: number = 23;
-	packIds: string =
-		'01234567879abcdefghijklmnopqrstuvwxyzaABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	packIds: string = '01234567879abcdefghijklmnopqrstuvwxyzaABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	packId: number = 0;
 	commandEventListeners: Function[] = [];
 	isETX = false;
@@ -79,11 +76,7 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	buildProgCommands(
-		prog: IProg,
-		printerType: DeviceType,
-		sendHeadings: boolean
-	): ProgCommand[] {
+	buildProgCommands(prog: IProg, printerType: DeviceType, sendHeadings: boolean): ProgCommand[] {
 		var core = new Core();
 		var commands: ProgCommand[] = [];
 		commands.push({
@@ -123,13 +116,7 @@ export class Driver implements IDriver {
 			var c917 = {
 				description: 'Impostazioni fattura',
 			} as ProgCommand;
-			c917.cmd = core.C917(
-				prog.intInvoice,
-				prog.invoice2Lines,
-				prog.invoiceSubtotal,
-				prog.invoiceClientCheck,
-				true
-			);
+			c917.cmd = core.C917(prog.intInvoice, prog.invoice2Lines, prog.invoiceSubtotal, prog.invoiceClientCheck, true);
 			commands.push(c917);
 
 			if (prog.singleQuantity) {
@@ -168,24 +155,12 @@ export class Driver implements IDriver {
 			for (var i = 0; i < prog.invoiceText.length; i++) {
 				commands.push({
 					description: 'Intestazione fattura, riga ' + prog.invoiceText[i].id,
-					cmd:
-						'>C918/*1/$' +
-						prog.invoiceText[i].id +
-						'/(' +
-						prog.invoiceText[i].name +
-						')',
+					cmd: '>C918/*1/$' + prog.invoiceText[i].id + '/(' + prog.invoiceText[i].name + ')',
 				});
 			}
 		}
 
-		var availableClerks =
-			printerType == DeviceType.LDP33RT
-				? prog.operators.slice(0, 4)
-				: printerType == DeviceType.ONDART ||
-				  printerType == DeviceType.ONDARTA ||
-				  printerType == DeviceType.SPOTRT
-				? prog.operators.slice(0, 4)
-				: prog.operators;
+		var availableClerks = printerType == DeviceType.LDP33RT ? prog.operators.slice(0, 4) : printerType == DeviceType.ONDART || printerType == DeviceType.ONDARTA || printerType == DeviceType.SPOTRT ? prog.operators.slice(0, 4) : prog.operators;
 
 		availableClerks.forEach((item) => {
 			if (item.name != '' && item.name != null) {
@@ -196,30 +171,13 @@ export class Driver implements IDriver {
 			}
 		});
 
-		var availableDepts =
-			printerType == DeviceType.LDP03
-				? prog.departments.slice(0, 10)
-				: printerType == DeviceType.ONDART ||
-				  printerType == DeviceType.ONDARTA ||
-				  printerType == DeviceType.SPOTRT
-				? prog.departments.slice(0, 10)
-				: prog.departments;
+		var availableDepts = printerType == DeviceType.LDP03 ? prog.departments.slice(0, 10) : printerType == DeviceType.ONDART || printerType == DeviceType.ONDARTA || printerType == DeviceType.SPOTRT ? prog.departments.slice(0, 10) : prog.departments;
 
 		availableDepts.forEach((item) => {
 			if (this.validateDepartment(prog, item)) {
 				commands.push({
 					description: 'Reparto ' + item.id + ' (' + item.name + ')',
-					cmd: core.R(
-						item.id,
-						item.price,
-						item.vatCode,
-						item.name,
-						item.halo,
-						item.lalo,
-						item.single,
-						item.groupCode,
-						item.departmentType
-					),
+					cmd: core.R(item.id, item.price, item.vatCode, item.name, item.halo, item.lalo, item.single, item.groupCode, item.departmentType),
 				});
 			} else {
 				commands.push({
@@ -229,30 +187,13 @@ export class Driver implements IDriver {
 			}
 		});
 
-		var availablePayments =
-			printerType == DeviceType.LDP33RT
-				? prog.payments.slice(0, 10)
-				: printerType == DeviceType.ONDART ||
-				  printerType == DeviceType.ONDARTA ||
-				  printerType == DeviceType.SPOTRT
-				? prog.payments.slice(0, 10)
-				: prog.payments;
+		var availablePayments = printerType == DeviceType.LDP33RT ? prog.payments.slice(0, 10) : printerType == DeviceType.ONDART || printerType == DeviceType.ONDARTA || printerType == DeviceType.SPOTRT ? prog.payments.slice(0, 10) : prog.payments;
 
 		availablePayments.forEach((item) => {
 			if (this.validateTender(item)) {
 				commands.push({
 					description: 'Pagamento ' + item.id + ' ' + item.name,
-					cmd: core.T(
-						item.id,
-						item.name,
-						item.change,
-						item.cash,
-						item.payDiscount,
-						item.creditType,
-						item.drawer,
-						item.inputTotalAmount,
-						item.ticket
-					),
+					cmd: core.T(item.id, item.name, item.change, item.cash, item.payDiscount, item.creditType, item.drawer, item.inputTotalAmount, item.ticket),
 				});
 			} else {
 				commands.push({
@@ -262,31 +203,16 @@ export class Driver implements IDriver {
 			}
 		});
 
-		var availableVats =
-			printerType == DeviceType.LDP33RT
-				? prog.vats.slice(0, 13)
-				: printerType == DeviceType.ONDART ||
-				  printerType == DeviceType.ONDARTA ||
-				  printerType == DeviceType.SPOTRT
-				? prog.vats.slice(0, 13)
-				: prog.vats;
+		var availableVats = printerType == DeviceType.LDP33RT ? prog.vats.slice(0, 13) : printerType == DeviceType.ONDART || printerType == DeviceType.ONDARTA || printerType == DeviceType.SPOTRT ? prog.vats.slice(0, 13) : prog.vats;
 
 		availableVats.forEach((item) => {
 			commands.push({
 				description: 'IVA ' + item.id,
-				cmd: core.V(
-					item.id,
-					item.type,
-					item.value != undefined ? item.value : 0,
-					item.ateco
-				),
+				cmd: core.V(item.id, item.type, item.value != undefined ? item.value : 0, item.ateco),
 			});
 		});
 		if (sendHeadings) {
-			var availbleHeadings =
-				printerType == DeviceType.PRINTF
-					? prog.headings
-					: prog.headings.slice(0, 6);
+			var availbleHeadings = printerType == DeviceType.PRINTF ? prog.headings : prog.headings.slice(0, 6);
 
 			availbleHeadings.forEach((item) => {
 				commands.push({
@@ -314,37 +240,20 @@ export class Driver implements IDriver {
 	}
 
 	private validateTender(item: IPayment): boolean {
-		return !(
-			!item.cash &&
-			!item.credit &&
-			!item.payDiscount &&
-			!item.ticket &&
-			item.creditType != 0
-		);
+		return !(!item.cash && !item.credit && !item.payDiscount && !item.ticket && item.creditType != 0);
 	}
 
 	private validateDepartment(prog: IProg, item: IDepartment): boolean {
-		return !(
-			(item.departmentType == 1 &&
-				prog.vats!.find((v) => v.id == item.vatCode)?.type == 'VI') ??
-			false
-		);
+		return !((item.departmentType == 1 && prog.vats!.find((v) => v.id == item.vatCode)?.type == 'VI') ?? false);
 	}
 
-	private async initConnection(): Promise<boolean>{
+	private async initConnection(): Promise<boolean> {
 		return new Promise((resolve, reject) => {
-			let timer = setTimeout(() => {
-				console.debug(
-					this.logTag + '[ERROR] Attempt at connection exceeded timeout value'
-				);
-				this.client?.end();
-				this.client = null;
-				reject(false);
-			}, 500);
 			switch (this.connection) {
 				case ConnectionConst.SERIAL:
 					if (this.comPort && this.baudRate) {
-						this.client = new SerialPort(this.comPort, {
+						this.client = new SerialPort({
+							path: this.comPort,
 							baudRate: this.baudRate,
 							autoOpen: false,
 						});
@@ -357,7 +266,6 @@ export class Driver implements IDriver {
 							reject(false);
 						});
 						this.client.once('open', () => {
-							clearTimeout(timer);
 							console.log(this.logTag + 'connection open');
 							this.client?.removeAllListeners('error');
 							this.client?.on('error', (error) => {
@@ -373,11 +281,11 @@ export class Driver implements IDriver {
 					} else {
 						reject(false);
 					}
+					break;
 				case ConnectionConst.TCPIP:
 				default:
 					if (this.ip && this.ipPort) {
 						this.client = createConnection(this.ipPort, this.ip, () => {
-							clearTimeout(timer);
 							console.log(this.logTag + 'connection open');
 							this.client?.removeAllListeners('error');
 							this.client?.on('error', (error) => {
@@ -397,6 +305,7 @@ export class Driver implements IDriver {
 					} else {
 						reject(false);
 					}
+					break;
 			}
 		});
 	}
@@ -452,11 +361,7 @@ export class Driver implements IDriver {
 						console.debug(d);
 						result.push(d);
 					} else {
-						console.debug(
-							this.logTag +
-								'#discovery Device Not Found on Serial Port: ' +
-								port.path
-						);
+						console.debug(this.logTag + '#discovery Device Not Found on Serial Port: ' + port.path);
 					}
 				} catch (pe) {
 					console.error(this.logTag + '#discovery ' + pe);
@@ -480,11 +385,7 @@ export class Driver implements IDriver {
 						console.debug(d);
 						result.push(d);
 					} else {
-						console.debug(
-							this.logTag +
-								'#discovery Device Not Found on TCP/IP: ' +
-								device.ip
-						);
+						console.debug(this.logTag + '#discovery Device Not Found on TCP/IP: ' + device.ip);
 					}
 				} catch (pe) {
 					console.error(this.logTag + '#discovery ' + pe);
@@ -500,13 +401,41 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
+	async discoverByIp(ip: string): Promise<IEcrDevice | null> {
+		let result: IEcrDevice | null= null;
+		try {
+			this.connection = ConnectionConst.TCPIP;
+			let device = new EcrDevice();
+			device.ipPort = 23;
+			device.ip = ip;
+			this.ip = ip;
+			this.ipPort = 23;
+			try {
+				console.debug(this.logTag + '#discovery on TCP/IP: ' + device.ip);
+				let d = await this.populateDevice(device);
+				if (d != null) {
+					console.debug(d);
+					result = d;
+				} else {
+					console.debug(this.logTag + '#discovery Device Not Found on TCP/IP: ' + device.ip);
+				}
+			} catch (pe) {
+				console.error(this.logTag + '#discovery ' + pe);
+			}
+		} catch (e) {
+			console.error(this.logTag + '#discovery ' + e);
+		}
+
+		return result;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
 	addCommandEventListener(listner: Function): Function {
 		this.commandEventListeners.push(listner);
 		return () => {
-			this.commandEventListeners.splice(
-				this.commandEventListeners.indexOf(listner),
-				1
-			);
+			this.commandEventListeners.splice(this.commandEventListeners.indexOf(listner), 1);
 		};
 	}
 
@@ -522,13 +451,9 @@ export class Driver implements IDriver {
 					try {
 						bytesRead = data.buffer.byteLength;
 						if (bytesRead > 0) {
-							let dataRead = this.readData(
-								Buffer.from(data.toString(), 'ascii')
-							);
+							let dataRead = this.readData(Buffer.from(data.toString(), 'ascii'));
 							if (dataRead.length > 0) {
-								result.response = result.response.concat(
-									dataRead.map((d) => new RchMessage(d))
-								);
+								result.response = result.response.concat(dataRead.map((d) => new RchMessage(d)));
 							}
 						}
 					} catch {
@@ -546,9 +471,7 @@ export class Driver implements IDriver {
 
 				let byteSend = this.formatCommandToByteArray(command);
 				let bufferSend = Buffer.from(byteSend);
-				result = new RchProtocol(
-					bufferSend.slice(1, bufferSend.length - 1).toString('ascii')
-				);
+				result = new RchProtocol(bufferSend.slice(1, bufferSend.length - 1).toString('ascii'));
 
 				this.client?.write(bufferSend, 'ascii', (error) => {
 					if (error) {
@@ -608,30 +531,21 @@ export class Driver implements IDriver {
 			if (await this.initConnection()) {
 				let rchDefaults = new RchDefault();
 
-				let sendCommandResult = await this.sendCommand(
-					this.core.getSerialNumber()
-				);
+				let sendCommandResult = await this.sendCommand(this.core.getSerialNumber());
 
 				if (sendCommandResult.isSuccess) {
 					let response = sendCommandResult.response[0];
 
 					if (!response.isError) {
-						device.serialNumber = Utils.toRtFormat(
-							response.data.replace(/[ ]/, '')
-						);
+						device.serialNumber = Utils.toRtFormat(response.data.replace(/[ ]/, ''));
 						device.type = DeviceType.fromSerialNumber(device.serialNumber);
 
-						let fwRevisionResult = await this.sendCommand(
-							this.core.getFirmwareRevision()
-						);
+						let fwRevisionResult = await this.sendCommand(this.core.getFirmwareRevision());
 						if (fwRevisionResult.isSuccess) {
 							device.fwVersionLabel = fwRevisionResult.response[0].data;
 						}
 
-						let deviceCapability = rchDefaults.getDeviceCapability(
-							device.type,
-							device.fwVersion
-						);
+						let deviceCapability = rchDefaults.getDeviceCapability(device.type, device.fwVersion);
 
 						if (deviceCapability != null) {
 							device.hasProgDump = deviceCapability.hasProgDump;
@@ -644,10 +558,7 @@ export class Driver implements IDriver {
 								device.prog = await this.allProgramming();
 							}
 							if (!device.prog) {
-								device.prog = rchDefaults.getProgByDevice(
-									device.type,
-									device.fwVersion
-								);
+								device.prog = rchDefaults.getProgByDevice(device.type, device.fwVersion);
 							}
 						}
 						await this.close();
@@ -702,41 +613,29 @@ export class Driver implements IDriver {
 					let groups = m.groups;
 					if (groups) {
 						closure.raw = groups['raw'];
-						closure.date = DateTime.fromFormat(
-							groups['datetime'],
-							'dd-LL-yyyy HH:mm',
-							{locale: 'it-IT'}
-						).toJSDate();
+						closure.date = DateTime.fromFormat(groups['datetime'], 'dd-LL-yyyy HH:mm', {locale: 'it-IT'}).toJSDate();
 						closure.closure = parseInt(groups['closure']);
 						closure.number = parseInt(groups['number']);
 						if (groups['sells']) {
 							closure.sells = parseInt(groups['sells']);
 						}
 						if (groups['grandTotal']) {
-							closure.grandTotal = parseInt(
-								groups['grandTotal'].replace(/[\.,]/g, '')
-							);
+							closure.grandTotal = parseInt(groups['grandTotal'].replace(/[\.,]/g, ''));
 						}
 						if (groups['invoices']) {
 							closure.invoices = parseInt(groups['invoices']);
 						}
 						if (groups['invoicesTotal']) {
-							closure.invoicesTotal = parseInt(
-								groups['invoicesTotal'].replace(/[\.,]/g, '')
-							);
+							closure.invoicesTotal = parseInt(groups['invoicesTotal'].replace(/[\.,]/g, ''));
 						}
 						if (groups['cancelledDocumentsTotal']) {
-							closure.cancelledDocumentsTotal = parseInt(
-								groups['cancelledDocumentsTotal'].replace(/[\.,]/g, '')
-							);
+							closure.cancelledDocumentsTotal = parseInt(groups['cancelledDocumentsTotal'].replace(/[\.,]/g, ''));
 						}
 						if (groups['fiscalDocuments']) {
 							closure.fiscalDocuments = parseInt(groups['fiscalDocuments']);
 						}
 						if (groups['managementDocuments']) {
-							closure.managementDocuments = parseInt(
-								groups['managementDocuments']
-							);
+							closure.managementDocuments = parseInt(groups['managementDocuments']);
 						}
 						if (groups['summaryReadings']) {
 							closure.summaryReadings = parseInt(groups['summaryReadings']);
@@ -753,10 +652,7 @@ export class Driver implements IDriver {
 						if (groups['vats']) {
 							let vats = groups['vats'];
 							let vm;
-							while (
-								(vm = RegexUtils.fiscalReportVatDetailsPattern.exec(vats)) !==
-								null
-							) {
+							while ((vm = RegexUtils.fiscalReportVatDetailsPattern.exec(vats)) !== null) {
 								if (vm.index === RegexUtils.fiscalReportPattern.lastIndex) {
 									RegexUtils.fiscalReportPattern.lastIndex++;
 								}
@@ -766,24 +662,16 @@ export class Driver implements IDriver {
 									closureVat.id = parseInt(vatGroups['id']);
 									closureVat.vat = vatGroups['vat'];
 									if (vatGroups['total']) {
-										closureVat.total = parseInt(
-											vatGroups['total'].replace(/[\.,]/g, '')
-										);
+										closureVat.total = parseInt(vatGroups['total'].replace(/[\.,]/g, ''));
 									}
 									if (vatGroups['sellsGrandTotal']) {
-										closureVat.sellsGrandTotal = parseInt(
-											vatGroups['sellsGrandTotal'].replace(/[\.,]/g, '')
-										);
+										closureVat.sellsGrandTotal = parseInt(vatGroups['sellsGrandTotal'].replace(/[\.,]/g, ''));
 									}
 									if (vatGroups['sellsNetTotal']) {
-										closureVat.sellsNetTotal = parseInt(
-											vatGroups['sellsNetTotal'].replace(/[\.,]/g, '')
-										);
+										closureVat.sellsNetTotal = parseInt(vatGroups['sellsNetTotal'].replace(/[\.,]/g, ''));
 									}
 									if (vatGroups['sellsVatTotal']) {
-										closureVat.sellsVatTotal = parseInt(
-											vatGroups['sellsVatTotal'].replace(/[\.,]/g, '')
-										);
+										closureVat.sellsVatTotal = parseInt(vatGroups['sellsVatTotal'].replace(/[\.,]/g, ''));
 									}
 									closure.vats.push(closureVat);
 								}
@@ -792,15 +680,8 @@ export class Driver implements IDriver {
 						if (groups['payments']) {
 							let payments = groups['payments'];
 							let pm;
-							while (
-								(pm = RegexUtils.fiscalReportPaymentDetailsPattern.exec(
-									payments
-								)) !== null
-							) {
-								if (
-									pm.index ===
-									RegexUtils.fiscalReportPaymentDetailsPattern.lastIndex
-								) {
+							while ((pm = RegexUtils.fiscalReportPaymentDetailsPattern.exec(payments)) !== null) {
+								if (pm.index === RegexUtils.fiscalReportPaymentDetailsPattern.lastIndex) {
 									RegexUtils.fiscalReportPaymentDetailsPattern.lastIndex++;
 								}
 								let paymentGroups = pm.groups;
@@ -808,9 +689,7 @@ export class Driver implements IDriver {
 									let clousurePayment = new ClosurePayment();
 									clousurePayment.description = paymentGroups['description'];
 									if (paymentGroups['value']) {
-										clousurePayment.value = parseInt(
-											paymentGroups['value'].replace(/[\.,]/g, '')
-										);
+										clousurePayment.value = parseInt(paymentGroups['value'].replace(/[\.,]/g, ''));
 									}
 									closure.payments.push(clousurePayment);
 								}
@@ -819,15 +698,8 @@ export class Driver implements IDriver {
 						if (groups['discounts']) {
 							let discounts = groups['discounts'];
 							let dm;
-							while (
-								(dm = RegexUtils.fiscalReportDiscountDetailsPattern.exec(
-									discounts
-								)) !== null
-							) {
-								if (
-									dm.index ===
-									RegexUtils.fiscalReportDiscountDetailsPattern.lastIndex
-								) {
+							while ((dm = RegexUtils.fiscalReportDiscountDetailsPattern.exec(discounts)) !== null) {
+								if (dm.index === RegexUtils.fiscalReportDiscountDetailsPattern.lastIndex) {
 									RegexUtils.fiscalReportDiscountDetailsPattern.lastIndex++;
 								}
 								let discountGroups = dm.groups;
@@ -837,9 +709,7 @@ export class Driver implements IDriver {
 										clousureDiscount.isPerc = true;
 									}
 									if (discountGroups['value']) {
-										clousureDiscount.value = parseInt(
-											discountGroups['value'].replace(/[\.,]/g, '')
-										);
+										clousureDiscount.value = parseInt(discountGroups['value'].replace(/[\.,]/g, ''));
 									}
 									closure.discounts.push(clousureDiscount);
 								}
@@ -866,9 +736,7 @@ export class Driver implements IDriver {
 
 		try {
 			await this.sendCommand(this.core.prg());
-			let sendCommandResult = await this.sendCommand(
-				this.core.getLastReceipt()
-			);
+			let sendCommandResult = await this.sendCommand(this.core.getLastReceipt());
 			if (sendCommandResult.isSuccess) {
 				let rows = sendCommandResult.responseBody.join('\n');
 
@@ -897,10 +765,7 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	private fillReceipt(
-		groups: {[key: string]: string},
-		receipt: Receipt
-	): Receipt {
+	private fillReceipt(groups: {[key: string]: string}, receipt: Receipt): Receipt {
 		receipt.raw = groups['raw'];
 		receipt.date = DateTime.fromFormat(groups['datetime'], 'dd-LL-yyyy HH:mm', {
 			locale: 'it-IT',
@@ -914,9 +779,7 @@ export class Driver implements IDriver {
 			receipt.vatTotal = parseInt(groups['vatTotal'].replace(/[\.,]/g, ''));
 		}
 		if (groups['paymentTotal']) {
-			receipt.paymentTotal = parseInt(
-				groups['paymentTotal'].replace(/[\.,]/g, '')
-			);
+			receipt.paymentTotal = parseInt(groups['paymentTotal'].replace(/[\.,]/g, ''));
 		}
 		if (groups['items']) {
 			let items = groups['items'];
@@ -941,9 +804,7 @@ export class Driver implements IDriver {
 						item.qty = parseInt(itemGroups['qty']);
 					}
 					if (itemGroups['unitValue']) {
-						item.unitValue = parseInt(
-							itemGroups['unitValue'].replace(/[\.,]/g, '')
-						);
+						item.unitValue = parseInt(itemGroups['unitValue'].replace(/[\.,]/g, ''));
 					}
 					if (itemGroups['discountDescription'] && itemGroups['discountPerc']) {
 						item.discount = {
@@ -957,15 +818,10 @@ export class Driver implements IDriver {
 							item.discount.nature = itemGroups['discountNature'];
 						}
 					}
-					if (
-						itemGroups['discountDescription'] &&
-						itemGroups['discountValue']
-					) {
+					if (itemGroups['discountDescription'] && itemGroups['discountValue']) {
 						item.discount = {
 							description: itemGroups['discountDescription'],
-							value: parseInt(
-								itemGroups['discountValue'].replace(/[\.,]/g, '')
-							),
+							value: parseInt(itemGroups['discountValue'].replace(/[\.,]/g, '')),
 						} as ReceiptItemDiscount;
 						if (itemGroups['discountVat']) {
 							item.discount.vat = parseInt(itemGroups['discountVat']);
@@ -981,9 +837,7 @@ export class Driver implements IDriver {
 		if (groups['payments']) {
 			let payments = groups['payments'];
 			let m;
-			while (
-				(m = RegexUtils.fiscalDocumentPaymentsPattern.exec(payments)) !== null
-			) {
+			while ((m = RegexUtils.fiscalDocumentPaymentsPattern.exec(payments)) !== null) {
 				// This is necessary to avoid infinite loops with zero-width matches
 				if (m.index === RegexUtils.fiscalDocumentPattern.lastIndex) {
 					RegexUtils.fiscalDocumentPattern.lastIndex++;
@@ -992,9 +846,7 @@ export class Driver implements IDriver {
 				if (paymentsGroups) {
 					let payment = {} as ReceiptPayment;
 					payment.description = paymentsGroups['description'];
-					payment.value = parseInt(
-						paymentsGroups['value'].replace(/[\.,]/g, '')
-					);
+					payment.value = parseInt(paymentsGroups['value'].replace(/[\.,]/g, ''));
 					receipt.payments.push(payment);
 				}
 			}
@@ -1026,11 +878,7 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	async printReceipt(
-		bill: BillDTO,
-		printDepartmentSubtotal: boolean = false,
-		dumpResultFromDgfe: boolean = false
-	): Promise<PrintBillResponseDTO> {
+	async printReceipt(bill: BillDTO, printDepartmentSubtotal: boolean = false, dumpResultFromDgfe: boolean = false): Promise<PrintBillResponseDTO> {
 		let result = {} as PrintBillResponseDTO;
 		try {
 			let commands: string[] = [];
@@ -1047,29 +895,16 @@ export class Driver implements IDriver {
 					});
 				}
 				if (printDepartmentSubtotal) {
-					let billItemsGrouped = _.groupBy(
-						bill.lineItems,
-						(l) => l.departmentId
-					);
+					let billItemsGrouped = _.groupBy(bill.lineItems, (l) => l.departmentId);
 					let keys = Object.keys(billItemsGrouped);
 					keys.forEach((key) => {
 						billItemsGrouped[key].forEach((item) => {
 							commands.push(this.core.departmentSellFromLineItem(item));
 							if (item.discount) {
 								if (item.discount.percent) {
-									commands.push(
-										this.core.discountPercentage(
-											item.discount.percent,
-											item.discount.description
-										)
-									);
+									commands.push(this.core.discountPercentage(item.discount.percent, item.discount.description));
 								} else if (item.discount.value) {
-									commands.push(
-										this.core.discountValue(
-											item.discount.value,
-											item.discount.description
-										)
-									);
+									commands.push(this.core.discountValue(item.discount.value, item.discount.description));
 								}
 							}
 						});
@@ -1080,19 +915,9 @@ export class Driver implements IDriver {
 						commands.push(this.core.departmentSellFromLineItem(item));
 						if (item.discount) {
 							if (item.discount.percent) {
-								commands.push(
-									this.core.discountPercentage(
-										item.discount.percent,
-										item.discount.description
-									)
-								);
+								commands.push(this.core.discountPercentage(item.discount.percent, item.discount.description));
 							} else if (item.discount.value) {
-								commands.push(
-									this.core.discountValue(
-										item.discount.value,
-										item.discount.description
-									)
-								);
+								commands.push(this.core.discountValue(item.discount.value, item.discount.description));
 							}
 						}
 					});
@@ -1118,12 +943,7 @@ export class Driver implements IDriver {
 			commands.push(this.core.clear());
 			let sendCommandsResult = await this.sendCommands(commands);
 
-			if (
-				dumpResultFromDgfe &&
-				sendCommandsResult
-					.map((s) => s.isSuccess)
-					.reduce((previous, current) => previous && current, true)
-			) {
+			if (dumpResultFromDgfe && sendCommandsResult.map((s) => s.isSuccess).reduce((previous, current) => previous && current, true)) {
 				result.receipt = await this.getLastReceipt();
 			}
 		} catch (e) {
@@ -1144,10 +964,7 @@ export class Driver implements IDriver {
 			commands.push(this.core.reg());
 			commands.push(this.core.clear());
 			let sendCommandsResult = await this.sendCommands(commands);
-			let result = sendCommandsResult.reduce(
-				(previous, current) => previous && current.isSuccess,
-				true
-			);
+			let result = sendCommandsResult.reduce((previous, current) => previous && current.isSuccess, true);
 			return result;
 		} catch (e) {
 			console.error(e);
@@ -1167,10 +984,7 @@ export class Driver implements IDriver {
 			commands.push(this.core.reg());
 			commands.push(this.core.clear());
 			let sendCommandsResult = await this.sendCommands(commands);
-			let result = sendCommandsResult.reduce(
-				(previous, current) => previous && current.isSuccess,
-				true
-			);
+			let result = sendCommandsResult.reduce((previous, current) => previous && current.isSuccess, true);
 			return result;
 		} catch (e) {
 			console.error(e);
@@ -1181,11 +995,7 @@ export class Driver implements IDriver {
 	/**
 	 * @inheritdoc
 	 */
-	async print(
-		rows: string[] | RowDTO[],
-		cutPaper: boolean = false,
-		header: boolean = false
-	): Promise<boolean> {
+	async print(rows: string[] | RowDTO[], cutPaper: boolean = false, header: boolean = false): Promise<boolean> {
 		try {
 			let commands: string[] = [];
 			commands.push(this.core.clear());
@@ -1199,10 +1009,7 @@ export class Driver implements IDriver {
 			commands.push(this.core.terminateOperation());
 			commands.push(this.core.clear());
 			let sendCommandsResult = await this.sendCommands(commands);
-			let result = sendCommandsResult.reduce(
-				(previous, current) => previous && current.isSuccess,
-				true
-			);
+			let result = sendCommandsResult.reduce((previous, current) => previous && current.isSuccess, true);
 			return result;
 		} catch (e) {
 			console.error(e);
@@ -1234,10 +1041,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.getCurrentDateTime());
 			if (result.isSuccess) {
-				return DateTime.fromFormat(
-					result.response[0].data,
-					'dd/LL/yyyy HH:mm:ss'
-				).toJSDate();
+				return DateTime.fromFormat(result.response[0].data, 'dd/LL/yyyy HH:mm:ss').toJSDate();
 			} else {
 				return null;
 			}
@@ -1418,9 +1222,7 @@ export class Driver implements IDriver {
 	 */
 	async getLastNotFiscalDocumentNumber(): Promise<number | null> {
 		try {
-			let result = await this.sendCommand(
-				this.core.getLastNotFiscalDocumentNumber()
-			);
+			let result = await this.sendCommand(this.core.getLastNotFiscalDocumentNumber());
 			if (result.isSuccess) {
 				return parseInt(result.response[0].data);
 			} else {
@@ -1488,9 +1290,7 @@ export class Driver implements IDriver {
 	 */
 	async getAnnualCreditNoteNumber(): Promise<number | null> {
 		try {
-			let result = await this.sendCommand(
-				this.core.getAnnualCreditNoteNumber()
-			);
+			let result = await this.sendCommand(this.core.getAnnualCreditNoteNumber());
 			if (result.isSuccess) {
 				return parseInt(result.response[0].data);
 			} else {
@@ -1614,10 +1414,7 @@ export class Driver implements IDriver {
 		try {
 			let result = await this.sendCommand(this.core.inServiceStatus());
 			if (result.isSuccess) {
-				return DateTime.fromFormat(
-					result.response[0].data,
-					'yyyy/LL/dd'
-				).toJSDate();
+				return DateTime.fromFormat(result.response[0].data, 'yyyy/LL/dd').toJSDate();
 			} else {
 				return null;
 			}
@@ -1655,30 +1452,23 @@ export class Driver implements IDriver {
 			result.subtotal = (await this.getCurrentSubTotal()) ?? undefined;
 			result.fwVersion = (await this.getFwVersion()) ?? undefined;
 			result.serialNumber = (await this.getSerialNumber()) ?? undefined;
-			result.corrispettivoFiscale =
-				(await this.getCorrispettivoFiscale()) ?? undefined;
+			result.corrispettivoFiscale = (await this.getCorrispettivoFiscale()) ?? undefined;
 			result.totalReturns = (await this.getTotalReturns()) ?? undefined;
 			result.totalCancelled = (await this.getTotalCancelled()) ?? undefined;
 			result.totalCredits = (await this.getTotalCredits()) ?? undefined;
-			result.totalZeroingNumber =
-				(await this.getTotalZeroingNumber()) ?? undefined;
+			result.totalZeroingNumber = (await this.getTotalZeroingNumber()) ?? undefined;
 			result.grandTotal = (await this.getGrandTotal()) ?? undefined;
 			result.hwInitNumber = (await this.getHwInitNumber()) ?? undefined;
-			result.lastNotFiscalDocumentNumber =
-				(await this.getLastNotFiscalDocumentNumber()) ?? undefined;
+			result.lastNotFiscalDocumentNumber = (await this.getLastNotFiscalDocumentNumber()) ?? undefined;
 			result.cashierNumber = (await this.getCashierNumber()) ?? undefined;
-			result.lastInvoiceNumber =
-				(await this.getLastInvoiceNumber()) ?? undefined;
-			result.dailyCreditNoteNumber =
-				(await this.getDailyCreditNoteNumber()) ?? undefined;
-			result.annualCreditNoteNumber =
-				(await this.getAnnualCreditNoteNumber()) ?? undefined;
+			result.lastInvoiceNumber = (await this.getLastInvoiceNumber()) ?? undefined;
+			result.dailyCreditNoteNumber = (await this.getDailyCreditNoteNumber()) ?? undefined;
+			result.annualCreditNoteNumber = (await this.getAnnualCreditNoteNumber()) ?? undefined;
 			result.dgfeStatus = (await this.getDgfeStatus()) ?? undefined;
 			result.dgfeFreeSpace = (await this.getDgfeFreeSpace()) ?? undefined;
 			let dayLightSavingTimeAndPeriodCheck = await this.getDayLightSavingTimeAndPeriodCheck();
 			if (dayLightSavingTimeAndPeriodCheck) {
-				result.daylightSavingTime =
-					dayLightSavingTimeAndPeriodCheck.daylightSavingTime;
+				result.daylightSavingTime = dayLightSavingTimeAndPeriodCheck.daylightSavingTime;
 				result.periodicCheck = dayLightSavingTimeAndPeriodCheck.periodicCheck;
 			}
 			result.printerStatus = (await this.getPrinterStatus()) ?? undefined;
@@ -1688,11 +1478,9 @@ export class Driver implements IDriver {
 				result.inactive = inactivityAndPendings.inactive;
 				result.pendingFiles = inactivityAndPendings.pendingFiles;
 				result.maxPendingFiles = inactivityAndPendings.maxPendingFiles;
-				result.firstPendingFileDateTime =
-					inactivityAndPendings.firstPendingFileDateTime;
+				result.firstPendingFileDateTime = inactivityAndPendings.firstPendingFileDateTime;
 			}
-			result.commissioningDate =
-				(await this.getCommisioningDate()) ?? undefined;
+			result.commissioningDate = (await this.getCommisioningDate()) ?? undefined;
 			result.ethernetSettings = (await this.getEthernetSettings()) ?? undefined;
 
 			return result;
@@ -1715,21 +1503,10 @@ export class Driver implements IDriver {
 		let result: string[] = [];
 
 		bytesRead.forEach((b) => {
-			if (
-				b != ComConst.CHR_ACK &&
-				b != ComConst.CHR_STX &&
-				b != ComConst.CHR_ETX &&
-				b != ComConst.CHR_LF &&
-				b != ComConst.CHR_NACK &&
-				b != ComConst.CHR_CR
-			) {
+			if (b != ComConst.CHR_ACK && b != ComConst.CHR_STX && b != ComConst.CHR_ETX && b != ComConst.CHR_LF && b != ComConst.CHR_NACK && b != ComConst.CHR_CR) {
 				this.buffer.push(b);
 			}
-			if (
-				b == ComConst.CHR_CR ||
-				b == ComConst.CHR_LF ||
-				b == ComConst.CHR_ETX
-			) {
+			if (b == ComConst.CHR_CR || b == ComConst.CHR_LF || b == ComConst.CHR_ETX) {
 				if (this.buffer.length > 0) {
 					let response = Buffer.from(this.buffer).toString('ascii');
 					result.push(response);

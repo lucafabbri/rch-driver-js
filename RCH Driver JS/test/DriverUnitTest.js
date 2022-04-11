@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const assert_1 = (0, tslib_1.__importDefault)(require("assert"));
+const rch_driver_js_core_1 = require("rch-driver-js-core");
 const esm_1 = require("../dist/esm");
 const ConnectionConst_1 = require("../dist/esm/ConnectionConst");
 const Driver_1 = require("../dist/esm/Driver");
-const Core_1 = require("../dist/esm/protocol/Core");
 describe('#addCommandEventListener()', () => {
     var driver = new Driver_1.Driver();
     var rollback = driver.addCommandEventListener(() => { });
@@ -72,13 +72,33 @@ describe('#discover()', function () {
         });
     });
 });
+describe('#discoverByIp()', function () {
+    this.timeout(60000 * 5);
+    it('it should find RCH devices', function () {
+        return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
+            try {
+                var driver = new Driver_1.Driver();
+                var result = yield driver.discoverByIp("192.168.1.10");
+                if (result) {
+                    assert_1.default.ok(result);
+                }
+                else {
+                    assert_1.default.fail();
+                }
+            }
+            catch (e) {
+                assert_1.default.fail();
+            }
+        });
+    });
+});
 describe('#sendCommand()', function () {
     this.timeout(5000);
     it('it should send a command to the printer', function () {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             var driver = new Driver_1.Driver();
             driver.addCommandEventListener((command) => console.log(command));
-            var core = new Core_1.Core();
+            var core = new rch_driver_js_core_1.Core();
             try {
                 assert_1.default.ok(yield driver.open({ connection: ConnectionConst_1.ConnectionConst.TCPIP, ip: '192.168.1.10', ipPort: 23 }));
                 var result = yield driver.sendCommand(core.clear());
@@ -98,7 +118,7 @@ describe('#sendCommands()', function () {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             var driver = new Driver_1.Driver();
             driver.addCommandEventListener((command) => console.log(command));
-            var core = new Core_1.Core();
+            var core = new rch_driver_js_core_1.Core();
             try {
                 assert_1.default.ok(yield driver.open({ connection: ConnectionConst_1.ConnectionConst.TCPIP, ip: '192.168.1.10', ipPort: 23 }));
                 var result = yield driver.sendCommands([
@@ -170,7 +190,7 @@ describe('#printReceipt()', function () {
             try {
                 yield driver.open({ connection: ConnectionConst_1.ConnectionConst.TCPIP, ip: '192.168.1.10', ipPort: 23 });
                 var result = yield driver.printReceipt({
-                    billType: esm_1.BillType.RECEIPT,
+                    billType: rch_driver_js_core_1.BillType.RECEIPT,
                     lineItems: [
                         {
                             price: 500,
@@ -238,7 +258,7 @@ describe('#cancelReceipt()', function () {
             try {
                 yield driver.open({ connection: ConnectionConst_1.ConnectionConst.TCPIP, ip: '192.168.1.10', ipPort: 23 });
                 var receipt = yield driver.printReceipt({
-                    billType: esm_1.BillType.CANCEL,
+                    billType: rch_driver_js_core_1.BillType.CANCEL,
                     lineItems: [
                         {
                             price: 500,
@@ -254,7 +274,7 @@ describe('#cancelReceipt()', function () {
                     ((_b = receipt.receipt) === null || _b === void 0 ? void 0 : _b.closure) &&
                     ((_c = receipt.receipt) === null || _c === void 0 ? void 0 : _c.number)) {
                     var result = yield driver.printReceipt({
-                        billType: esm_1.BillType.CANCEL,
+                        billType: rch_driver_js_core_1.BillType.CANCEL,
                         returnInfo: {
                             date: (_d = receipt.receipt) === null || _d === void 0 ? void 0 : _d.date,
                             closure: (_e = receipt.receipt) === null || _e === void 0 ? void 0 : _e.closure,
@@ -293,7 +313,7 @@ describe('#returnReceipt()', function () {
             try {
                 yield driver.open({ connection: ConnectionConst_1.ConnectionConst.TCPIP, ip: '192.168.1.10', ipPort: 23 });
                 var receipt = yield driver.printReceipt({
-                    billType: esm_1.BillType.RETURN,
+                    billType: rch_driver_js_core_1.BillType.RETURN,
                     lineItems: [
                         {
                             price: 500,
@@ -309,7 +329,7 @@ describe('#returnReceipt()', function () {
                     ((_b = receipt.receipt) === null || _b === void 0 ? void 0 : _b.closure) &&
                     ((_c = receipt.receipt) === null || _c === void 0 ? void 0 : _c.number)) {
                     var result = yield driver.printReceipt({
-                        billType: esm_1.BillType.RETURN,
+                        billType: rch_driver_js_core_1.BillType.RETURN,
                         returnInfo: {
                             date: (_d = receipt.receipt) === null || _d === void 0 ? void 0 : _d.date,
                             closure: (_e = receipt.receipt) === null || _e === void 0 ? void 0 : _e.closure,

@@ -1,5 +1,5 @@
-import { DeviceType } from "..";
-import { IProg } from "../interfaces/IProg";
+import { DeviceType } from ".";
+import { IProg } from "./interfaces/IProg";
 
 /**
  * Device capabilites

@@ -1,6 +1,6 @@
 {
   "name": "rch-driver-js",
-  "version": "1.0.0-rc.16",
+  "version": "1.0.0-rc.20",
   "description": "RCH Driver for Javascript",
   "main": "dist/esm/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -12,7 +12,7 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "docs": "jsdoc2md --plugin dmd-bitbucket -t README.hbs --files src/*.ts src/**/*.ts --configure jsdoc2md.json > ../README.md",
-    "build": "tsc && tsc -p ./tsconfig.test.json && rollup -c rollup.config.js && npm run docs",
+    "build": "tsc && tsc -p ./tsconfig.test.json && rollup -c rollup.config.js",
     "clean": "rimraf ./dist && rm -rf ./test/*.js && rm -rf ./test/*.d.ts && rm -rf ./test/*.map && npx ctix create ./tsconfig.json",
     "watch": "tsc --watch",
     "test": "mocha -R spec test/**/*Test.js 2>&1 | tee report",
@@ -27,7 +27,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@rollup/plugin-inject": "^4.0.3",
     "@types/mocha": "^9.0.0",
-    "ctix": "^0.4.0",
+    "ctix": "^0.6.0",
     "dmd-bitbucket": "^0.1.10",
     "eslint": "^7.11.0",
     "jsdoc-babel": "^0.5.0",
@@ -58,6 +58,9 @@
     "@types/luxon": "^2.0.8",
     "@types/node": "^16.0.0",
     "@types/serialport": "^8.0.2",
-    "local-devices": "^3.2.0"
+    "rch-driver-js-core":"file:../../rch-driver-js-core",
+    "local-devices": "^3.2.0",
+    "luxon": "^2.3.1",
+    "serialport": "^10.4.0"
   }
 }

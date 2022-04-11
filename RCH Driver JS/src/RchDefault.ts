@@ -1,7 +1,7 @@
-import { DeviceType } from "../DeviceType";
-import { IPayment } from "../interfaces/IPayment";
-import { IProg } from "../interfaces/IProg";
-import { Prog } from "../models/Prog";
+import { DeviceType } from "./DeviceType";
+import { IPayment } from "./interfaces/IPayment";
+import { IProg } from "./interfaces/IProg";
+import { Prog } from "./models/Prog";
 import { DeviceCapabilites } from "./DeviceCapabilities";
 
 /**

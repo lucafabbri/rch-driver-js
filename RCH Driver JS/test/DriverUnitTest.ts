@@ -1,9 +1,9 @@
 import assert from 'assert';
-import { BillDTO, BillType, DeviceType, RchProtocol } from '../dist/esm';
+import { BillDTO, BillType, Core } from 'rch-driver-js-core';
+import { DeviceType, RchProtocol } from '../dist/esm';
 import { ConnectionConst } from '../dist/esm/ConnectionConst';
 
 import { Driver } from '../dist/esm/Driver';
-import { Core } from '../dist/esm/protocol/Core';
 
 describe('#addCommandEventListener()', () => {
 	var driver = new Driver();
@@ -60,6 +60,22 @@ describe('#discover()', function () {
 			var driver = new Driver();
 			var result = await driver.discovery();
 			assert.ok(result.length > 0);
+		} catch (e) {
+			assert.fail();
+		}
+	});
+});
+describe('#discoverByIp()', function () {
+	this.timeout(60000 * 5);
+	it('it should find RCH devices', async function () {
+		try {
+			var driver = new Driver();
+			var result = await driver.discoverByIp("192.168.1.10");
+			if (result) {
+				assert.ok(result);
+			} else {
+				assert.fail();
+			}
 		} catch (e) {
 			assert.fail();
 		}

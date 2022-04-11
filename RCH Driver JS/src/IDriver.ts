@@ -3,12 +3,12 @@ import { RchProtocol } from "./protocol/RchProtocol"
 import { IProg } from "./interfaces/IProg";
 import { PrinterStatus } from "./printer/PrinterStatus";
 import { DeviceStatus } from "./printer/DeviceStatus";
-import { BillDTO, CashRegister, Dgfe, DgfeStatus, EthernetSettings, PrintBillResponseDTO, Receipt, RTStatus } from ".";
+import { CashRegister, Dgfe, DgfeStatus, EthernetSettings, PrintBillResponseDTO, Receipt, RTStatus } from ".";
 import { DayLightSavingTimeAndPeriodCheck } from "./printer/DayLightSavingTimeAndPeriodCheck";
 import { InactivityAndPendings } from "./printer/InactivityAndPendings";
 import { ProgCommand } from "./models/ProgCommand";
-import { RowDTO } from './dto/RowDTO';
 import { DriverConfiguration } from "./DriverConfiguration";
+import { BillDTO, RowDTO } from "rch-driver-js-core";
 
 
 /**
@@ -30,7 +30,6 @@ export interface IDriver {
 	 */
 	close(): Promise<boolean>;
 
-	
 	/**
 	 * Open the connection
 	 * @date 1/11/2022 - 9:30:15 PM
@@ -67,6 +66,14 @@ export interface IDriver {
 	 * @returns {Promise<Array<IEcrDevice>>}
 	 */
 	discovery(): Promise<Array<IEcrDevice>>;
+
+	/**
+	 * Description placeholder
+	 * @date 1/11/2022 - 2:15:45 AM
+	 *
+	 * @returns {Promise<Array<IEcrDevice>>}
+	 */
+	discoverByIp(ip: string): Promise<IEcrDevice|null>;
 
 	//composed actions
 
@@ -121,11 +128,7 @@ export interface IDriver {
 	 * @param {boolean} sendHeadings
 	 * @returns {ProgCommand[]}
 	 */
-	buildProgCommands(
-		prog: IProg,
-		printerType: string,
-		sendHeadings: boolean
-	): ProgCommand[];
+	buildProgCommands(prog: IProg, printerType: string, sendHeadings: boolean): ProgCommand[];
 
 	//print
 
@@ -138,22 +141,14 @@ export interface IDriver {
 	 * @param {boolean} header
 	 * @returns {Promise<boolean>}
 	 */
-	print(
-		rows: string[] | RowDTO[],
-		cutPaper: boolean,
-		header: boolean
-	): Promise<boolean>;
+	print(rows: string[] | RowDTO[], cutPaper: boolean, header: boolean): Promise<boolean>;
 	/**
 	 *
 	 * @param bill
 	 * @param printDepartmentSubtotal
 	 * @param dumpResultFromDgfe
 	 */
-	printReceipt(
-		bill: BillDTO,
-		printDepartmentSubtotal: boolean,
-		dumpResultFromDgfe: boolean
-	): Promise<PrintBillResponseDTO>;
+	printReceipt(bill: BillDTO, printDepartmentSubtotal: boolean, dumpResultFromDgfe: boolean): Promise<PrintBillResponseDTO>;
 
 	//statuses
 
