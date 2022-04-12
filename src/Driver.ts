@@ -20,7 +20,6 @@ import {createConnection} from 'net';
 import {Crawler} from './network/Crawler';
 import { SerialPort } from 'serialport';
 import { DateTime } from 'luxon';
-import _ from 'lodash';
 import {
 	Dgfe,
 	Receipt,
@@ -895,7 +894,7 @@ export class Driver implements IDriver {
 					});
 				}
 				if (printDepartmentSubtotal) {
-					let billItemsGrouped = _.groupBy(bill.lineItems, (l) => l.departmentId);
+					let billItemsGrouped = bill.lineItems.groupBy((l) => l.departmentId);
 					let keys = Object.keys(billItemsGrouped);
 					keys.forEach((key) => {
 						billItemsGrouped[key].forEach((item) => {

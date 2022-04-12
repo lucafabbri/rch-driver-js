@@ -1,9 +1,10 @@
 import assert from 'assert';
 import { BillDTO, BillType, Core } from 'rch-driver-js-core';
-import { DeviceType, RchProtocol } from '../dist/esm';
+import { DeviceType } from '../dist/esm';
 import { ConnectionConst } from '../dist/esm/ConnectionConst';
 
 import { Driver } from '../dist/esm/Driver';
+import { RchProtocol } from '../dist/esm/protocol/RchProtocol';
 
 describe('#addCommandEventListener()', () => {
 	var driver = new Driver();
