@@ -37,8 +37,15 @@ import {ClosureDiscount} from './ClosureDiscount';
 import {ProgCommand} from './models/ProgCommand';
 import { DriverConfiguration } from './DriverConfiguration';
 import { RegexUtils } from './RegexUtils';
-import { BillDTO, Core, RowDTO } from 'rch-driver-js-core';
+import { BillDTO, Core, LineItemDTO, RowDTO } from 'rch-driver-js-core';
 
+const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) =>
+  list.reduce((previous, currentItem) => {
+    const group = getKey(currentItem);
+    if (!previous[group]) previous[group] = [];
+    previous[group].push(currentItem);
+    return previous;
+  }, {} as Record<K, T[]>);
 
 /**
  * Driver
@@ -894,10 +901,10 @@ export class Driver implements IDriver {
 					});
 				}
 				if (printDepartmentSubtotal) {
-					let billItemsGrouped = bill.lineItems.groupBy((l) => l.departmentId);
+					let billItemsGrouped = groupBy(bill.lineItems,(l: LineItemDTO) => l.departmentId);
 					let keys = Object.keys(billItemsGrouped);
 					keys.forEach((key) => {
-						billItemsGrouped[key].forEach((item) => {
+						billItemsGrouped[parseInt(key)].forEach((item:LineItemDTO) => {
 							commands.push(this.core.departmentSellFromLineItem(item));
 							if (item.discount) {
 								if (item.discount.percent) {
