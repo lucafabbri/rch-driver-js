@@ -1171,10 +1171,10 @@
   resolved "https://repo.rchrnd.com/repository/npm-group/@types/linkify-it/-/linkify-it-3.0.2.tgz#fd2cd2edbaa7eaac7e7f3c1748b52a19143846c9"
   integrity sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==
 
-"@types/luxon@^2.3.1":
-  version "2.3.1"
-  resolved "https://repo.rchrnd.com/repository/npm-group/@types/luxon/-/luxon-2.3.1.tgz#e34763178b46232e4c5f079f1706e18692415519"
-  integrity sha512-nAPUltOT28fal2eDZz8yyzNhBjHw1NEymFBP7Q9iCShqpflWPybxHbD7pw/46jQmT+HXOy1QN5hNTms8MOTlOQ==
+"@types/luxon@^1.2.28":
+  version "1.27.1"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.27.1.tgz#aceeb2d5be8fccf541237e184e37ecff5faa9096"
+  integrity sha512-cPiXpOvPFDr2edMnOXlz3UBDApwUfR+cpizvxCy0n3vp9bz/qe8BWzHPIEFcy+ogUOyjKuCISgyq77ELZPmkkg==
 
 "@types/markdown-it@^12.2.3":
   version "12.2.3"
@@ -1198,6 +1198,11 @@
   version "17.0.23"
   resolved "https://repo.rchrnd.com/repository/npm-group/@types/node/-/node-17.0.23.tgz#3b41a6e643589ac6442bdbd7a4a3ded62f33f7da"
   integrity sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==
+
+"@types/node@^14":
+  version "14.18.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.16.tgz#878f670ba3f00482bf859b6550b6010610fc54b5"
+  integrity sha512-X3bUMdK/VmvrWdoTkz+VCn6nwKwrKCFTHtqwBIaQJNx4RUIBBUFXM00bqPz/DsDd+Icjmzm6/tyYZzeGVqb6/Q==
 
 "@types/node@^16.0.0":
   version "16.11.26"
@@ -2711,11 +2716,6 @@ lru-cache@^7.4.0:
   resolved "https://repo.rchrnd.com/repository/npm-group/lru-cache/-/lru-cache-7.8.1.tgz#68ee3f4807a57d2ba185b7fd90827d5c21ce82bb"
   integrity sha512-E1v547OCgJvbvevfjgK9sNKIVXO96NnsTsFPBlg4ZxjhsJSODoH9lk8Bm0OxvHNm6Vm5Yqkl/1fErDxhYL8Skg==
 
-luxon@^2.3.1:
-  version "2.3.1"
-  resolved "https://repo.rchrnd.com/repository/npm-group/luxon/-/luxon-2.3.1.tgz#f276b1b53fd9a740a60e666a541a7f6dbed4155a"
-  integrity sha512-I8vnjOmhXsMSlNMZlMkSOvgrxKJl0uOsEzdGgGNZuZPaS9KlefpE9KV95QFftlJSC+1UyCC9/I69R02cz/zcCA==
-
 magic-string@^0.25.3, magic-string@^0.25.7:
   version "0.25.9"
   resolved "https://repo.rchrnd.com/repository/npm-group/magic-string/-/magic-string-0.25.9.tgz#de7f9faf91ef8a1c91d02c2e5314c8277dbcdd1c"
@@ -3107,12 +3107,12 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-rch-driver-js-core@^1.0.0:
-  version "1.0.0"
-  resolved "https://repo.rchrnd.com/repository/npm-group/rch-driver-js-core/-/rch-driver-js-core-1.0.0.tgz#9a1d31ef1ade8685fa35081abf66ce488edd5d01"
-  integrity sha512-6yM2cRcSi/tXUY1ROtdvxl3i//RE0TOK40rtWJerrIqljikjZIHuhGxWEqnRub74kB847J4AKNAtrypXXMiAvA==
+rch-driver-js-core@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rch-driver-js-core/-/rch-driver-js-core-1.0.1.tgz#b1edbaf686d7a4ad46f61bb555a58f2680281cb6"
+  integrity sha512-usoQmmRgR7g8lePttJvlGgK9RzaS5XYo+1/TvTvK+Bpofs9kIsrnnHJR7wNPGaOrpvK65FPusCQ5JHlVGFVK3g==
   dependencies:
-    "@types/luxon" "^2.3.1"
+    "@types/luxon" "^1.2.28"
     "@types/node" "^16.0.0"
 
 readdirp@~3.6.0:
